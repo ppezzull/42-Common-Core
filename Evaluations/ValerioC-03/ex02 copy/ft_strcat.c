@@ -3,42 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vpescete <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 19:24:31 by ppezzull          #+#    #+#             */
-/*   Updated: 2022/10/26 19:30:26 by ppezzull         ###   ########.fr       */
+/*   Created: 2022/10/19 13:55:14 by vpescete          #+#    #+#             */
+/*   Updated: 2022/10/20 18:45:11 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
+int	ft_strlen(char *dest)
+{
+	int	count;
+
+	count = 0;
+	while (dest[count] != '\0')
+	{
+		count++;
+	}
+	return (count);
+}
 
 char	*ft_strcat(char *dest, char *src)
 {
+	int	c;
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
-	while (dest[i] != '\0')
-		i++;
-	while (src[j] != '\0')
+	c = ft_strlen(dest);
+	while (src[i] != '\0')
 	{
-		dest[i] = src[j];
+		dest[c] = src[i];
+		c++;
 		i++;
-		j++;
 	}
-	dest[i] = '\0';
+	dest[c] = '\0';
 	return (dest);
 }
-
-// int main()
-// {
-//     char stra1[999] = "This is ";
-//     char stra2[999] = "programiz.com";
-//     strcat(stra1,stra2);
-//     printf("%s\n", stra1);
-//     ft_strcat(stra1,stra2);
-//     printf("%s", stra1);
-//     return 0;
-// }

@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_numeric.c                                :+:      :+:    :+:   */
+/*   ft_str_is_printable.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lfrancav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 19:19:40 by ppezzull          #+#    #+#             */
-/*   Updated: 2022/10/24 19:21:03 by ppezzull         ###   ########.fr       */
+/*   Created: 2022/10/18 07:54:16 by lfrancav          #+#    #+#             */
+/*   Updated: 2022/10/18 07:55:44 by lfrancav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_str_is_numeric(char *str)
+int	ft_str_is_printable(char *str)
 {
-	int	i;
+	int		c;
 
-	i = 0;
-	while (str[i])
+	c = 0;
+	while (str[c] != '\0')
 	{
-		if (str[i] < '0' || str[i] > '9')
+		if (str[c] < 32 || str[c] > 127)
 			return (0);
-		i++;
+		c++;
 	}
 	return (1);
 }

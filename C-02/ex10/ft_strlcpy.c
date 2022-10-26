@@ -1,37 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 19:21:39 by ppezzull          #+#    #+#             */
-/*   Updated: 2022/10/26 19:24:19 by ppezzull         ###   ########.fr       */
+/*   Created: 2022/10/24 19:31:34 by ppezzull          #+#    #+#             */
+/*   Updated: 2022/10/24 22:59:05 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include<string.h>
+#include <string.h>
 
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 {
 	unsigned int	i;
+	unsigned int	l;
 
 	i = 0;
-	while (i < n & s1[i] == s2[i])
+	l = 0;
+	while (src[l])
+		l++;
+	if (size != 0)
 	{
-		if (s1[i] == s2[i] & i == n - 1 || s1[i + 1] == 0)
-			return (0);
-		i++;
+		while (src[i] && i <= size -2)
+		{
+			dest[i] = src[i];
+			i++;
+		}
+		while (dest[i])
+		{
+			dest[i] = 0;
+			i++;
+		}
 	}
-	return (s1[i] - s2[i]);
+	return (l);
 }
 
-// int main()
-// {
-//     char s1[] = "abcdefgh", s2[] = "ok";
-//     unsigned int n = 3;
-
-//     printf("%i\n",strncmp(s1, s2, n));
-//     printf("%i",ft_strncmp(s1, s2, n));
-// }
+int	main()
+{
+	char a[50] = "a";
+	char b[50] = "s";
+	printf("%i-%s-%s\n", ft_strlcpy(a , b, 8),a,b);
+	printf("%lu-%s-%s\n", strlcpy(a , b, 8),a,b);
+}

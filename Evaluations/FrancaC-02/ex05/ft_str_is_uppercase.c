@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_numeric.c                                :+:      :+:    :+:   */
+/*   ft_str_is_uppercase.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lfrancav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 19:19:40 by ppezzull          #+#    #+#             */
-/*   Updated: 2022/10/24 19:21:03 by ppezzull         ###   ########.fr       */
+/*   Created: 2022/10/18 07:50:48 by lfrancav          #+#    #+#             */
+/*   Updated: 2022/10/18 07:53:47 by lfrancav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_str_is_numeric(char *str)
+int	ft_str_is_uppercase(char *str)
 {
-	int	i;
+	int		c;
 
-	i = 0;
-	while (str[i])
+	c = 0;
+	while (str[c])
 	{
-		if (str[i] < '0' || str[i] > '9')
+		if (!(str[c] >= 'A' && str[c] <= 'Z'))
 			return (0);
-		i++;
+		c++;
 	}
 	return (1);
 }

@@ -1,13 +1,25 @@
-int     ft_str_is_alpha(char *str)
-{
-    int i;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_str_is_alpha.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/24 19:16:42 by ppezzull          #+#    #+#             */
+/*   Updated: 2022/10/24 19:19:15 by ppezzull         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-    i = 0;
-    while (str[i])
-    {
-        if (str[i] > 'Z' & str[i] < 'a' || str[i] < 'A' || str[i] > 'z')
-            return(0);
-        i++;
-    }    
-    return(1);
+int	ft_str_is_alpha(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] > 'Z' & str[i] < 'a' || str[i] < 'A' || str[i] > 'z')
+			return (0);
+		i++;
+	}
+	return (1);
 }

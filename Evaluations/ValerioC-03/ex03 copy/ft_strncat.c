@@ -3,45 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vpescete <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 19:31:17 by ppezzull          #+#    #+#             */
-/*   Updated: 2022/10/26 19:32:24 by ppezzull         ###   ########.fr       */
+/*   Created: 2022/10/19 22:05:25 by vpescete          #+#    #+#             */
+/*   Updated: 2022/10/20 18:08:25 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
-
 char	*ft_strncat(char *dest, char *src, unsigned int nb)
 {
-	unsigned int	i;
 	unsigned int	j;
+	unsigned int	count;
 
-	i = 0;
+	count = 0;
 	j = 0;
-	while (dest[i] != '\0')
-		i++;
-	while (src[j] != '\0' && j < nb)
+	while (dest[count] != '\0')
 	{
-		dest[i] = src[j];
-		i++;
-		j++;
+		count++;
 	}
-	dest[i] = '\0';
+	while (j < nb && src[j] != '\0')
+	{
+		dest[count] = src[j];
+		j++;
+		count++;
+	}
+	dest[count] = '\0';
 	return (dest);
 }
-
-// int main()
-// {
-//    char src[] = "";
-//    char dest[]= "dfjn";
-
-//    // Appends 5 character from src to dest
-// //    strncat(dest, src, 5);
-// //    printf("%s", dest);
-//    ft_strncat(dest, src, 5);
-//    printf("%s", dest);
-
-//    return 0;
-// }

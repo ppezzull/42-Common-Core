@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_numeric.c                                :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lfrancav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 19:19:40 by ppezzull          #+#    #+#             */
-/*   Updated: 2022/10/24 19:21:03 by ppezzull         ###   ########.fr       */
+/*   Created: 2022/10/18 08:05:39 by lfrancav          #+#    #+#             */
+/*   Updated: 2022/10/18 08:06:18 by lfrancav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_str_is_numeric(char *str)
+unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 {
-	int	i;
+	unsigned int		i;
+	unsigned int		l;
 
 	i = 0;
-	while (str[i])
+	l = 0;
+	while (src[l] != '\0')
+		l++;
+	while (i < size - 1)
 	{
-		if (str[i] < '0' || str[i] > '9')
-			return (0);
+		dest[i] = src[i];
 		i++;
 	}
-	return (1);
+	dest[i] = '\0';
+	return (l);
 }

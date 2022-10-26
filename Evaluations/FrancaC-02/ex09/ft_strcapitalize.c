@@ -3,61 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcapitalize.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lfrancav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 19:27:38 by ppezzull          #+#    #+#             */
-/*   Updated: 2022/10/24 19:31:08 by ppezzull         ###   ########.fr       */
+/*   Created: 2022/10/18 08:02:55 by lfrancav          #+#    #+#             */
+/*   Updated: 2022/10/18 08:05:29 by lfrancav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
 char	*ft_strlowcase(char *str)
 {
-	int	i;
+	int		c;
 
-	i = 0;
-	while (str[i])
+	c = 0;
+	while (str[c])
 	{
-		if (str[i] >= 'A' && str[i] <= 'Z')
-			str[i] += 32;
-		i++;
+		if (str[c] >= 'A' && str[c] <= 'Z')
+			str[c] += 32;
+		c++;
 	}
 	return (str);
 }
 
-void	helper_capitalize(char *str, int i, int check)
-{
-	while (str[i] != '\0')
-	{
-		if (str[i] >= 'a' & str[i] <= 'z' || str[i] >= '0' & str[i] <= '9')
-		{
-			if (check)
-			{
-				check = 0;
-				if (str[i] >= 'a' && str[i] <= 'z')
-					str[i] -= 32;
-			}
-		}
-		else
-			check = 1;
-		i++;
-	}
-}
-
 char	*ft_strcapitalize(char *str)
 {
-	int		i;
+	int		c;
 	int		check;
 
 	str = ft_strlowcase(str);
-	i = 0;
+	c = 0;
 	check = 0;
 	if (str[0] >= 'a' && str[0] <= 'z')
 	{	
 		str[0] -= 32;
-		i++;
+		c++;
 	}
-	helper_capitalize(str, i, check);
+	while (str[c] != '\0')
+	{
+		if ((str[c] >= 'a' && str[c] <= 'z') || (str[c] >= '0' && str[c] <= '9'))
+		{
+			if (check)
+			{
+				check = 0;
+				if (str[c] >= 'a' && str[c] <= 'z')
+					str[c] -= 32;
+			}
+		}
+		else
+			check = 1;
+		c++;
+	}
 	return (str);
 }

@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_numeric.c                                :+:      :+:    :+:   */
+/*   ft_strlowcase.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lfrancav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 19:19:40 by ppezzull          #+#    #+#             */
-/*   Updated: 2022/10/24 19:21:03 by ppezzull         ###   ########.fr       */
+/*   Created: 2022/10/18 08:01:15 by lfrancav          #+#    #+#             */
+/*   Updated: 2022/10/18 08:02:13 by lfrancav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_str_is_numeric(char *str)
+char	*ft_strlowcase(char *str)
 {
-	int	i;
+	int		c;
 
-	i = 0;
-	while (str[i])
+	c = 0;
+	while (str[c])
 	{
-		if (str[i] < '0' || str[i] > '9')
-			return (0);
-		i++;
+		if (str[c] >= 'A' && str[c] <= 'Z')
+			str[c] += 32;
+		c++;
 	}
-	return (1);
+	return (str);
 }

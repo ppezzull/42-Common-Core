@@ -1,13 +1,25 @@
-int ft_str_is_uppercase(char *str)
-{
-    int i;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_str_is_uppercase.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/24 19:22:33 by ppezzull          #+#    #+#             */
+/*   Updated: 2022/10/24 19:23:14 by ppezzull         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-    i = 0;
-    while (str[i])
-    {
-        if (str[i] < 'A' || str[i] > 'Z')
-            return(0);
-        i++;
-    }    
-    return(1);
+int	ft_str_is_uppercase(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] < 'A' || str[i] > 'Z')
+			return (0);
+		i++;
+	}
+	return (1);
 }

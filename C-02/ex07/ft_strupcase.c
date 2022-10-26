@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strupper.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 19:21:39 by ppezzull          #+#    #+#             */
-/*   Updated: 2022/10/26 19:24:19 by ppezzull         ###   ########.fr       */
+/*   Created: 2022/10/24 19:24:36 by ppezzull          #+#    #+#             */
+/*   Updated: 2022/10/24 22:15:47 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include<string.h>
-
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+char	*ft_strupcase(char *str)
 {
-	unsigned int	i;
+	int	i;
 
 	i = 0;
-	while (i < n & s1[i] == s2[i])
+	while (str[i])
 	{
-		if (s1[i] == s2[i] & i == n - 1 || s1[i + 1] == 0)
-			return (0);
+		if (str[i] >= 'a' && str[i] <= 'z')
+			str[i] -= 32;
 		i++;
 	}
-	return (s1[i] - s2[i]);
+	return (str);
 }
-
-// int main()
-// {
-//     char s1[] = "abcdefgh", s2[] = "ok";
-//     unsigned int n = 3;
-
-//     printf("%i\n",strncmp(s1, s2, n));
-//     printf("%i",ft_strncmp(s1, s2, n));
-// }
