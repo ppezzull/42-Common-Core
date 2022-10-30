@@ -1,11 +1,3 @@
-/******************************************************************************
-
-Welcome to GDB Online.
-GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
-C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
-Code, Compile, Run and Debug online from anywhere in world.
-
-*******************************************************************************/
 #include <stdio.h>
 
 int ft_iterative_factorial(int nb)
@@ -15,6 +7,8 @@ int ft_iterative_factorial(int nb)
     
     i = 2;
     num = 1;
+    if (nb < 0)
+        return (0);
     while (i <= nb)
     {
         num *= i;
@@ -25,7 +19,6 @@ int ft_iterative_factorial(int nb)
 
 int main()
 {
-    printf ("%i",ft_iterative_factorial(0));
-
+    printf ("%i",ft_iterative_factorial(2));
     return 0;
 }
