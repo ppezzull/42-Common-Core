@@ -1,38 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_prime.c                                      :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/30 12:51:31 by ppezzull          #+#    #+#             */
-/*   Updated: 2022/10/30 12:51:49 by ppezzull         ###   ########.fr       */
+/*   Created: 2022/10/14 23:06:31 by ppezzull          #+#    #+#             */
+/*   Updated: 2022/10/30 11:57:03 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <unistd.h>
 
-int	ft_is_prime(int nb)
+void	ft_putchar(char c)
 {
-	int	i;
-
-	i = 2;
-	if (nb < 2)
-		return (0);
-	while (i < (nb / 2) + 1)
-	{
-		if (nb % i == 0)
-			return (0);
-		i++;
-	}
-	return (1);
+	write(1, &c, 1);
 }
 
-int main()
+void	ft_putnbr(int nb)
 {
-    for (int i = 0; i <= 100; i++)
-    {
-        if (ft_is_prime(i))
-            printf("%i ", i);
-    }
+	if (nb >= 0)
+	{
+		if (nb <= 9)
+			ft_putchar(nb + '0');
+		else
+		{
+			ft_putnbr(nb / 10);
+			ft_putchar(nb % 10 + '0');
+		}
+	}
+	else
+	{
+		if (nb == -2147483648)
+			write(1, "-2147483648", 11);
+		else
+		{
+			write(1, "-", 1);
+			ft_putnbr(nb * -1);
+		}
+	}
 }

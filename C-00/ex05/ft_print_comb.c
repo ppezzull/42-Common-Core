@@ -1,38 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_prime.c                                      :+:      :+:    :+:   */
+/*   ft_print_comb.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/30 12:51:31 by ppezzull          #+#    #+#             */
-/*   Updated: 2022/10/30 12:51:49 by ppezzull         ###   ########.fr       */
+/*   Created: 2022/10/13 21:01:42 by ppezzull          #+#    #+#             */
+/*   Updated: 2022/10/19 21:00:21 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <unistd.h>
 
-int	ft_is_prime(int nb)
+void	ft_print_comb(void)
 {
-	int	i;
+	char	a;
+	char	b;
+	char	c;
 
-	i = 2;
-	if (nb < 2)
-		return (0);
-	while (i < (nb / 2) + 1)
+	a = '0';
+	while (a <= '7')
 	{
-		if (nb % i == 0)
-			return (0);
-		i++;
+		b = a + 1;
+		while (b <= '8')
+		{	
+			c = b + 1;
+			while (c <= '9')
+			{
+				write(1, &a, 1);
+				write(1, &b, 1);
+				write(1, &c, 1);
+				if (a < '7')
+					write(1, ", ", 2);
+				c++;
+			}
+			b++;
+		}
+		a++;
 	}
-	return (1);
-}
-
-int main()
-{
-    for (int i = 0; i <= 100; i++)
-    {
-        if (ft_is_prime(i))
-            printf("%i ", i);
-    }
 }

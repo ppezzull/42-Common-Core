@@ -1,38 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_prime.c                                      :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/30 12:51:31 by ppezzull          #+#    #+#             */
-/*   Updated: 2022/10/30 12:51:49 by ppezzull         ###   ########.fr       */
+/*   Created: 2022/10/31 11:25:51 by ppezzull          #+#    #+#             */
+/*   Updated: 2022/10/31 11:31:30 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-int	ft_is_prime(int nb)
+int	ft_atoi(char *str)
 {
+	int	m;
 	int	i;
+	int	num;
 
-	i = 2;
-	if (nb < 2)
-		return (0);
-	while (i < (nb / 2) + 1)
+	i = 0;
+	m = 1;
+	num = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	while (str[i] == '+' || str[i] == '-')
 	{
-		if (nb % i == 0)
-			return (0);
+		if (str[i] == '-')
+			m *= -1;
 		i++;
 	}
-	return (1);
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		num = num * 10 + str[i] - '0';
+		i++;
+	}
+	return (m * num);
 }
 
-int main()
-{
-    for (int i = 0; i <= 100; i++)
-    {
-        if (ft_is_prime(i))
-            printf("%i ", i);
-    }
-}
+// int main()
+// {
+// 	printf("%i", ft_atoi(" --1234ab567"));
+// }

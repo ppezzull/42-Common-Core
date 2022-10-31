@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_prime.c                                      :+:      :+:    :+:   */
+/*   ft_print_params.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/30 12:51:31 by ppezzull          #+#    #+#             */
-/*   Updated: 2022/10/30 12:51:49 by ppezzull         ###   ########.fr       */
+/*   Created: 2022/10/30 18:39:02 by ppezzull          #+#    #+#             */
+/*   Updated: 2022/10/30 18:39:32 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <unistd.h>
 
-int	ft_is_prime(int nb)
+int	main(int argc, char **argv)
 {
 	int	i;
+	int	j;
 
-	i = 2;
-	if (nb < 2)
-		return (0);
-	while (i < (nb / 2) + 1)
+	i = 1;
+	while (i < argc)
 	{
-		if (nb % i == 0)
-			return (0);
+		j = 0;
+		while (argv[i][j] != '\0')
+		{
+			write(1, &argv[i][j], 1);
+			j++;
+		}
+		write(1, "\n", 1);
 		i++;
 	}
-	return (1);
-}
-
-int main()
-{
-    for (int i = 0; i <= 100; i++)
-    {
-        if (ft_is_prime(i))
-            printf("%i ", i);
-    }
+	return (0);
 }

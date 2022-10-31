@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_prime.c                                      :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/30 12:51:31 by ppezzull          #+#    #+#             */
-/*   Updated: 2022/10/30 12:51:49 by ppezzull         ###   ########.fr       */
+/*   Created: 2022/10/30 11:55:49 by ppezzull          #+#    #+#             */
+/*   Updated: 2022/10/30 11:56:15 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <unistd.h>
 
-int	ft_is_prime(int nb)
+void	ft_putstr(char *str)
 {
 	int	i;
 
-	i = 2;
-	if (nb < 2)
-		return (0);
-	while (i < (nb / 2) + 1)
+	i = 0;
+	while (str[i])
 	{
-		if (nb % i == 0)
-			return (0);
+		write(1, &str[i], 1);
 		i++;
 	}
-	return (1);
-}
-
-int main()
-{
-    for (int i = 0; i <= 100; i++)
-    {
-        if (ft_is_prime(i))
-            printf("%i ", i);
-    }
 }
