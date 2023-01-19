@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/16 20:01:32 by ppezzull          #+#    #+#             */
-/*   Updated: 2023/01/16 20:01:35 by ppezzull         ###   ########.fr       */
+/*   Created: 2023/01/16 19:51:13 by ppezzull          #+#    #+#             */
+/*   Updated: 2023/01/16 19:51:16 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
-int ft_isascii(char letter)
+int ft_isalnum(int letter)
 {
-    return (letter >= 0 & letter <= 127);
+    return(ft_isalpha(letter) || ft_isdigit(letter));
 }
-
-// int main()
-// {
-//     int test = '\t';
-//     printf("%i\n", ft_isascii(test));
-//     printf("%i", ft_isascii(test));
-//     printf("\n");
-// }

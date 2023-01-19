@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/16 20:06:48 by ppezzull          #+#    #+#             */
-/*   Updated: 2023/01/16 20:06:54 by ppezzull         ###   ########.fr       */
+/*   Created: 2023/01/16 21:33:53 by ppezzull          #+#    #+#             */
+/*   Updated: 2023/01/16 21:34:05 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <ctype.h>
+#include "libft.h"
 
-int ft_isprint(char letter)
+void ft_bzero(void *s, size_t n)
 {
-    if (letter >= 33 & letter <= 126)
-        return (1);
-    return (0);
-}
+    int i;
+    char* c;
 
-// int main()
-// {
-//     int test = 999;
-//     printf("%i\n", ft_isprint(test));
-//     printf("%i", isprint(test));
-//     printf("\n");
-// }
+    i = 0;
+    c = s;
+    while(i < n)
+    {
+        c[i] = '\0';
+        i++;
+    }
+}

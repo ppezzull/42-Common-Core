@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isidigit.c                                      :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/16 16:58:37 by ppezzull          #+#    #+#             */
-/*   Updated: 2023/01/16 16:58:52 by ppezzull         ###   ########.fr       */
+/*   Created: 2023/01/16 20:06:48 by ppezzull          #+#    #+#             */
+/*   Updated: 2023/01/16 20:06:54 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <ctype.h>
+#include "libft.h"
 
-int ft_isdigit(int letter)
+int ft_isprint(char letter)
 {
-    return (letter >= '1' & letter <= '9');
+    if (letter >= 33 & letter <= 126)
+        return (1);
+    return (0);
 }
-
-// int main()
-// {
-//     int test = 194;
-//     printf("%i\n", ft_isdigit(test));
-//     printf("%i\n", isdigit(test));
-// }

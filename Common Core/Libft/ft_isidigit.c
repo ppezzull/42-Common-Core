@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_isidigit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/16 19:26:31 by ppezzull          #+#    #+#             */
-/*   Updated: 2023/01/16 19:26:36 by ppezzull         ###   ########.fr       */
+/*   Created: 2023/01/16 16:58:37 by ppezzull          #+#    #+#             */
+/*   Updated: 2023/01/16 16:58:52 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
-int ft_strlen(char* str)
+int ft_isdigit(int letter)
 {
-    int i;
-
-    i = 0;
-    while(str[i] != '\0')
-        i++;
-    return (i);
+    return (letter >= '1' & letter <= '9');
 }
-
-// int main(int argc, char** argv)
-// {
-//     if (argc == 2)
-//     {
-//         printf("%i", ft_strlen(argv[1]));
-//     }
-//     printf("\n");
-// }

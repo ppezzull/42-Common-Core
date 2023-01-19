@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/16 19:51:13 by ppezzull          #+#    #+#             */
-/*   Updated: 2023/01/16 19:51:16 by ppezzull         ###   ########.fr       */
+/*   Created: 2023/01/16 16:13:59 by ppezzull          #+#    #+#             */
+/*   Updated: 2023/01/16 16:14:05 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ctype.h>
-#include <stdio.h>
+#include "libft.h"
 
-int ft_isalnum(int letter)
+int ft_isalpha(char letter)
 {
-    return(letter >= 'a' & letter <= 'z' || letter >= 'A' & letter <= 'Z' ) || (letter >= '1' & letter <= '9');
+    return (letter >= 'a' & letter <= 'z' || letter >= 'A' & letter <= 'Z' );
 }
-
-// int main()
-// {
-//     int test = 999;
-//     printf("%i\n", ft_isalnum(test));
-//     printf("%i", ft_isalnum(test));
-//     printf("\n");
-// }

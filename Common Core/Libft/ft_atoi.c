@@ -1,34 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 18:29:20 by ppezzull          #+#    #+#             */
-/*   Updated: 2023/01/17 18:29:22 by ppezzull         ###   ########.fr       */
+/*   Created: 2022/10/31 11:25:51 by ppezzull          #+#    #+#             */
+/*   Updated: 2022/10/31 11:31:30 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
 
-void	*ft_memmove(void *str1, const void *str2, int n);
-
-int	main(int argc, char	**argv)
+int	ft_atoi(char *str)
 {
-	char	*src;
-	char	*dest;
-	char	*dest2;
-	int		n;
+	int	m;
+	int	i;
+	int	num;
 
-	dest = argv[1];
-	dest2 = argv[1];
-	n = atoi(argv[2]);
-	printf("Before memcpy dest = %s\n", dest);
-	memmove(dest + 3, dest, n);
-	printf("memmove dest = %s\n", dest);
-	// ft_memmove(dest2, src, n);
-	// printf("ft_memmove dest = %s\n", dest2);
+	i = 0;
+	m = 1;
+	num = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	while (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			m *= -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		num = num * 10 + str[i] - '0';
+		i++;
+	}
+	return (m * num);
 }
+
+// int main()
+// {
+// 	printf("%i", ft_atoi(" --1234ab567"));
+// }
