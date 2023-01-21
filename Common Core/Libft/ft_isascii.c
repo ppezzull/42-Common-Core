@@ -14,6 +14,6 @@
 
 int ft_isascii(char letter)
 {
-    return (letter >= 0 & letter <= 127);
+    return (letter >= 0 && letter <= 126);
 }
 

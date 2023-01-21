@@ -3,7 +3,8 @@
 void *ft_memset(void *ptr, int x, size_t n)
 {
     char    *str;
-    int     len;
+
+
     int     i;
     
     str = ptr;

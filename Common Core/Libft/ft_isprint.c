@@ -14,7 +14,7 @@
 
 int ft_isprint(char letter)
 {
-    if (letter >= 33 & letter <= 126)
+    if (letter >= 33 && letter <= 126)
         return (1);
     return (0);
 }
