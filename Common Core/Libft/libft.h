@@ -18,6 +18,12 @@
 #include <string.h>
 #include <stdlib.h>
 
+typedef struct s_list
+{
+    void            *content;
+    struct s_list   *next;
+}                   t_list;
+
 int     ft_isalpha(char letter);
 int     ft_isdigit(int letter);
 int     ft_isalnum(int letter);
@@ -42,6 +48,9 @@ int	    ft_atoi(char *str);
 void    *ft_calloc(size_t nitems, size_t size);
 char    *ft_strdup(const char *src);
 char    *ft_substr(char const *s, unsigned int start, size_t len);
-
+char    *ft_strjoin(char const *s1, char const *s2);
+char    *ft_strtrim(char const *s1, char const *set);
+char    **ft_split(char const *s, char c);
+char    *ft_itoa(int n);
 
 #endif

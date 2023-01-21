@@ -10,10 +10,13 @@ void *ft_memmove(void *dest, const void * src, size_t n)
     s = (char *)src;
     i = 0;
     if (src < dest) 
-        ft_memcpy(dest, src, n);
-    else
     {
-        printf("porcamado\n");
+        while (i < n)
+        {
+            d[i] = s[i];
+            i++;
+        }
+    } else {
         while (n--)
             d[n] = s[n];
     }
