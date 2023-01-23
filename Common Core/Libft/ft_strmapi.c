@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/20 17:37:37 by ppezzull          #+#    #+#             */
-/*   Updated: 2023/01/20 17:37:39 by ppezzull         ###   ########.fr       */
+/*   Created: 2023/01/20 17:38:40 by ppezzull          #+#    #+#             */
+/*   Updated: 2023/01/20 17:38:41 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *str, int ch)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int	i;
-	int	len;
+	int		i;
+	int		len;
+	char	*str;
 
+	len = ft_strlen(s);
+	str = (char *)malloc(len * sizeof(char) + 1);
+	if (!str && !(*f))
+		return (NULL);
+	if (!(*f))
+		return (ft_strdup(s));
 	i = 0;
-	len = ft_strlen(str);
-	while (str[i] != '\0')
+	while (i < len)
 	{
-		if (str[len - i] == ch)
-			return ((char *)str + (len - i));
+		str[i] = (*f)(i, s[i]);
 		i++;
 	}
-	if (str[len - i] == ch)
-		return ((char *)str + (len - i));
-	return (NULL);
+	str[i] = '\0';
+	return (str);
 }

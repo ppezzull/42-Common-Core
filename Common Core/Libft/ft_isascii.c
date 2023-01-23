@@ -12,8 +12,7 @@
 
 #include "libft.h"
 
-int ft_isascii(char letter)
+int	ft_isascii(char letter)
 {
-    return (letter >= 0 && letter <= 126);
+	return (letter >= 0 && letter <= 127);
 }
-
