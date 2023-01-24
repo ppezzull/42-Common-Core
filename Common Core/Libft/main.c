@@ -8,10 +8,10 @@ int main(int argc, char **argv)
     char    *word2;
     char    *src;
 
-    word = argv[1];
-    word2= argv[2];
+    // word = argv[1];
+    // word2= argv[2];
     // src = argv[2];
     // letter = argv[2][0];
-    // n = atoi(argv[1]);
-    printf("%s\n", ft_strtrim(word, word2));
+    n = atoi(argv[1]);
+    printf("%s\n", ft_itoa(n));
 }

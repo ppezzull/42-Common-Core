@@ -49,6 +49,30 @@ int	is_set(char const *s, char const *set, int i)
 	return (ft_strlen((char *)set));
 }
 
+void	get_trim(char * str, char const *s, char const *set)
+{
+	int	i;
+	int	j;
+	int	k;
+	int	n_set;
+
+	i = 0;
+	k = 0;
+	n_set = 0;
+	while (s[i] != '\0')
+	{
+		j = 0;
+		while (s[i + j] == set[j] && s[i + j] && set[j])
+			j++;
+		if (j == ft_strlen(set))
+			i += ft_strlen(set);
+		str[k] = s[i];
+		k++;
+		i++;
+	}
+	str[k] = '\0';
+}
+
 char	*ft_strtrim(char const *s, char const *set)
 {
 	int		i;
@@ -63,17 +87,9 @@ char	*ft_strtrim(char const *s, char const *set)
 	if (!s)
 		return (NULL);
 	len = trimmed_len(s, set);
-	str = (char *)malloc(len * sizeof(char) + 1);
+	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
-	while (i < len)
-	{
-		while (is_set(s, set, j))
-			j += ft_strlen(s);
-		str[i] = s[j];
-		i++;
-		j++;
-	}
-	str[i] = '\0';
+    get_trim(str, s, set);
 	return (str);
 }

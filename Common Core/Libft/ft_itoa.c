@@ -30,19 +30,15 @@ int	get_len(int n)
 	return (len);
 }
 
-char	n_to_char(int n, int i)
+void	convert(char *str, int n, int len, int i)
 {
-	int		j;
-	char	c;
-
-	j = 0;
-	while (j < i)
+	while (len--)
 	{
+		str[len] = (n % 10) + '0';
 		n = (n - (n % 10)) / 10;
-		j++;
+		i++;
 	}
-	c = (n % 10) + '0';
-	return (c);
+	str[i] = '\0';
 }
 
 char	*ft_itoa(int n)
@@ -52,21 +48,16 @@ char	*ft_itoa(int n)
 	char	*str;
 
 	len = get_len(n);
-	str = malloc(len * sizeof(char) + 1);
-	if (!str)
-		return (NULL);
 	i = 0;
 	if (n < 0)
 	{
-		str[i] = '-';
 		n *= -1;
-		i++;
+		str = malloc(sizeof(char) * (len + 2));
 	}
-	while (i < len)
-	{
-		str[i] = n_to_char(n, len - i - 1);
-		i++;
-	}
-	str[i] = '\0';
+	else
+		str = malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
+	convert(str, n, len);
 	return (str);
 }
