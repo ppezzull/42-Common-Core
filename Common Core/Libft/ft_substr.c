@@ -12,15 +12,11 @@
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+void	substr_helper(char *str, char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
 	size_t	j;
-	char	*substr;
 
-	substr = (char *)malloc(len * sizeof(char) + 1);
-	if (!substr)
-		return (NULL);
 	i = 0;
 	j = 0;
 	while (s[i] != '\0')
@@ -29,13 +25,25 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		{
 			while (j < len && s[i + j] != '\0')
 			{
-				substr[j] = s[i + j];
+				str[j] = s[i + j];
 				j++;
 			}
 			break ;
 		}
 		i++;
 	}
-	substr[j] = '\0';
+	str[j] = '\0';
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*substr;
+
+	if (!s)
+		return (NULL);
+	substr = (char *)malloc((len + 1) * sizeof(char));
+	if (!substr)
+		return (NULL);
+	substr_helper(substr, s, start, len);
 	return (substr);
 }

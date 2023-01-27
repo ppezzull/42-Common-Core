@@ -49,7 +49,7 @@ char	*get_word(char *str, int start, int end)
 	char	*word;
 
 	len = end - start;
-	word = malloc(len * sizeof(char));
+	word = malloc(sizeof(char) * (len + 1));
 	if (!word)
 		return (NULL);
 	i = 0;
@@ -70,8 +70,10 @@ char	**ft_split(char const *s, char c)
 	int		j;
 	int		start;
 
+	if (!s)
+		return (NULL);
 	n_words = n_of_words((char *)s, c);
-	split = malloc(n_words * sizeof(char) + 1);
+	split = malloc(sizeof(char *) * (n_words + 1));
 	if (!split)
 		return (NULL);
 	i = 0;
@@ -82,7 +84,7 @@ char	**ft_split(char const *s, char c)
 		start = j;
 		while (!charset_len((char *)s, c, j) && s[j] != '\0')
 			j++;
-		split[i] = get_word((char *)s, start, j);
+		split[i] = ft_substr((char *)s, start, j - start);
 		i++;
 	}
 	split[i] = 0;

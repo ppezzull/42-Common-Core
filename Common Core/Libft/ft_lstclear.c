@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/20 17:41:42 by ppezzull          #+#    #+#             */
-/*   Updated: 2023/01/20 17:41:43 by ppezzull         ###   ########.fr       */
+/*   Created: 2023/01/26 19:29:42 by ppezzull          #+#    #+#             */
+/*   Updated: 2023/01/26 19:29:44 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	size_t	i;
-	size_t	src_len;
+	t_list	*ptr;
+	t_list	*head;
 
-	i = 0;
-	src_len = ft_strlen((const char *)src);
-	if (!size)
-		return (src_len);
-	while (i < size && src[i] != 0)
+	if (!lst)
+		return ;
+	ptr = lst;
+	head = lst;
+	while (lst->next)
 	{
-		dst[i] = src[i];
-		i++;
+		(*f)(ptr->content);
+		lst = lst->next;
+		free(ptr);
+		ptr = lst;
 	}
-	if (size < src_len)
-		dst[size - 1] = '\0';
-	else if (size != 0)
-		dst[i] = '\0';
-	return (src_len);
+	head = NULL;
 }

@@ -12,10 +12,18 @@
 
 #include "libft.h"
 
-int	get_len(int n)
+#include "libft.h"
+
+#include "libft.h"
+
+int	get_len(int n, int overflow)
 {
 	int	len;
 
+	if (n == 0)
+		return (1);
+	if (overflow)
+		return (11);
 	len = 0;
 	if (n < 0)
 	{
@@ -30,14 +38,31 @@ int	get_len(int n)
 	return (len);
 }
 
-void	convert(char *str, int n, int len, int i)
+void	convert(char *str, int n, int i, int overflow)
 {
+	int	is_negative;
+	int	len;
+
+	len = get_len(n, overflow);
+	if (overflow)
+		n = -2147483647;
+	is_negative = 0;
+	if (n < 0)
+	{
+		n *= -1;
+		is_negative = 1;
+	}
 	while (len--)
 	{
-		str[len] = (n % 10) + '0';
+		if (overflow && len == 10)
+			str[len] = (n % 10) + '1';
+		else
+			str[len] = (n % 10) + '0';
 		n = (n - (n % 10)) / 10;
 		i++;
 	}
+	if (is_negative)
+		str[0] = '-';
 	str[i] = '\0';
 }
 
@@ -45,19 +70,17 @@ char	*ft_itoa(int n)
 {
 	int		i;
 	int		len;
+	int		overflow;
 	char	*str;
 
-	len = get_len(n);
+	overflow = 0;
+	if (n == -2147483648)
+		overflow = 1;
+	len = get_len(n, overflow);
 	i = 0;
-	if (n < 0)
-	{
-		n *= -1;
-		str = malloc(sizeof(char) * (len + 2));
-	}
-	else
-		str = malloc(sizeof(char) * (len + 1));
+	str = malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
-	convert(str, n, len);
+	convert(str, n, i, overflow);
 	return (str);
 }

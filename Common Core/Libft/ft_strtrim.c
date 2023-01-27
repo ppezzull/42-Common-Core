@@ -12,65 +12,34 @@
 
 #include "libft.h"
 
-int	trimmed_len(char const *s, char const *set)
+int	is_trim(char c, const char *set)
 {
 	int	i;
-	int	j;
-	int	n_set;
 
 	i = 0;
-	n_set = 0;
-	while (s[i] != '\0')
+	while (set[i])
 	{
-		j = 0;
-		while (s[i + j] == set[j] && s[i + j] != '\0')
-		{
-			if (set[j + 1] == '\0')
-				n_set++;
-			j++;
-		}
+		if (set[i] == c)
+			return (1);
 		i++;
 	}
-	return (i - n_set * ft_strlen(set));
+	return (0);
 }
 
-int	is_set(char const *s, char const *set, int i)
-{
-	int	j;
-
-	j = 0;
-	while (set[j])
-	{
-		if (set[j] != s[i])
-			return (0);
-		j++;
-		i++;
-	}
-	return (ft_strlen((char *)set));
-}
-
-void	get_trim(char * str, char const *s, char const *set)
+int	trimmed_len(char const *s, const char *set)
 {
 	int	i;
-	int	j;
-	int	k;
-	int	n_set;
+	int	len;
 
 	i = 0;
-	k = 0;
-	n_set = 0;
-	while (s[i] != '\0')
+	len = ft_strlen(s);
+	while (set[i])
 	{
-		j = 0;
-		while (s[i + j] == set[j] && s[i + j] && set[j])
-			j++;
-		if (j == ft_strlen(set))
-			i += ft_strlen(set);
-		str[k] = s[i];
-		k++;
+		if (is_trim(s[i], set))
+			len--;
 		i++;
 	}
-	str[k] = '\0';
+	return (len);
 }
 
 char	*ft_strtrim(char const *s, char const *set)
@@ -82,14 +51,19 @@ char	*ft_strtrim(char const *s, char const *set)
 
 	i = 0;
 	j = 0;
-	if (!set)
-		return (ft_strdup(s));
-	if (!s)
-		return (NULL);
 	len = trimmed_len(s, set);
-	str = (char *)malloc(sizeof(char) * (len + 1));
+	str = malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
-    get_trim(str, s, set);
+	str[len] = '\0';
+	while (j < len)
+	{
+		if (!is_trim(s[i], set))
+		{
+			str[j] = s[i];
+			j++;
+		}
+		i++;
+	}
 	return (str);
 }
