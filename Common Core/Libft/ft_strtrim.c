@@ -29,41 +29,64 @@ int	is_trim(char c, const char *set)
 int	trimmed_len(char const *s, const char *set)
 {
 	int	i;
+	int	len_s;
+	int	len_set;
 	int	len;
 
 	i = 0;
 	len = ft_strlen(s);
-	while (set[i])
-	{
-		if (is_trim(s[i], set))
-			len--;
-		i++;
-	}
+	len_s = ft_strlen(s);
+	len_set = ft_strlen(set);
+	while (i < len_s)
+    {
+        if (i < len_set || i >= len_s - len_set)
+        {
+            if (is_trim(s[i], set))
+                len--;
+        }
+        i++;
+    }
 	return (len);
+}
+
+void    get_trim(char *str, int len, char const *s, char const *set)
+{
+    int	i;
+    int	j;
+	int	len_s;
+	int	len_set;
+	
+	i = 0;
+    j = 0;
+	len_s = ft_strlen(s);
+	len_set = ft_strlen(set);
+    str[len] = '\0';
+	while (i < len_s)
+    {
+        if (i < len_set || i >= len_s - len_set)
+        {
+            if (is_trim(s[i], set))
+            {
+                i++;
+                continue ;
+            }
+        }
+        str[j] = s[i];
+        i++;
+        j++;
+    }
 }
 
 char	*ft_strtrim(char const *s, char const *set)
 {
 	int		i;
-	int		j;
 	int		len;
 	char	*str;
 
-	i = 0;
-	j = 0;
-	len = trimmed_len(s, set);
+    len = trimmed_len(s, set);
 	str = malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
-	str[len] = '\0';
-	while (j < len)
-	{
-		if (!is_trim(s[i], set))
-		{
-			str[j] = s[i];
-			j++;
-		}
-		i++;
-	}
+    get_trim(str, len, s, set);
 	return (str);
 }
