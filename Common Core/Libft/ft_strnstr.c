@@ -18,14 +18,15 @@ char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 	size_t	j;
 
 	i = 0;
-	if (ft_strncmp(to_find, "", ft_strlen(to_find)) == 0 && !len)
+	if (ft_strncmp(to_find, "", ft_strlen(to_find)) == 0)
 		return ((char *)str);
 	if ((!to_find || !str) && !len)
 		return ((char *)str);
 	while (str[i] != '\0' && i < len)
 	{
 		j = 0;
-		while (str[i + j] == to_find[j] && to_find[j] && str[i + j])
+		while (str[i + j] == to_find[j] && to_find[j]
+			&& str[i + j] && (i + j) < len)
 		{
 			if (i + j > len)
 				break ;

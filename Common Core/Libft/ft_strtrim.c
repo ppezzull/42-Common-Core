@@ -26,67 +26,27 @@ int	is_trim(char c, const char *set)
 	return (0);
 }
 
-int	trimmed_len(char const *s, const char *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	int	i;
-	int	len_s;
-	int	len_set;
-	int	len;
-
-	i = 0;
-	len = ft_strlen(s);
-	len_s = ft_strlen(s);
-	len_set = ft_strlen(set);
-	while (i < len_s)
-    {
-        if (i < len_set || i >= len_s - len_set)
-        {
-            if (is_trim(s[i], set))
-                len--;
-        }
-        i++;
-    }
-	return (len);
-}
-
-void    get_trim(char *str, int len, char const *s, char const *set)
-{
-    int	i;
-    int	j;
-	int	len_s;
-	int	len_set;
-	
-	i = 0;
-    j = 0;
-	len_s = ft_strlen(s);
-	len_set = ft_strlen(set);
-    str[len] = '\0';
-	while (i < len_s)
-    {
-        if (i < len_set || i >= len_s - len_set)
-        {
-            if (is_trim(s[i], set))
-            {
-                i++;
-                continue ;
-            }
-        }
-        str[j] = s[i];
-        i++;
-        j++;
-    }
-}
-
-char	*ft_strtrim(char const *s, char const *set)
-{
-	int		i;
-	int		len;
 	char	*str;
+	size_t	i;
+	size_t	start;
+	size_t	end;
 
-    len = trimmed_len(s, set);
-	str = malloc(sizeof(char) * (len + 1));
+	if (!set || !s1)
+		return (NULL);
+	start = 0;
+	while (s1[start] && is_trim(s1[start], set))
+		start++;
+	end = ft_strlen(s1);
+	while (end > start && is_trim(s1[end - 1], set))
+		end--;
+	str = (char *)malloc(sizeof(*s1) * (end - start + 1));
 	if (!str)
 		return (NULL);
-    get_trim(str, len, s, set);
+	i = 0;
+	while (start < end)
+		str[i++] = s1[start++];
+	str[i] = 0;
 	return (str);
 }

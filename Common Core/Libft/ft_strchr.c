@@ -19,7 +19,7 @@ char	*ft_strchr(const char *str, int ch)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] == ch)
+		if (str[i] == (unsigned char)ch)
 			return ((char *)str + i);
 		i++;
 	}
