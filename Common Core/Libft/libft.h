@@ -19,6 +19,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+# define SIZE_MAX 65535
+
 typedef struct s_list
 {
 	void			*content;
