@@ -1,0 +1,6 @@
+main.c
+.normignore
+libftprintf.a
+printf-tester
+.DS_Store
+a.out
