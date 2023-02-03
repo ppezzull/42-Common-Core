@@ -12,28 +12,44 @@
 
 #include "ft_printf.h"
 
+int	ft_print_conversion(char flag, va_list *ap)
+{
+	if (flag == '\0')
+		return (0);
+	if (flag == 'c')
+		return (ft_putchar(va_arg(*ap, int)));
+	if (flag == 's')
+		return (ft_putstr(va_arg(*ap, char *)));
+	if (flag == 'i' || flag == 'd')
+		return (ft_putnbr(va_arg(*ap, int)));
+	if (flag == '%')
+		return (ft_putchar('%'));
+	if (flag == 'u')
+		return (ft_putuint(va_arg(*ap, unsigned int)));
+}
+
 int	ft_printf(const char *out, ...)
 {
-	va_list	artgptr;
+	va_list	ap;
 	int		i;
 	int		print_len;
 
-	va_start(artgptr, out);
+	va_start(ap, out);
 	print_len = 0;
 	i = 0;
 	while (out[i])
 	{
 		if (out[i] == '%')
 		{
-			ft_print_conversion(out, i, artgptr);
-			i++;
+			print_len += ft_print_conversion(out[i + 1], &ap);
+            i++;
 		}
 		else
 		{
-			ft_putchar(out[i]);
+            print_len += ft_putchar(out[i]);
 		}
 		i++;
 	}
-	va_end(artgptr);
-	return (i - 1);
+	va_end(ap);
+	return (print_len);
 }
