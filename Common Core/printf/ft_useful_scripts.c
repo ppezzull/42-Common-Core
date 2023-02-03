@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_useful_scripts.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pezzu <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/03 06:16:28 by pezzu             #+#    #+#             */
+/*   Updated: 2023/02/03 06:16:30 by pezzu            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int     ft_uint_len(unsigned int n)
@@ -17,7 +29,9 @@ int     ft_uint_len(unsigned int n)
 
 void	ft_putuint_script(unsigned int n)
 {
-	if (n > 0)
+	if (n == 0)
+        ft_putchar(n + '0');
+    if (n > 0)
 	{
 		if (n <= 9)
 		{

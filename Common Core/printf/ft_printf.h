@@ -30,5 +30,4 @@ int     ft_uint_len(unsigned int n);
 void	ft_putnbr_script(int nb);
 void	ft_putuint_script(unsigned int n);
 
-
 #endif

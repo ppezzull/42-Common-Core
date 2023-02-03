@@ -1,18 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pezzu <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/03 06:07:58 by pezzu             #+#    #+#             */
+/*   Updated: 2023/02/03 06:08:11 by pezzu            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int main(int argc, char **argv)
 {
     int     len;
     int     len2;
-    int     n;
-    char    *str;
-    char    c;
-    char    *out;
     
-    out = " %s |\n";
-    char *s2 = "Mussum Ipsum, cacilds vidis litro abertis. Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi. Atirei o pau no gatis, per gatis num morreus.";
-    len = ft_printf(out, "-");
-    len2 = printf(out, "-");
+    len = ft_printf(" %u \n", 0);
+    len2 = printf(" %p \n", (void *)&"d");
     printf(
         "ft_printf   len %i\nprintf      len %i\n",
         len,
@@ -20,12 +26,7 @@ int main(int argc, char **argv)
     );
 }
 
-// • %c Prints a single character. DONE
-// • %s Prints a string (as defined by the common C convention). 
+// • %s Prints a string (as defined by the common C convention). DONE 10.SIGSEGV
 // • %p The void * pointer argument has to be printed in hexadecimal format.
-// • %d Prints a decimal (base 10) number.
-// • %i Prints an integer in base 10.
-// • %u Prints an unsigned decimal (base 10) number.
 // • %x Prints a number in hexadecimal (base 16) lowercase format.
 // • %X Prints a number in hexadecimal (base 16) uppercase format.
-// • %% Prints a percent sign.

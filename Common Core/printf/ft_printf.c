@@ -26,6 +26,8 @@ int	ft_print_conversion(char flag, va_list *ap)
 		return (ft_putchar('%'));
 	if (flag == 'u')
 		return (ft_putuint(va_arg(*ap, unsigned int)));
+    if (flag == 'p')
+		return (ft_put_hexmem(va_arg(*ap, void *)));
     else
         return (0);
 }
