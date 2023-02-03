@@ -17,14 +17,14 @@ int	ft_print_conversion(const char *out, int i, va_list artgptr)
 	i++;
 	if (out[i] == '\0')
 		return (0);
-	else if (out[i] == 'c')
+	if (out[i] == 'c')
 		return (ft_putchar(va_arg(artgptr, unsigned int)));
-	else if (out[i] == 's')
+	if (out[i] == 's')
 		return (ft_putstr(va_arg(artgptr, char *)));
-	else if (out[i] == 'i' || out[i] == 'd')
+	if (out[i] == 'i' || out[i] == 'd')
 		return (ft_putnbr(va_arg(artgptr, int)));
-	else if (out[i] == '%')
+	if (out[i] == '%')
 		return (ft_putchar('%'));
-	else if (out[i] == 'u')
+	if (out[i] == 'u')
 		return (ft_putuint(va_arg(artgptr, unsigned int)));
 }

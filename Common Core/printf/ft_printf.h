@@ -19,10 +19,16 @@
 # include <stdlib.h>
 
 int		ft_printf(const char *out, ...);
-void	ft_putchar(char c);
-void	ft_putnbr(int nb);
-void	ft_putstr(char *str);
-void	ft_print_conversion(const char *out, int i, va_list artgptr);
-void	ft_putuint(unsigned int n);
+int	    ft_putchar(char c);
+int	    ft_putnbr(int nb);
+int	    ft_putstr(char *str);
+int     ft_putuint(unsigned int n);
+int     ft_print_conversion(const char *out, int i, va_list artgptr);
+
+int     ft_nbr_len(int n);
+int     ft_uint_len(unsigned int n);
+void	ft_putnbr_script(int nb);
+void	ft_putuint_script(unsigned int n);
+
 
 #endif

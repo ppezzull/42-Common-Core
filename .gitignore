@@ -1,1 +1,6 @@
-.DS_Store
+*.DS_Store
+*.normignore
+libftprintf.a
+/Common Core/printf/printf-tester/
+*.out
+*.exe

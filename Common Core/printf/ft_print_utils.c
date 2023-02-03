@@ -14,38 +14,8 @@
 
 int	ft_putchar(char c)
 {
-	unsigned char	c2;
-
-	c2 = (unsigned char)c;
-	write(1, &c2, 1);
+	write(1, &c, 1);
 	return (1);
-}
-
-int	ft_putnbr(int nb)
-{
-	if (nb >= 0)
-	{
-		if (nb <= 9)
-		{
-			ft_putchar(nb + '0');
-			return 
-		}
-		else
-		{
-			ft_putnbr(nb / 10);
-			ft_putchar(nb % 10 + '0');
-		}
-	}
-	else
-	{
-		if (nb == -2147483648)
-			write(1, "-2147483648", 11);
-		else
-		{
-			write(1, "-", 1);
-			ft_putnbr(nb * -1);
-		}
-	}
 }
 
 int	ft_putstr(char *str)
@@ -61,8 +31,14 @@ int	ft_putstr(char *str)
 	return (i - 1);
 }
 
+int	    ft_putnbr(int n)
+{
+    ft_putnbr_script(n);
+    return (ft_nbr_len(n));
+}
+
 int	ft_putuint(unsigned int n)
 {
-	if (n < 0)
-		ft_putnbr(4294967296 - n);
+    ft_putuint_script(n);
+    return (ft_uint_len(n));
 }

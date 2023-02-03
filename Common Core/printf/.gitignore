@@ -1,6 +1,6 @@
-main.c
-.normignore
+*.DS_Store
+*.normignore
 libftprintf.a
-printf-tester
-.DS_Store
+printf-tester/
 a.out
+*.exe
