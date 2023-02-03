@@ -19,8 +19,8 @@ int main(int argc, char **argv)
     int     n;
     
     n = atoi(argv[1]);
-    len = ft_printf("%X\n", n);
-    len2 = printf("%X\n", n);
+    len = ft_printf("%p\n", n);
+    // len2 = printf("%p\n", n);
     printf(
         "ft_printf   len %i\nprintf      len %i\n",
         len,

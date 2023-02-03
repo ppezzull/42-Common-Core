@@ -6,37 +6,37 @@
 /*   By: pezzu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 06:16:28 by pezzu             #+#    #+#             */
-/*   Updated: 2023/02/03 06:16:30 by pezzu            ###   ########.fr       */
+/*   Updated: 2023/02/03 19:52:48 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int     ft_uint_len(unsigned int n)
+int	ft_uint_len(unsigned int n)
 {
-    int     len;
+	int	len;
 
-    if (n == 0)
-        return (1);
-    len = 0;
-    while (n > 0)
-    {
-        n /= 10;
-        len++;
-    }
-    return (len);
+	if (n == 0)
+		return (1);
+	len = 0;
+	while (n > 0)
+	{
+		n /= 10;
+		len++;
+	}
+	return (len);
 }
 
 void	ft_putuint_script(unsigned int n)
 {
 	if (n == 0)
-        ft_putchar(n + '0');
-    if (n > 0)
+		ft_putchar(n + '0');
+	if (n > 0)
 	{
 		if (n <= 9)
 		{
 			ft_putchar(n + '0');
-		}
+		}	
 		else
 		{
 			ft_putnbr(n / 10);
@@ -45,26 +45,26 @@ void	ft_putuint_script(unsigned int n)
 	}
 }
 
-int     ft_nbr_len(int n)
+int	ft_nbr_len(int n)
 {
-    int     len;
+	int	len;
 
-    if (n == 0)
-            return (1);
-    if (n == -2147483648)
-            return (11);
-    len = 0;
-    if (n < 0)
-    {
-            len++;
-            n *= -1;
-    }
-    while (n > 0)
-    {
-            n /= 10;
-            len++;
-    }
-    return (len);
+	if (n == 0)
+		return (1);
+	if (n == -2147483648)
+		return (11);
+	len = 0;
+	if (n < 0)
+	{
+		len++;
+		n *= -1;
+	}
+	while (n > 0)
+	{
+		n /= 10;
+		len++;
+	}
+	return (len);
 }
 
 void	ft_putnbr_script(int nb)

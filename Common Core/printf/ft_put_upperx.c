@@ -12,56 +12,44 @@
 
 #include "ft_printf.h"
 
-int    ft_uint_to_hex(int n)
+int	ft_get_hex_len(unsigned long long n)
 {
-	int     len;
-	int     temp;
+	int	len;
 
-	while (n > 0) 
+	len = 0;
+	while (n > 0)
 	{
-		temp = n % 16;
-		if (temp < 10)
-			temp = temp + 48;
-		else
-			temp = temp + 55;
-		ft_putchar(temp);
 		n = n / 16;
 		len++;
 	}
 	return (len);
 }
 
-int    ft_negint_to_hex(int n)
+int	ft_put_upperx(unsigned int n)
 {
-	char    temp;
+	int		len;
+	int		i;
+	int		temp;
+	char	*hex_nbr;
 
-	n = -n;
-	while (i++ < 8 - ft_uint_len(n))
-	{
-		ft_putchar('F');
-	}
-	while (n > 0)
+	if (n == 0)
+		return (ft_putchar('0'));
+	len = ft_get_hex_len(n);
+	i = len;
+	hex_nbr = malloc(len * sizeof(char));
+	if (!hex_nbr)
+		return (0);
+	while (i--)
 	{
 		temp = n % 16;
-		if (temp <= 6)
-			temp = 'F' - temp;
+		if (temp < 10)
+			temp = temp + 48;
 		else
-			temp = '9' + 6 - temp;
-		ft_putchar(temp);
+			temp = temp + 55;
+		hex_nbr[i] = temp;
 		n = n / 16;
 	}
-	return (8);	
-}
-
-int ft_put_uphex(int n)
-{
-	int len;
-	
-	if (n == -1)
-		return (ft_putstr("FFFFFFFF"));
-	else if (n >= 0)
-		len = ft_uint_to_hex(n);
-	else
-		len = ft_negint_to_hex(n);
+	ft_putstr(hex_nbr);
+	free(hex_nbr);
 	return (len);
 }

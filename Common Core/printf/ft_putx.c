@@ -1,51 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*   ft_putx.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/31 18:38:22 by ppezzull          #+#    #+#             */
-/*   Updated: 2023/02/03 14:51:42 by ppezzull         ###   ########.fr       */
+/*   Created: 2023/02/03 19:56:02 by ppezzull          #+#    #+#             */
+/*   Updated: 2023/02/03 19:57:59 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putchar(int c)
+int	ft_putx(unsigned int n)
 {
-	write(1, &c, 1);
-	return (1);
-}
+	int		len;
+	int		i;
+	int		temp;
+	char	*hex_nbr;
 
-int	ft_putstr(char *str)
-{
-	int	i;
-
-	if (str == NULL)
-		return (ft_putstr("(null)"));
-	i = 0;
-	while (str[i])
+	if (n == 0)
+		return (ft_putchar('0'));
+	len = ft_get_hex_len(n);
+	i = len;
+	hex_nbr = malloc(len * sizeof(char));
+	if (!hex_nbr)
+		return (0);
+	while (i--)
 	{
-		ft_putchar(str[i]);
-		i++;
+		temp = n % 16;
+		if (temp < 10)
+			temp = temp + 48;
+		else
+			temp = temp + 87;
+		hex_nbr[i] = temp;
+		n = n / 16;
 	}
-	return (i);
-}
-
-int	ft_putnbr(int n)
-{
-	ft_putnbr_script(n);
-	return (ft_nbr_len(n));
-}
-
-int	ft_putuint(unsigned int n)
-{
-	ft_putuint_script(n);
-	return (ft_uint_len(n));
-}
-
-int	ft_put_hexmem(long int n)
-{
-	return (ft_putstr("0x") + ft_putx(n));
+	ft_putstr(hex_nbr);
+	free(hex_nbr);
+	return (len);
 }
