@@ -15,6 +15,7 @@ NAME = libftprintf.a
 SRCS = 	ft_printf.c \
 		ft_useful_scripts.c \
 		ft_print_utils.c \
+		ft_puthex.c \
 
 OBJS = ${SRCS:.c=.o}
 
@@ -29,10 +30,11 @@ CFLAGS = -Wall -Wextra -Werror
 $(NAME): ${OBJS}
 	ar rcs ${NAME} ${OBJS}
 
-all:	${NAME}
-
 clean:
 		${RM} ${OBJS} ${OBJSBONUS}
+
+all:	${NAME}
+
 
 fclean:	clean
 		${RM} ${NAME}

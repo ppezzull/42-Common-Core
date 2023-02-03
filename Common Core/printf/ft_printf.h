@@ -29,5 +29,9 @@ int     ft_nbr_len(int n);
 int     ft_uint_len(unsigned int n);
 void	ft_putnbr_script(int nb);
 void	ft_putuint_script(unsigned int n);
+// int     ft_put_hexmem(void *mem);
+int     ft_put_uphex(int n);
+int     ft_uint_to_hex(int n);
+int     ft_negint_to_hex(int n);
 
 #endif
