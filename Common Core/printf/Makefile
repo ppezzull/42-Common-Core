@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/31 17:01:41 by ppezzull          #+#    #+#              #
-#    Updated: 2023/01/31 17:01:45 by ppezzull         ###   ########.fr        #
+#    Updated: 2023/02/03 04:02:16 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
 SRCS = 	ft_printf.c \
-		ft_print_conversion.c \
+		ft_useful_scripts.c \
 		ft_print_utils.c \
 
 OBJS = ${SRCS:.c=.o}

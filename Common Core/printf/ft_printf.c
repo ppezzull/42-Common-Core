@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 17:03:56 by ppezzull          #+#    #+#             */
-/*   Updated: 2023/01/31 17:03:57 by ppezzull         ###   ########.fr       */
+/*   Updated: 2023/02/03 04:03:06 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	ft_print_conversion(char flag, va_list *ap)
 		return (ft_putchar('%'));
 	if (flag == 'u')
 		return (ft_putuint(va_arg(*ap, unsigned int)));
+    else
+        return (0);
 }
 
 int	ft_printf(const char *out, ...)

@@ -7,11 +7,6 @@ int     ft_uint_len(unsigned int n)
     if (n == 0)
         return (1);
     len = 0;
-    if (n < 0)
-    {
-        len++;
-        n *= -1;
-    }
     while (n > 0)
     {
         n /= 10;
@@ -22,7 +17,7 @@ int     ft_uint_len(unsigned int n)
 
 void	ft_putuint_script(unsigned int n)
 {
-	if (n >= 0)
+	if (n > 0)
 	{
 		if (n <= 9)
 		{
