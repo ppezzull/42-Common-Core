@@ -1,5 +1,15 @@
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tellus in hac habitasse platea dictumst vestibulum rhoncus. Amet nulla facilisi morbi tempus iaculis urna id. Eget nunc lobortis mattis aliquam faucibus purus. Tempus iaculis urna id volutpat lacus. Scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam. Vel turpis nunc eget lorem dolor sed viverra ipsum. Interdum varius sit amet mattis vulputate. Volutpat blandit aliquam etiam erat velit scelerisque in dictum non. Curabitur gravida arcu ac tortor dignissim convallis aenean et tortor. Molestie at elementum eu facilisis sed. Elementum curabitur vitae nunc sed velit dignissim. Arcu bibendum at varius vel pharetra vel turpis.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
+eiusmod tempor incididunt ut labore et dolore magna aliqua. Tellus in hac habitasse platea dictumst vestibulum rhoncus. Amet nulla facilisi morbi tempus iaculis urna id. Eget nunc lobortis mattis aliquam faucibus purus. Tempus iaculis urna id volutpat lacus. Scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam. Vel turpis nunc eget lorem dolor sed viverra ipsum. Interdum varius sit amet mattis vulputate. Volutpat blandit aliquam etiam erat velit scelerisque in dictum non. Curabitur gravida arcu ac tortor dignissim convallis aenean et tortor. Molestie at elementum eu facilisis sed. Elementum curabitur vitae nunc sed velit dignissim. Arcu bibendum at varius vel pharetra vel turpis.
 
 Penatibus et magnis dis parturient montes nascetur. Sit amet volutpat consequat mauris nunc congue nisi vitae suscipit. Sed risus pretium quam vulputate dignissim suspendisse. Ultricies lacus sed turpis tincidunt id aliquet. Amet venenatis urna cursus eget nunc scelerisque viverra. Egestas pretium aenean pharetra magna ac placerat vestibulum lectus mauris. Ullamcorper sit amet risus nullam. Quis varius quam quisque id diam. Arcu odio ut sem nulla pharetra diam sit amet. Sed blandit libero volutpat sed cras. Dignissim cras tincidunt lobortis feugiat vivamus at.
 
 Faucibus scelerisque eleifend donec pretium vulputate sapien nec. Vel pretium lectus quam id leo in vitae turpis massa. Massa sed elementum tempus egestas sed sed risus. Nibh praesent tristique magna sit amet purus. Commodo ullamcorper a lacus vestibulum. Venenatis tellus in metus vulputate eu scelerisque felis imperdiet proin. Dignissim cras tincidunt lobortis feugiat vivamus at augue eget. Elementum nisi quis eleifend quam adipiscing vitae proin sagittis. Eu scelerisque felis imperdiet proin fermentum. Facilisi nullam vehicula ipsum a arcu cursus. Pulvinar pellentesque habitant morbi tristique senectus. Urna duis convallis convallis tellus id interdum velit. Mus mauris vitae ultricies leo integer malesuada. Ultricies lacus sed turpis tincidunt id aliquet. A condimentum vitae sapien pellentesque. Vulputate enim nulla aliquet porttitor. Blandit cursus risus at ultrices mi tempus imperdiet. Id faucibus nisl tincidunt eget nullam non nisi. Mi eget mauris pharetra et.
+
+
+1. prendere stringa da file finche non trova \n --> utilizza strchr(str, '\n')
+	1. utilizzi int byte = read(fd, buffer, BUFFER_SIZE);
+	2. ft_strjoin(str, buffer);
+
+2. pulire la line con soltanto la stringa da tornare
+
+3. pulire la statica dalla line appena tornata

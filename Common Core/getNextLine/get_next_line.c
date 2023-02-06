@@ -14,7 +14,9 @@
 
 char	*get_next_line(int fd)
 {
+	static char	*string;
+	char		*line;
     printf("%i\n", fd);
     return("bella fre\n");
+	return (line);
 }
-

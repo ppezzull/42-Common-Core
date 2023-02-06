@@ -2,8 +2,10 @@
 
 int main()
 {
-    int fd;
+    int 	fd;
+	char 	*line;
     
     fd = open("lorem.txt", O_RDONLY);
-    get_next_line(fd);
+    line = get_next_line(fd);
+
 }
