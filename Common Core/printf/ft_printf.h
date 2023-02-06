@@ -22,15 +22,10 @@ int		ft_printf(const char *out, ...);
 int		ft_putchar(int c);
 int		ft_putnbr(int nb);
 int		ft_putstr(char *str);
-int		ft_putuint(unsigned int n);
 int		ft_print_conversion(char flag, va_list *ap);
 int		ft_nbr_len(int n);
-int		ft_uint_len(unsigned int n);
 void	ft_putnbr_script(int nb);
-void	ft_putuint_script(unsigned int n);
-int		ft_put_hexmem(long int n);
-int		ft_get_hex_len(unsigned long long n);
-int		ft_put_upperx(unsigned int n);
-int		ft_putx(unsigned int n);
+int		ft_putptr(unsigned long long ptr);
+int		ft_hex(unsigned int nb, char *hex, unsigned int base);
 
 #endif

@@ -22,16 +22,16 @@ int	ft_print_conversion(char format, va_list *ap)
 		return (ft_putnbr(va_arg(*ap, int)));
 	if (format == '%')
 		return (ft_putchar('%'));
-	if (format == 'u')
-		return (ft_putuint(va_arg(*ap, unsigned int)));
 	if (format == 'p')
-		return (ft_put_hexmem(va_arg(*ap, long int)));
-	if (format == 'X')
-		return (ft_put_upperx(va_arg(*ap, unsigned int)));
+		return (ft_putptr(va_arg(*ap, unsigned long long)));
+	if (format == 'u')
+		return (ft_hex(va_arg(*ap, unsigned int), "0123456789", 10));
 	if (format == 'x')
-		return (ft_putx(va_arg(*ap, unsigned int)));
+		return (ft_hex(va_arg(*ap, unsigned int), "0123456789abcdef", 16));
+	if (format == 'X')
+		return (ft_hex(va_arg(*ap, unsigned int), "0123456789ABCDEF", 16));
 	else
-		return (0);
+		return (1);
 }
 
 int	ft_printf(const char *out, ...)

@@ -1,4 +1,6 @@
 tester/
+printf-tester/
+.vscode/
 
 # Prerequisites
 *.d

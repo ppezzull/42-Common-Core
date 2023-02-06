@@ -38,14 +38,3 @@ int	ft_putnbr(int n)
 	ft_putnbr_script(n);
 	return (ft_nbr_len(n));
 }
-
-int	ft_putuint(unsigned int n)
-{
-	ft_putuint_script(n);
-	return (ft_uint_len(n));
-}
-
-int	ft_put_hexmem(long int n)
-{
-	return (ft_putstr("0x") + ft_putx(n));
-}
