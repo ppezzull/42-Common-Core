@@ -1,0 +1,6 @@
+gnlTester/
+.vscode/
+a.out
+.normignore
+*.o
+*.a
