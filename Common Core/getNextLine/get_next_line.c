@@ -24,13 +24,14 @@ char	*get_line(int fd, char *string)
 	while (bytes != 0 && ft_strchr(string, '\n') == 0)
 	{
 		bytes = read(fd, buffer, BUFFER_SIZE);
-		if (!bytes)
+		if ((int)bytes == 0)
 		{
 			free(buffer);
-			return (NULL);
+			return (string);
 		}
 		buffer[BUFFER_SIZE] = '\0';
 		string = ft_strjoin(string, buffer);
+		// printf("bytes	|%s|\n", string);
 	}
 	free(buffer);
 	return (string);
@@ -43,7 +44,7 @@ char	*trim_line(char *str)
 	char	*line;
 
 	len = 0;
-	while (str[len] != '\n' && str[len])
+	while (str[len - 1] != '\n' && str[len] != '\0')
 		len++;
 	line = (char *) malloc((len + 1) * sizeof(char));
 	if (!line)
@@ -55,19 +56,15 @@ char	*trim_line(char *str)
 		i++;
 	}
 	line[i] = '\0';
+	free(str);
 	return (line);
 }
 
-char	*cut_endl(char *string)
+char	*cut_endl(char *string, char *line)
 {
-	int		i;
-
 	if (!string)
 		return (NULL);
-	i = 0;
-	while (string[i + 1] != '\n' && string[i])
-		i++;
-	return (ft_strdup(string + i));
+	return (ft_strdup(string + (ft_strlen(line))));
 }
 
 char	*get_next_line(int fd)
@@ -80,9 +77,7 @@ char	*get_next_line(int fd)
 	string = get_line(fd, string);
 	if (!string)
 		return (NULL);
-    printf("|%s|\n", string);
 	line = trim_line(string);
-    printf("GG\n");
-    string = cut_endl(string);
+	string = cut_endl(string, line);
 	return (line);
 }

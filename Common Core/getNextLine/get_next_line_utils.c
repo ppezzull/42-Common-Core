@@ -42,33 +42,30 @@ char	*ft_strdup(const char *src)
 	return (copy);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	char	*str;
-	int		len;
-	int		i;
+	char	*united;
+	size_t	i;
+	size_t	j;
 
-	if (!s1 && !s2)
-		return (NULL);
+	i = 0;
+	j = 0;
 	if (!s1)
 		return (ft_strdup(s2));
-	len = ft_strlen(s1) + ft_strlen(s2);
-	str = (char *)malloc((len + 1) * sizeof(char));
-	if (!str)
+	if (!s1 || !s2)
 		return (NULL);
-	i = 0;
-	while (s1[i])
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	while (i < len)
-	{
-		str[i] = s2[i - ft_strlen(s1)];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
+	united = (char *) malloc (sizeof(char)
+			* (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (united == NULL)
+		return (NULL);
+	while (s1[j] != '\0')
+		united[i++] = s1[j++];
+	j = 0;
+	while (s2[j] != '\0')
+		united[i++] = s2[j++];
+	united[i] = '\0';
+	free(s1);
+	return (united);
 }
 
 char	*ft_strchr(const char *str, int ch)
