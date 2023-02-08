@@ -65,9 +65,9 @@ char	*cut_endl(char *string)
 	if (!string)
 		return (NULL);
 	i = 0;
-	while (string[i] != '\n' && string[i])
+	while (string[i + 1] != '\n' && string[i])
 		i++;
-	return (ft_strdup(string + i + 1));
+	return (ft_strdup(string + i));
 }
 
 char	*get_next_line(int fd)
@@ -80,7 +80,9 @@ char	*get_next_line(int fd)
 	string = get_line(fd, string);
 	if (!string)
 		return (NULL);
+    printf("|%s|\n", string);
 	line = trim_line(string);
-	string = cut_endl(string);
+    printf("GG\n");
+    string = cut_endl(string);
 	return (line);
 }
