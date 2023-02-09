@@ -14,21 +14,24 @@
 # define  GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-	#define BUFFER_SIZE 1
+	#define BUFFER_SIZE 10
 # endif
 
-# include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
 # include <errno.h>
+# include <stdio.h>
+# include <stdbool.h>
 
 char	*get_next_line(int fd);
 char	*get_line(int fd, char *string);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strchr(const char *str, int ch);
 int		ft_strlen(const char *str);
-char	*ft_strdup(const char *src);
+char	*ft_strdup(char *src);
+char	*trim_line(char *str);
+
 
 #endif

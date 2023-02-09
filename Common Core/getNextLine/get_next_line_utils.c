@@ -22,7 +22,7 @@ int	ft_strlen(const char *str)
 	return (i);
 }
 
-char	*ft_strdup(const char *src)
+char	*ft_strdup(char *src)
 {
 	char	*copy;
 	int		len;
@@ -51,8 +51,11 @@ char	*ft_strjoin(char *s1, char *s2)
 	i = 0;
 	j = 0;
 	if (!s1)
-		return (ft_strdup(s2));
-	if (!s1 || !s2)
+	{
+		s1 = malloc(sizeof(char));
+		s1[0] = '\0';
+	}
+	if (!s2)
 		return (NULL);
 	united = (char *) malloc (sizeof(char)
 			* (ft_strlen(s1) + ft_strlen(s2) + 1));
