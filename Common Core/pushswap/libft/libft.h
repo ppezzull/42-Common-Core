@@ -13,19 +13,20 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# ifndef SIZE_MAX
+# define SIZE_MAX 65535
+# endif
+
+# ifndef BUFFER_SIZE
+# define BUFFER_SIZE 20
+# endif
+
 # include <stdio.h>
 # include <ctype.h>
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
-
-#ifndef SIZE_MAX
- # define SIZE_MAX 65535
-# endif
-
-#ifndef BUFFER_SIZE
- #define BUFFER_SIZE 20
-#endif
+# include <stdarg.h>
 
 typedef struct s_list
 {
@@ -80,5 +81,14 @@ char	*get_next_line(int fd);
 char	*get_line(int fd, char *string);
 char	*trim_line(char *str);
 char	*cut_endl(char *string);
+int		ft_printf(const char *out, ...);
+int		ft_putchar(int c);
+int		ft_putnbr(int nb);
+int		ft_putstr(char *str);
+int		ft_print_conversion(char flag, va_list *ap);
+int		ft_nbr_len(int n);
+void	ft_putnbr_script(int nb);
+int		ft_putptr(unsigned long long ptr);
+int		ft_hex(unsigned int nb, char *hex, unsigned int base);
 
 #endif
