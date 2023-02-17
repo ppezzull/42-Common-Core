@@ -23,6 +23,10 @@
  # define SIZE_MAX 65535
 # endif
 
+#ifndef BUFFER_SIZE
+ #define BUFFER_SIZE 20
+#endif
+
 typedef struct s_list
 {
 	void			*content;
@@ -53,7 +57,7 @@ int		ft_atoi(const char *str);
 void	*ft_calloc(size_t nitems, size_t size);
 char	*ft_strdup(const char *src);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
@@ -72,5 +76,9 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+char	*get_next_line(int fd);
+char	*get_line(int fd, char *string);
+char	*trim_line(char *str);
+char	*cut_endl(char *string);
 
 #endif

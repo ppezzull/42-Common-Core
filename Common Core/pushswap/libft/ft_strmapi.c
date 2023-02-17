@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/07 17:09:27 by ppezzull          #+#    #+#             */
-/*   Updated: 2023/02/07 17:09:29 by ppezzull         ###   ########.fr       */
+/*   Created: 2023/01/20 17:38:40 by ppezzull          #+#    #+#             */
+/*   Updated: 2023/01/20 17:38:41 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define  GET_NEXT_LINE_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <fcntl.h>
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	int		i;
+	int		len;
+	char	*str;
 
-#ifndef BUFFER_SIZE
- #define BUFFER_SIZE 20
-#endif
-
-char	*get_next_line(int fd);
-char	*get_line(int fd, char *string);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_strchr(const char *str, int ch);
-int		ft_strlen(const char *str);
-char	*trim_line(char *str);
-
-#endif
+	if (!s)
+		return (NULL);
+	if (!(*f))
+		return (ft_strdup(s));
+	len = ft_strlen(s);
+	str = malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		str[i] = (*f)(i, s[i]);
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}

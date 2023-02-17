@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/07 17:09:27 by ppezzull          #+#    #+#             */
-/*   Updated: 2023/02/07 17:09:29 by ppezzull         ###   ########.fr       */
+/*   Created: 2022/10/31 11:25:51 by ppezzull          #+#    #+#             */
+/*   Updated: 2022/10/31 11:31:30 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define  GET_NEXT_LINE_H
+#include <stdio.h>
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <fcntl.h>
+int	ft_atoi(const char *str)
+{
+	int	m;
+	int	i;
+	int	num;
 
-#ifndef BUFFER_SIZE
- #define BUFFER_SIZE 20
-#endif
-
-char	*get_next_line(int fd);
-char	*get_line(int fd, char *string);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_strchr(const char *str, int ch);
-int		ft_strlen(const char *str);
-char	*trim_line(char *str);
-
-#endif
+	i = 0;
+	m = 1;
+	num = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == '-')
+	{
+		m = -m;
+		i++;
+	}
+	else if (str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		num = num * 10 + str[i] - '0';
+		i++;
+	}
+	return (m * num);
+}

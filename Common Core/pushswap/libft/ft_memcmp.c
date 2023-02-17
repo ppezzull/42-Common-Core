@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/07 17:09:27 by ppezzull          #+#    #+#             */
-/*   Updated: 2023/02/07 17:09:29 by ppezzull         ###   ########.fr       */
+/*   Created: 2023/01/20 17:50:54 by ppezzull          #+#    #+#             */
+/*   Updated: 2023/01/20 17:50:55 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define  GET_NEXT_LINE_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <fcntl.h>
+int	ft_memcmp(const void *str1, const void *str2, size_t n)
+{
+	const char	*s1;
+	const char	*s2;
+	int			i;
 
-#ifndef BUFFER_SIZE
- #define BUFFER_SIZE 20
-#endif
-
-char	*get_next_line(int fd);
-char	*get_line(int fd, char *string);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_strchr(const char *str, int ch);
-int		ft_strlen(const char *str);
-char	*trim_line(char *str);
-
-#endif
+	i = 0;
+	s1 = (const char *)str1;
+	s2 = (const char *)str2;
+	while (n--)
+	{
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
+	}
+	return (0);
+}

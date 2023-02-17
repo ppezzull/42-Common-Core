@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/07 17:09:27 by ppezzull          #+#    #+#             */
-/*   Updated: 2023/02/07 17:09:29 by ppezzull         ###   ########.fr       */
+/*   Created: 2023/01/31 17:13:06 by ppezzull          #+#    #+#             */
+/*   Updated: 2023/01/31 17:13:08 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define  GET_NEXT_LINE_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
+# include <stdio.h>
+# include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
-# include <fcntl.h>
 
-#ifndef BUFFER_SIZE
- #define BUFFER_SIZE 20
-#endif
-
-char	*get_next_line(int fd);
-char	*get_line(int fd, char *string);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_strchr(const char *str, int ch);
-int		ft_strlen(const char *str);
-char	*trim_line(char *str);
+int		ft_printf(const char *out, ...);
+int		ft_putchar(int c);
+int		ft_putnbr(int nb);
+int		ft_putstr(char *str);
+int		ft_print_conversion(char flag, va_list *ap);
+int		ft_nbr_len(int n);
+void	ft_putnbr_script(int nb);
+int		ft_putptr(unsigned long long ptr);
+int		ft_hex(unsigned int nb, char *hex, unsigned int base);
 
 #endif

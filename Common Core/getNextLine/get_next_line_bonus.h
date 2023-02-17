@@ -18,6 +18,10 @@
 # include <stdio.h>
 # include <fcntl.h>
 
+#ifndef BUFFER_SIZE
+ #define BUFFER_SIZE 20
+#endif
+
 char	*get_next_line(int fd);
 char	*get_line(int fd, char *string);
 char	*ft_strjoin(char *s1, char *s2);
