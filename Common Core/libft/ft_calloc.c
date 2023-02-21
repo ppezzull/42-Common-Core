@@ -16,7 +16,7 @@ void	*ft_calloc(size_t nitems, size_t size)
 {
 	void	*out;
 
-	if (nitems == SIZE_MAX && size == SIZE_MAX)
+	if (nitems == SIZE_T_MAX && size == SIZE_T_MAX)
 		return (NULL);
 	out = malloc(nitems * size);
 	if (!out)

@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/01/31 16:26:23 by ppezzull          #+#    #+#              #
+#    Updated: 2023/01/31 16:26:25 by ppezzull         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = libft.a
 
 SRCS = ft_isdigit.c ft_memset.c ft_strjoin.c ft_strtrim.c ft_isprint.c \
@@ -22,8 +34,8 @@ CFLAGS = -Wall -Wextra -Werror
 .c.o:
 		${CC} ${CFLAGS} -g -c $< -o ${<:.c=.o}
 
-$(NAME): ${OBJS} ${OBJSBONUS}
-		ar rcs ${NAME} ${OBJS} ${OBJSBONUS}
+$(NAME): ${OBJS}
+		ar rcs ${NAME} ${OBJS}
 
 bonus:	${OBJSBONUS}
 		ar rcs ${NAME} ${OBJSBONUS}

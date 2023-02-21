@@ -12,18 +12,18 @@
 
 #include <unistd.h>
 
-void	write_char_to_hex(unsigned char c)
+void	write_char_to_hex(unsigned char str)
 {
 	int		i;
 	char	h[2];
 
 	h[0] = '0';
-	i = c / 16;
+	i = str / 16;
 	if (i < 10)
 		h[0] = 48 + i;
 	else
 		h[0] = 87 + i;
-	i = c % 16;
+	i = str % 16;
 	if (i < 10)
 		h[1] = 48 + i;
 	else

@@ -6,7 +6,7 @@
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 12:51:03 by ppezzull          #+#    #+#             */
-/*   Updated: 2022/10/30 12:55:48 by ppezzull         ###   ########.fr       */
+/*   Updated: 2022/11/01 18:45:13 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,23 @@
 int	ft_sqrt(int nb)
 {
 	int	i;
+	int	res;
 
-	i = 2;
-	while (i < (nb / 2) + 1)
+	i = 0;
+	while (i <= (nb / 2) + 1)
 	{
-		if (i * i == nb)
+		res = i * i;
+		if (res == nb)
 			return (i);
-		i++;
-	}	
+		else if (res > nb)
+			return (0);
+		else
+			i++;
+	}
 	return (0);
 }
 
 // int main()
 // {
-//     printf("res: %i", ft_sqrt(122));
+//     printf("res: %i", ft_sqrt(0));
 // }

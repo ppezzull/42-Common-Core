@@ -6,11 +6,9 @@
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 20:52:03 by ppezzull          #+#    #+#             */
-/*   Updated: 2022/10/21 18:20:22 by ppezzull         ###   ########.fr       */
+/*   Updated: 2022/10/24 21:56:06 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
 
 void	ft_rev_int_tab(int *tab, int size)
 {

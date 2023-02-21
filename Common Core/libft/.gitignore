@@ -1,4 +1,5 @@
-a.out
-a.exe
-.vscode
 main.c
+a.out
+libftTester
+main.dSYM
+libft.a
