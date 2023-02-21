@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 16:34:40 by ppezzull          #+#    #+#             */
-/*   Updated: 2023/02/20 16:34:42 by ppezzull         ###   ########.fr       */
+/*   Created: 2023/01/20 17:50:54 by ppezzull          #+#    #+#             */
+/*   Updated: 2023/01/20 17:50:55 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minitalk.h"
+#include "libft.h"
 
-
-int	main(int argc, char **argv)
+int	ft_memcmp(const void *str1, const void *str2, size_t n)
 {
-	int	    pid;
-	char	*message;
+	const char	*s1;
+	const char	*s2;
+	int			i;
 
-	if (argc != 3)
+	i = 0;
+	s1 = (const char *)str1;
+	s2 = (const char *)str2;
+	while (n--)
 	{
-        ft_printf("The client need 2 parameters instead of %i\n", argc);
-        exit(EXIT_FAILURE);
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
 	}
-    pid = ft_atoi(argv[1]);
-	kill(pid,SIGUSR1);
-    return(0);
+	return (0);
 }

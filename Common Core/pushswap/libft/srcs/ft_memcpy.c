@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 16:34:40 by ppezzull          #+#    #+#             */
-/*   Updated: 2023/02/20 16:34:42 by ppezzull         ###   ########.fr       */
+/*   Created: 2023/01/20 17:50:16 by ppezzull          #+#    #+#             */
+/*   Updated: 2023/01/20 17:50:17 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minitalk.h"
+#include "libft.h"
 
-
-int	main(int argc, char **argv)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	int	    pid;
-	char	*message;
+	char	*d;
+	char	*s;
+	int		i;
 
-	if (argc != 3)
+	if (!dest && !src)
+		return (dest);
+	d = (char *)dest;
+	s = (char *)src;
+	i = 0;
+	while (n--)
 	{
-        ft_printf("The client need 2 parameters instead of %i\n", argc);
-        exit(EXIT_FAILURE);
+		d[i] = s[i];
+		i++;
 	}
-    pid = ft_atoi(argv[1]);
-	kill(pid,SIGUSR1);
-    return(0);
+	return (dest);
 }

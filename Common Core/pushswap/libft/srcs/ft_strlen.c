@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 16:34:40 by ppezzull          #+#    #+#             */
-/*   Updated: 2023/02/20 16:34:42 by ppezzull         ###   ########.fr       */
+/*   Created: 2023/01/16 19:26:31 by ppezzull          #+#    #+#             */
+/*   Updated: 2023/01/16 19:26:36 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minitalk.h"
+#include "libft.h"
 
-
-int	main(int argc, char **argv)
+int	ft_strlen(const char *str)
 {
-	int	    pid;
-	char	*message;
+	int	i;
 
-	if (argc != 3)
-	{
-        ft_printf("The client need 2 parameters instead of %i\n", argc);
-        exit(EXIT_FAILURE);
-	}
-    pid = ft_atoi(argv[1]);
-	kill(pid,SIGUSR1);
-    return(0);
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }

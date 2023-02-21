@@ -16,10 +16,24 @@ SERVER_SRC = server.c
 CLIENT_NAME = client
 SERVER_NAME = server
 
-PRINTF = cd printf/ && make
+LIBFT_DIR = libft/
+LIBFT = libft/libft.a
 
 CC = gcc
 FLAGS = -Wall -Werror -Wextra
 
-$(SERVER_NAME) : 
+all:
+	make -C $(LIBFT_DIR)
+	$(CC) $(FLAGS) $(CLIENT_SRC) $(LIBFT) -o $(CLIENT_NAME)
+	$(CC) $(FLAGS) $(SERVER_SRC) $(LIBFT) -o $(SERVER_NAME)
+
+clean:
+	make clean -C $(LIBFT_DIR)
+
+fclean: clean
+	$(RM) $(CLIENT_NAME) $(SERVER_NAME)
+	$(RM) $(LIBFT)
+ 
+re:		all clean
+
 

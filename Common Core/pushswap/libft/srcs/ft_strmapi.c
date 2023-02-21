@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 16:34:40 by ppezzull          #+#    #+#             */
-/*   Updated: 2023/02/20 16:34:42 by ppezzull         ###   ########.fr       */
+/*   Created: 2023/01/20 17:38:40 by ppezzull          #+#    #+#             */
+/*   Updated: 2023/01/20 17:38:41 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minitalk.h"
+#include "libft.h"
 
-
-int	main(int argc, char **argv)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int	    pid;
-	char	*message;
+	int		i;
+	int		len;
+	char	*str;
 
-	if (argc != 3)
+	if (!s)
+		return (NULL);
+	if (!(*f))
+		return (ft_strdup(s));
+	len = ft_strlen(s);
+	str = malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (i < len)
 	{
-        ft_printf("The client need 2 parameters instead of %i\n", argc);
-        exit(EXIT_FAILURE);
+		str[i] = (*f)(i, s[i]);
+		i++;
 	}
-    pid = ft_atoi(argv[1]);
-	kill(pid,SIGUSR1);
-    return(0);
+	str[i] = '\0';
+	return (str);
 }

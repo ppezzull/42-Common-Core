@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puthex.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pietro <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/03 08:56:53 by pietro            #+#    #+#             */
-/*   Updated: 2023/02/03 08:56:55 by pietro           ###   ########.fr       */
+/*   Created: 2023/01/26 18:10:20 by ppezzull          #+#    #+#             */
+/*   Updated: 2023/01/26 18:10:21 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_hex(unsigned int nb, char *hex, unsigned int base)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	int	len;
+	t_list	*ptr;
 
-	len = 0;
-	if (nb >= base)
-		len += ft_hex(nb / base, hex, base);
-	len += ft_putchar(hex[nb % base]);
-	return (len);
+	if (lst)
+	{
+		if (*lst)
+		{
+			ptr = ft_lstlast(*lst);
+			ptr->next = new;
+		}
+		else
+			*lst = new;
+	}
 }

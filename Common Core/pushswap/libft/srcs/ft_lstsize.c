@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 16:34:40 by ppezzull          #+#    #+#             */
-/*   Updated: 2023/02/20 16:34:42 by ppezzull         ###   ########.fr       */
+/*   Created: 2023/01/26 17:28:09 by ppezzull          #+#    #+#             */
+/*   Updated: 2023/01/26 17:28:11 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minitalk.h"
+#include "libft.h"
 
-
-int	main(int argc, char **argv)
+int	ft_lstsize(t_list *lst)
 {
-	int	    pid;
-	char	*message;
+	int	len;
 
-	if (argc != 3)
+	if (!lst)
+		return (0);
+	len = 0;
+	while (lst)
 	{
-        ft_printf("The client need 2 parameters instead of %i\n", argc);
-        exit(EXIT_FAILURE);
+		lst = lst->next;
+		len++;
 	}
-    pid = ft_atoi(argv[1]);
-	kill(pid,SIGUSR1);
-    return(0);
+	return (len);
 }

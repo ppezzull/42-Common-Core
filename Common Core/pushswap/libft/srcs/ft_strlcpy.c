@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 16:34:40 by ppezzull          #+#    #+#             */
-/*   Updated: 2023/02/20 16:34:42 by ppezzull         ###   ########.fr       */
+/*   Created: 2023/01/20 17:41:42 by ppezzull          #+#    #+#             */
+/*   Updated: 2023/01/20 17:41:43 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minitalk.h"
+#include "libft.h"
 
-
-int	main(int argc, char **argv)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	int	    pid;
-	char	*message;
+	size_t	i;
+	size_t	src_len;
 
-	if (argc != 3)
+	i = 0;
+	src_len = ft_strlen(src);
+	if (!size)
+		return (src_len);
+	while (i < size - 1 && src[i] != 0)
 	{
-        ft_printf("The client need 2 parameters instead of %i\n", argc);
-        exit(EXIT_FAILURE);
+		dst[i] = src[i];
+		i++;
 	}
-    pid = ft_atoi(argv[1]);
-	kill(pid,SIGUSR1);
-    return(0);
+	if (size < src_len)
+		dst[size - 1] = '\0';
+	else if (size != 0)
+		dst[i] = '\0';
+	return (src_len);
 }

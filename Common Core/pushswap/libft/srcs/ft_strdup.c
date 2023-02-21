@@ -1,40 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/31 18:38:22 by ppezzull          #+#    #+#             */
-/*   Updated: 2023/02/03 14:51:42 by ppezzull         ###   ########.fr       */
+/*   Created: 2023/01/20 17:44:06 by ppezzull          #+#    #+#             */
+/*   Updated: 2023/01/20 17:44:10 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_putchar(int c)
+char	*ft_strdup(const char *src)
 {
-	write(1, &c, 1);
-	return (1);
-}
+	char	*copy;
+	int		len;
+	int		i;
 
-int	ft_putstr(char *str)
-{
-	int	i;
-
-	if (str == NULL)
-		return (ft_putstr("(null)"));
+	len = ft_strlen(src);
+	copy = malloc(len * sizeof(char) + 1);
+	if (!copy)
+		return (NULL);
 	i = 0;
-	while (str[i])
+	while (i < len)
 	{
-		ft_putchar(str[i]);
+		copy[i] = src[i];
 		i++;
 	}
-	return (i);
-}
-
-int	ft_putnbr(int n)
-{
-	ft_putnbr_script(n);
-	return (ft_nbr_len(n));
+	copy[i] = '\0';
+	return (copy);
 }

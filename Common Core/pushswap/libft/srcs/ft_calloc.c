@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 16:34:40 by ppezzull          #+#    #+#             */
-/*   Updated: 2023/02/20 16:34:42 by ppezzull         ###   ########.fr       */
+/*   Created: 2023/01/20 18:07:58 by ppezzull          #+#    #+#             */
+/*   Updated: 2023/01/20 18:08:01 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minitalk.h"
+#include "libft.h"
 
-
-int	main(int argc, char **argv)
+void	*ft_calloc(size_t nitems, size_t size)
 {
-	int	    pid;
-	char	*message;
+	void	*out;
 
-	if (argc != 3)
-	{
-        ft_printf("The client need 2 parameters instead of %i\n", argc);
-        exit(EXIT_FAILURE);
-	}
-    pid = ft_atoi(argv[1]);
-	kill(pid,SIGUSR1);
-    return(0);
+	if (nitems == SIZE_MAX && size == SIZE_MAX)
+		return (NULL);
+	out = malloc(nitems * size);
+	if (!out)
+		return (NULL);
+	ft_bzero(out, nitems * size);
+	return (out);
 }

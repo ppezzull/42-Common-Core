@@ -13,20 +13,15 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# ifndef SIZE_MAX
-# define SIZE_MAX 65535
-# endif
-
-# ifndef BUFFER_SIZE
-# define BUFFER_SIZE 20
-# endif
-
 # include <stdio.h>
 # include <ctype.h>
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdarg.h>
+
+#ifndef SIZE_MAX
+ # define SIZE_MAX 65535
+# endif
 
 typedef struct s_list
 {
@@ -58,7 +53,7 @@ int		ft_atoi(const char *str);
 void	*ft_calloc(size_t nitems, size_t size);
 char	*ft_strdup(const char *src);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strjoin(char *s1, char const *s2);
+char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
@@ -77,18 +72,5 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
-char	*get_next_line(int fd);
-char	*get_line(int fd, char *string);
-char	*trim_line(char *str);
-char	*cut_endl(char *string);
-int		ft_printf(const char *out, ...);
-int		ft_putchar(int c);
-int		ft_putnbr(int nb);
-int		ft_putstr(char *str);
-int		ft_print_conversion(char flag, va_list *ap);
-int		ft_nbr_len(int n);
-void	ft_putnbr_script(int nb);
-int		ft_putptr(unsigned long long ptr);
-int		ft_hex(unsigned int nb, char *hex, unsigned int base);
 
 #endif

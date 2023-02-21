@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.c                                         :+:      :+:    :+:   */
+/*   ft_puthex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pietro <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 16:34:21 by ppezzull          #+#    #+#             */
-/*   Updated: 2023/02/20 16:34:23 by ppezzull         ###   ########.fr       */
+/*   Created: 2023/02/03 08:56:53 by pietro            #+#    #+#             */
+/*   Updated: 2023/02/03 08:56:55 by pietro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minitalk.h"
+#include "ft_printf.h"
 
-void	signal_handler()
-
-int main()
+int	ft_hex(unsigned int nb, char *hex, unsigned int base)
 {
-    
-    
+	int	len;
+
+	len = 0;
+	if (nb >= base)
+		len += ft_hex(nb / base, hex, base);
+	len += ft_putchar(hex[nb % base]);
+	return (len);
 }

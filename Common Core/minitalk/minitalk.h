@@ -13,7 +13,8 @@
 #ifndef MINITALK_H
 # define MINITALK_H
 
-# include "printf.h"
+# include "libft/includes/ft_printf.h"
+# include "libft/includes/libft.h"
 # include <signal.h>
 
 #endif
