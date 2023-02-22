@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minitalk.h"
+#include "minitalk.h"
 
 void	signal_handler1(int signum)
 {
@@ -24,7 +24,7 @@ void	signal_handler2(int signum)
 	ft_printf("0");
 }
 
-int main()
+int	main(void)
 {
 	pid_t	pid;
 
