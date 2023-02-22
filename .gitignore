@@ -4,3 +4,4 @@ libftprintf.a
 /Common Core/printf/printf-tester/
 *.out
 *.exe
+*.vscode

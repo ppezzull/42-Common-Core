@@ -31,8 +31,7 @@ clean:
 	make clean -C $(LIBFT_DIR)
 
 fclean: clean
-	$(RM) $(CLIENT_NAME) $(SERVER_NAME)
-	$(RM) $(LIBFT)
+	$(RM) $(CLIENT_NAME) $(SERVER_NAME) $(LIBFT)
  
 re:		all clean
 
