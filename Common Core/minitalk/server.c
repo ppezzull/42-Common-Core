@@ -12,16 +12,39 @@
 
 #include "minitalk.h"
 
-void	signal_handler1(int signum)
+int power_of(int base, int exponent)
 {
-	(void)signum;
-	ft_printf("1");
+	int	n;
+	
+	n = base;
+	if (exponent == 0)
+		return (1);
+	exponent--;
+	while (exponent)
+	{
+		n *= base;
+		exponent--;
+	}
+	return (n);
 }
 
-void	signal_handler2(int signum)
+void	signal_handler(int signum)
 {
-	(void)signum;
-	ft_printf("0");
+	static int	c = 0;
+	static int	i = 7;
+
+	if (signum == SIGUSR1)
+	{
+		c += power_of(2, i);
+	}
+	i--;
+	if (i == -1)
+	{
+		printf("%c\n", c);
+		i = 7;
+		c = 0;
+	}
+	
 }
 
 int	main(void)
@@ -30,8 +53,8 @@ int	main(void)
 
 	pid = getpid();
 	printf("Server PID = [%i]\n", pid);
-	signal(SIGUSR1, signal_handler1);
-	signal(SIGUSR2, signal_handler2);
+	signal(SIGUSR1, signal_handler);
+	signal(SIGUSR2, signal_handler);
 	while (1)
 		pause();
 }

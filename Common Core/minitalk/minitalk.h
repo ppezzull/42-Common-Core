@@ -17,5 +17,7 @@
 # include "libft/includes/libft.h"
 # include <signal.h>
 # include <sys/types.h>
+#include <math.h>
+
 
 #endif

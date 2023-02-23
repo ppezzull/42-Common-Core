@@ -24,9 +24,15 @@ void	send_message(char *message, int pid)
     	while (++bitshift < 8)
     	{
    			if (message[i] & 0x80 >> bitshift)
-				kill(pid,SIGUSR1);
+			{
+				if (kill(pid,SIGUSR2) == -1)
+					exit(1);
+			}
    			else
-				kill(pid,SIGUSR2);
+			{
+				if (kill(pid,SIGUSR1) == -1)
+					exit(1);
+			}
 			usleep(3);
     	}
 		i++;

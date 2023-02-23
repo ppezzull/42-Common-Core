@@ -36,7 +36,6 @@ OBJ_DIR = objs/
 all: $(NAME)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	mkdir -p $(OBJ_DIR) 
 	$(CC) $(FLAGS) -o $@ -c $< $(INC)
 
 $(NAME): $(OBJ)
