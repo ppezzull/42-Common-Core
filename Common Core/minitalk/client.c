@@ -10,7 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minitalk.h"
+#include "minitalk.h"
+
+void	send_endl(int pid)
+{
+	int	i;
+
+	i = 0;
+	while (i < 8)
+	{
+		kill(pid, SIGUSR2);
+		usleep(200);
+		i++;
+	}
+}
 
 void	send_message(char *message, int pid)
 {
@@ -19,38 +32,29 @@ void	send_message(char *message, int pid)
 
 	i = 0;
 	while (message[i])
-    {
-		bitshift = -1;
-    	while (++bitshift < 8)
-    	{
-   			if (message[i] & 0x80 >> bitshift)
-			{
-				if (kill(pid,SIGUSR2) == -1)
-					exit(1);
-			}
-   			else
-			{
-				if (kill(pid,SIGUSR1) == -1)
-					exit(1);
-			}
-			usleep(3);
-    	}
+	{
+		bitshift = 0;
+		while (bitshift < 8)
+		{
+			if (message[i] & 0x80 >> bitshift)
+				kill(pid, SIGUSR1);
+			else
+				kill(pid, SIGUSR2);
+			usleep(200);
+			bitshift++;
+		}
 		i++;
 	}
+	send_endl(pid);
 }
 
 int	main(int argc, char **argv)
 {
-	int		pid;
-	char	*message;
-
 	if (argc != 3)
 	{
-        ft_printf("This program needs 2 argouments instead of %i\n", argc - 1);
-        exit(EXIT_FAILURE);
+		ft_printf("This program needs 2 parameters instead of %i\n", argc - 1);
+		exit(EXIT_FAILURE);
 	}
-    pid = ft_atoi(argv[1]);
-	message = argv[2];
-	send_message(message, pid);
-    return(0);
+	send_message(argv[2], ft_atoi(argv[1]));
+	return (0);
 }

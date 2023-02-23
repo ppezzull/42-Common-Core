@@ -23,6 +23,7 @@ CC = gcc
 FLAGS = -Wall -Werror -Wextra
 
 all:
+	mkdir -p ./libft/objs
 	make -C $(LIBFT_DIR)
 	$(CC) $(FLAGS) $(CLIENT_SRC) $(LIBFT) -o $(CLIENT_NAME)
 	$(CC) $(FLAGS) $(SERVER_SRC) $(LIBFT) -o $(SERVER_NAME)
