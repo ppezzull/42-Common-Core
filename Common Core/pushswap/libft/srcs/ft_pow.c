@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   power_of.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pietro <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/16 19:26:31 by ppezzull          #+#    #+#             */
-/*   Updated: 2023/01/16 19:26:36 by ppezzull         ###   ########.fr       */
+/*   Created: 2023/02/24 12:41:21 by pietro            #+#    #+#             */
+/*   Updated: 2023/02/24 12:41:23 by pietro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+# include "libft.h"
 
-int	ft_strlen(const char *str)
+int	ft_pow(int base, int exponent)
 {
-	int	i;
+	int	n;
 
-	if (!str)
-		return (0);
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
+	n = base;
+	if (exponent == 0)
+		return (1);
+	exponent--;
+	while (exponent--)
+		n *= base;
+	return (n);
 }

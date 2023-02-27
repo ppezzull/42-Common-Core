@@ -13,14 +13,23 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "libft.h"
+# include "../libft/libft.h"
+# include <signal.h>
+# include <sys/types.h>
+
+
 
 typedef struct s_stack
 {
-	int				*array;
-	size_t			size;
-	size_t			max_size;
+	int				num;
+	s_stack			*next;
+	s_stack			*previous;
 }					t_stack;
 
+typedef struct s_program
+{
+	t_stack			*a;
+	t_stack			*b;
+}					t_program;
 
 #endif

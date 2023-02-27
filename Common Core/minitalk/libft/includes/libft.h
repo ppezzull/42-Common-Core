@@ -33,6 +33,7 @@ int		ft_isalpha(int c);
 int		ft_isdigit(int letter);
 int		ft_isalnum(int letter);
 int		ft_isascii(int letter);
+int		ft_pow(int base, int exponent);
 int		ft_isprint(int letter);
 int		ft_strlen(const char *str);
 void	*ft_memset(void *ptr, int x, size_t n);

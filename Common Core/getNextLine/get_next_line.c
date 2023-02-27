@@ -97,7 +97,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	string = get_line(fd, string);
+	string = get_line(fd, string);z
 	if (!string)
 		return (NULL);
 	line = trim_line(string);

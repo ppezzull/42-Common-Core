@@ -12,35 +12,16 @@
 
 #include "minitalk.h"
 
-int	power_of(int base, int exponent)
-{
-	int	n;
-
-	n = base;
-	if (exponent == 0)
-		return (1);
-	exponent--;
-	while (exponent)
-	{
-		n *= base;
-		exponent--;
-	}
-	return (n);
-}
-
 char	bin_to_char(char *bin)
 {
 	int		i;
 	int		c;
 
-	i = 0;
+	i = -1;
 	c = 0;
-	while (i < 8)
-	{
+	while (i++ < 8)
 		if (bin[i] == '1')
-			c += power_of(2, 7 - i);
-		i++;
-	}
+			c += ft_pow(2, 7 - i);
 	return ((char)c);
 }
 
@@ -48,6 +29,7 @@ void	signal_handler(int signum)
 {
 	static int	i = 0;
 	static char	bin[8];
+	// char		letter;
 
 	if (signum == SIGUSR1)
 		bin[i] = '1';
@@ -56,12 +38,14 @@ void	signal_handler(int signum)
 	i++;
 	if (i == 8)
 	{
-		if (ft_strncmp(bin, "00000000", 8) == 0)
-			ft_printf("\n");
-		ft_printf("%c", bin_to_char(bin));
-		i = -1;
-		while (i++ < 8)
-			bin[i] = '\0';
+		// if ((letter = bin_to_char(bin)) == 0)
+		// {
+		// 	ft_putchar('\n');
+		// 	ft_bzero(bin, 8);
+		// }
+		printf("%s -> %c\n",bin, bin_to_char(bin));
+		// ft_putchar(letter);
+		ft_bzero(bin, 8);
 		i = 0;
 	}
 }

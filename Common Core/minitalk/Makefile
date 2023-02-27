@@ -10,17 +10,17 @@
 #                                                                              #
 # **************************************************************************** #
 
-CLIENT_SRC = client.c
-SERVER_SRC = server.c
+CLIENT_NAME 	= 	client
+SERVER_NAME 	= 	server
 
-CLIENT_NAME = client
-SERVER_NAME = server
+CLIENT_SRC 		= 	client.c
+SERVER_SRC 		= 	server.c
 
-LIBFT_DIR = libft/
-LIBFT = libft/libft.a
+LIBFT_DIR 		= 	libft/
+LIBFT 			= 	libft/libft.a
 
-CC = gcc
-FLAGS = -Wall -Werror -Wextra
+CC 				= 	gcc
+FLAGS 			= 	-Wall -Werror -Wextra
 
 all:
 	mkdir -p ./libft/objs

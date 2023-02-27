@@ -17,7 +17,12 @@
 # include "libft/includes/libft.h"
 # include <signal.h>
 # include <sys/types.h>
-#include <math.h>
+# include <unistd.h>
 
+char	bin_to_char(char *bin);
+void	signal_handler(int signum);
+void	send_message(char *message, int pid);
+void	send_endl(int pid);
+void	error(char *error_name);
 
 #endif

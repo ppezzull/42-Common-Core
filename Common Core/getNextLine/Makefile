@@ -33,7 +33,6 @@ clean:
 
 all:	${NAME}
 
-
 fclean:	clean
 		${RM} ${NAME}
 

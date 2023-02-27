@@ -12,6 +12,12 @@
 
 #include "minitalk.h"
 
+void	error(char *error_name)
+{
+	ft_putstr(error_name);
+	exit(0);
+}
+
 void	send_endl(int pid)
 {
 	int	i;
@@ -20,15 +26,15 @@ void	send_endl(int pid)
 	while (i < 8)
 	{
 		kill(pid, SIGUSR2);
-		usleep(200);
+		usleep(300);
 		i++;
 	}
 }
 
 void	send_message(char *message, int pid)
 {
-	int		bitshift;
 	int		i;
+	int		bitshift;
 
 	i = 0;
 	while (message[i])
@@ -37,10 +43,16 @@ void	send_message(char *message, int pid)
 		while (bitshift < 8)
 		{
 			if (message[i] & 0x80 >> bitshift)
-				kill(pid, SIGUSR1);
+			{
+				if (kill(pid, SIGUSR1) == -1)
+					error("Incorrect PID");
+			}
 			else
-				kill(pid, SIGUSR2);
-			usleep(200);
+			{
+				if (kill(pid, SIGUSR2) == -1)
+					error("Incorrect PID");
+			}
+			usleep(300);
 			bitshift++;
 		}
 		i++;
@@ -51,10 +63,7 @@ void	send_message(char *message, int pid)
 int	main(int argc, char **argv)
 {
 	if (argc != 3)
-	{
-		ft_printf("This program needs 2 parameters instead of %i\n", argc - 1);
-		exit(EXIT_FAILURE);
-	}
+		error("Wrong number of arguments ./client [pid] [message]\n");
 	send_message(argv[2], ft_atoi(argv[1]));
 	return (0);
 }
