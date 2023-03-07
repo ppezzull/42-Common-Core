@@ -12,30 +12,45 @@
 
 #include "push_swap.h"
 
-void    error(void)
+void	error(void)
 {
-    ft_putstr("Error\n");
-    exit(EXIT_FAILURE);
+	ft_putstr("Error\n");
+	exit(EXIT_FAILURE);
 }
 
-t_program	*read_input(char *argv)
+t_stack	*argv_into_stack(char **argv)
 {
-	t_program	*program;
-	int			*lst;
+	int		i;
+	t_stack	*stack;
+	t_stack	*stack_tmp;
 
-	program = malloc(sizeof(t_program));
-	if (!program)
-		return (NULL);
-	lst = get_lst(argv)
-	program->a = insert_into_stack(lst);
-	return(program)
+	i = 0;
+	if (!ft_atoi(argv[i]))
+		argv = ft_split(argv[1], ' ');
+	else
+		i++;
+	stack = new_stack(ft_atoi(argv[i]));
+	stack_tmp = stack;
+	while (argv[i++ + 1])
+	{
+		stack_tmp->next = new_stack(ft_atoi(argv[i]));
+		stack_tmp = stack_tmp->next;
+	}
+	return (stack);
 }
 
 int	main(int argc, char **argv)
 {
-	t_program	program;
+	t_program	*program;
 
-	program = read_input(argv[1]);
-	if (!t_program)
-		error()
+	if (argc == 1)
+		error();
+	program = malloc(sizeof(t_program));
+	if (!program)
+		error();
+	program->a = argv_into_stack(argv);
+	print_program(program);
+	// push_swap(program);
+	sa(program);
+	print_program(program);
 }

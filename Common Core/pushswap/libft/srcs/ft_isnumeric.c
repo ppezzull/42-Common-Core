@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isidigit.c                                      :+:      :+:    :+:   */
+/*   ft_isnumeric.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pietro <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/16 16:58:37 by ppezzull          #+#    #+#             */
-/*   Updated: 2023/01/16 16:58:52 by ppezzull         ###   ########.fr       */
+/*   Created: 2023/03/02 12:11:56 by pietro            #+#    #+#             */
+/*   Updated: 2023/03/02 12:12:00 by pietro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_isdigit(int letter)
+int	ft_isnumeric(char *str)
 {
-    return (letter >= '1' && letter <= '9');
+	int	i;
+
+	if (!str)
+		return (0);
+	i = -1;
+	while (str[i++])
+		if (ft_isdigit(str[i]))
+			return (0);
+	return (1);
 }

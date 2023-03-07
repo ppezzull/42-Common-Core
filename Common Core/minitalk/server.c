@@ -29,7 +29,7 @@ void	signal_handler(int signum)
 {
 	static int	i = 0;
 	static char	bin[8];
-	// char		letter;
+	char		letter;
 
 	if (signum == SIGUSR1)
 		bin[i] = '1';
@@ -38,13 +38,13 @@ void	signal_handler(int signum)
 	i++;
 	if (i == 8)
 	{
-		// if ((letter = bin_to_char(bin)) == 0)
-		// {
-		// 	ft_putchar('\n');
-		// 	ft_bzero(bin, 8);
-		// }
-		printf("%s -> %c\n",bin, bin_to_char(bin));
-		// ft_putchar(letter);
+		letter = bin_to_char(bin);
+		if (letter == 0)
+		{
+			ft_putchar('\n');
+			ft_bzero(bin, 8);
+		}
+		ft_putchar(letter);
 		ft_bzero(bin, 8);
 		i = 0;
 	}

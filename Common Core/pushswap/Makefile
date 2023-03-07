@@ -10,32 +10,38 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
+PUSH_NAME = push_swap
 
-SRCS = main.c
+FLAGS = -Wall -Wextra -Werror
+INC = -Iincludes/ -I$(LIB_DIR)/includes
 
-CC			= 	gcc
-RM			= 	rm -f
-FLAGS 		= 	-Wall -Wextra -Werror -I ./includes
+PUSH_SRC_NAME = main.c utils.c swap.c push_swap.c\
+				push.c rotate.c rrotate.c
 
-OBJ_NAME 	= 	$(SRCS:.c=.o)
-OBJ 		= 	$(addprefix $(OBJ_DIR),$(OBJ_NAME))
-SRC_DIR 	= 	srcs/
-OBJ_DIR 	= 	objs/
+PUSH_OBJ_NAME = $(PUSH_SRC_NAME:.c=.o)
+PUSH_OBJ = $(addprefix $(OBJ_DIR),$(PUSH_OBJ_NAME))
 
-all: $(NAME)
+LIB_DIR = libft/
+SRC_DIR = srcs/
+OBJ_DIR = objs/
+
+all: $(PUSH_NAME)
+
+$(PUSH_NAME): $(PUSH_OBJ)
+	@make -C $(LIB_DIR) --silent
+	@gcc -o $(PUSH_NAME) $(PUSH_OBJ) -L $(LIB_DIR) -lft
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	$(CC) $(FLAGS) -o $@ -c $< $(INC)
-
-$(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
+	@mkdir -p $(OBJ_DIR)
+	@gcc $(FLAGS) -o $@ -c $< $(INC)
 
 clean:
-	$(RM) $(OBJ)
+	@make -C $(LIB_DIR) clean  --silent
+	@rm -f $(PUSH_OBJ)
 
 fclean: clean
-	$(RM) $(NAME)
+	@make -C $(LIB_DIR) fclean  --silent
+	@rm -f $(PUSH_NAME)
 
 re: fclean all
 

@@ -1,6 +1,18 @@
-#include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pietro <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/02 22:02:21 by pietro            #+#    #+#             */
+/*   Updated: 2023/03/02 22:02:25 by pietro           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-t_stack	*ft_new_stack(int nb)
+#include "../includes/push_swap.h"
+
+t_stack	*new_stack(int nb)
 {
 	t_stack	*stack;
 
@@ -9,24 +21,61 @@ t_stack	*ft_new_stack(int nb)
 		return (NULL);
 	stack->num = nb;
 	stack->next = NULL;
-	stack->previous = NULL;
 	return (stack);
 }
 
-int	*get_lst(char *argv)
+void	print_stack(t_stack	*stack)
 {
-	int	*lst;
-	int	i;
+	if (stack)
+	{
+		while (stack)
+		{
+			ft_printf("%i ", stack->num);
+			stack = stack->next;
+		}
+	}
+	ft_putchar('\n');
+}
+
+int	stack_size(t_stack *stack)
+{
 	int	len;
 
-	
-	i = -1;
+	if (!stack)
+		return (0);
 	len = 0;
-	while (argv[i++])
-		if (ft_isnum(argv[i]))
-			len++
-	if (!lst)
+	while (stack)
+	{
+		stack = stack->next;
+		len++;
+	}
+	return (len);
+}
+
+t_stack	*ft_stack_index(t_stack *stack, int i)
+{
+	int		j;
+	t_stack	*stack_tmp;
+
+	if (i < 0)
+		i += stack_size(stack);
+	if (i < 0 || i >= stack_size(stack) || !stack)
 		return (NULL);
-	
-	
+	j = -1;
+	stack_tmp = stack;
+	while (j++ <= i)
+	{
+		if (j == i)
+			break ;
+		stack_tmp = stack_tmp->next;
+	}
+	return (stack_tmp);
+}
+
+void	print_program(t_program *program)
+{
+	ft_putstr("a ");
+	print_stack(program->a);
+	ft_putstr("b ");
+	print_stack(program->b);
 }

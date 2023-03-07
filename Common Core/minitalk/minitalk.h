@@ -23,6 +23,6 @@ char	bin_to_char(char *bin);
 void	signal_handler(int signum);
 void	send_message(char *message, int pid);
 void	send_endl(int pid);
-void	error(char *error_name);
+void	error(char *reason);
 
 #endif

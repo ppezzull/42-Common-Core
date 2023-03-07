@@ -12,9 +12,9 @@
 
 #include "minitalk.h"
 
-void	error(char *error_name)
+void	error(char *reason)
 {
-	ft_putstr(error_name);
+	ft_putstr(reason);
 	exit(0);
 }
 
@@ -45,12 +45,12 @@ void	send_message(char *message, int pid)
 			if (message[i] & 0x80 >> bitshift)
 			{
 				if (kill(pid, SIGUSR1) == -1)
-					error("Incorrect PID");
+					error("Wrong PID\n");
 			}
 			else
 			{
 				if (kill(pid, SIGUSR2) == -1)
-					error("Incorrect PID");
+					error("Wrong PID\n");
 			}
 			usleep(300);
 			bitshift++;
