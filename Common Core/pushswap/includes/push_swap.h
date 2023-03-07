@@ -32,7 +32,7 @@ typedef struct s_program
 int			stack_size(t_stack *stack);
 
 t_stack		*new_stack(int nb);
-t_stack		*argv_into_stack(char **argv);
+t_stack		*argv_into_stack(char **argv, int argc);
 t_stack		*ft_stack_index(t_stack *stack, int i);
 
 void		error(void);

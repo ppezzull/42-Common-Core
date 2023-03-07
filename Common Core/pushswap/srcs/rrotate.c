@@ -27,7 +27,7 @@ void	rra(t_program *program)
 	if (stack_size(program->a) > 1)
 	{
 		rrotate(&(program->a));
-		ft_putstr("ra\n");
+		ft_putstr("rra\n");
 	}
 }
 
@@ -36,7 +36,7 @@ void	rrb(t_program *program)
 	if (stack_size(program->b) > 1)
 	{
 		rrotate(&(program->b));
-		ft_putstr("rb\n");
+		ft_putstr("rrb\n");
 	}
 }
 
@@ -47,6 +47,6 @@ void	rrr(t_program *program)
 	{
 		rrotate(&(program->a));
 		rrotate(&(program->b));
-		ft_putstr("rr\n");
+		ft_putstr("rrr\n");
 	}
 }

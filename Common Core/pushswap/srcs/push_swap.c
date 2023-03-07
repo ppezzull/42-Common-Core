@@ -32,7 +32,7 @@ void	three_numbers_sort(t_program **program)
 		sa(*program);
 		ra(*program);
 	}
-	else if (n3 > n2 && n2 > n1 && n3 < n1)
+	else if (n1 > n2 && n1 > n2 && n1 > n3)
 	{
 		sa(*program);
 		rra(*program);

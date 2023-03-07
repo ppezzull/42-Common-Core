@@ -15,14 +15,12 @@
 void	swap(t_stack *stack)
 {
 	int		n;
-	int		tmp;
 
 	if (stack)
 	{
-		n = ft_;
-		tmp = stack_tmp->num;
-		stack_tmp->num = stack_tmp->next->num;
-		stack_tmp->next->num = tmp;
+		n = stack->num;
+		stack->num = stack->next->num;
+		stack->next->num = n;
 	}
 }
 
