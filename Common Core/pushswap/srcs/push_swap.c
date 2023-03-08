@@ -39,46 +39,80 @@ void	three_numbers_sort(t_program **program)
 	}
 }
 
-void	min_on_top(t_stack *stack)
+int	min_idx(t_program *program)
 {
-	int		proximity;
+	int		i;
 	int		min;
-	t_stack	*stack_tmp;
+	int		idx;
+	t_stack	*tmp;
 
-	stack_tmp = stack;
-	proximity = 0;
-	min = stack_tmp->num;
-	while (stack_tmp)
+	tmp = program->a;
+	i = 0;
+	idx = 0;
+	min = tmp->num;
+	while (tmp)
 	{
-		stack_tmp = stack_tmp->next;
-		if (stack_tmp->num < min)
-			min = stack_tmp->num;
-		proximity++;
+		if (tmp->num < min)
+		{
+			min = tmp->num;
+			idx = i;
+		}
+		tmp = tmp->next;
+		i++;
 	}
-	printf("min %i prox %i\n", min, proximity);
+	return (idx);
+}
+
+void	min_on_top(t_program *program)
+{
+	int	len;
+	int	idx;
+
+	idx = min_idx(program);
+	len = stack_size(program->a);
+	if (idx < len / 2)
+	{
+		while (idx--)
+			ra(program);
+	}
+	else
+	{
+		while (idx < len)
+		{
+			rra(program);
+			idx++;
+		}
+	}
 }
 
 void	ten_numbers_sort(t_program **program)
 {
 	int		i;
+	int		b_len;
 
-	i = -1;
-	while (i++ < 7)
+	while (stack_size((*program)->a) > 3)
 	{
-		min_on_top((*program)->a);
-		pa(*program);
+		min_on_top(*program);
+		pb(*program);
 	}
 	three_numbers_sort(program);
+	i = -1;
+	b_len = stack_size((*program)->b);
+	while (i++ < b_len)
+		pa(*program);
 }
 
 void	push_swap(t_program *program)
 {
 	if (stack_size(program->a) == 2)
+	{
 		if (program->a->num > program->a->next->num)
 			sa(program);
-	if (stack_size(program->a) == 3)
+	}
+	else if (stack_size(program->a) == 3)
 		three_numbers_sort(&program);
-	if (stack_size(program->a) <= 10)
+	else if (stack_size(program->a) <= 10)
 		ten_numbers_sort(&program);
-
+	else if (stack_size(program->a) <= 100)
+		hundred_numbers_sort(&program);
 }

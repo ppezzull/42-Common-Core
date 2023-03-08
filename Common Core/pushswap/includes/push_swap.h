@@ -30,11 +30,12 @@ typedef struct s_program
 }						t_program;
 
 int			stack_size(t_stack *stack);
+int			min_idx(t_program *program);
 
 t_stack		*new_stack(int nb);
-t_stack		*argv_into_stack(char **argv, int argc);
 t_stack		*ft_stack_index(t_stack *stack, int i);
 
+void		start_program(t_program **program, char **argv, int argc);
 void		error(void);
 void		print_stack(t_stack	*stack);
 void		print_program(t_program *program);
@@ -53,8 +54,8 @@ void		rrb(t_program *program);
 void		rrr(t_program *program);
 void		rrotate(t_stack **stack);
 void		push_swap(t_program *program);
-void		three_numbers_sort(t_program **program);
+void		min_on_top(t_program *program);
 void		ten_numbers_sort(t_program **program);
-void		min_on_top(t_stack *stack);
+void		three_numbers_sort(t_program **program);
 
 #endif

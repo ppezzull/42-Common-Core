@@ -14,11 +14,11 @@
 
 void	rrotate(t_stack **stack)
 {
-	t_stack	*stack_tmp;
+	t_stack	*tmp;
 
-	stack_tmp = *stack;
+	tmp = *stack;
 	*stack = new_stack(ft_stack_index(*stack, -1)->num);
-	(*stack)->next = stack_tmp;
+	(*stack)->next = tmp;
 	ft_stack_index(*stack, -2)->next = NULL;
 }
 

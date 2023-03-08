@@ -16,7 +16,7 @@ void	swap(t_stack *stack)
 {
 	int		n;
 
-	if (stack)
+	if (stack && stack->next)
 	{
 		n = stack->num;
 		stack->num = stack->next->num;

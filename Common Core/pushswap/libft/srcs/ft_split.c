@@ -87,6 +87,6 @@ char	**ft_split(char const *s, char c)
 		split[i] = ft_substr((char *)s, start, j - start);
 		i++;
 	}
-	split[i] = '\0';
+	split[i] = 0;
 	return (split);
 }

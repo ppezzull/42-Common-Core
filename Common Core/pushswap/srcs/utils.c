@@ -24,33 +24,17 @@ t_stack	*new_stack(int nb)
 	return (stack);
 }
 
-void	print_stack(t_stack	*stack)
-{
-	if (stack)
-	{
-		while (stack)
-		{
-			ft_printf("%i ", stack->num);
-			if (stack->next)
-				stack = stack->next;
-			else
-				break ;
-		}
-	}
-	ft_putchar('\n');
-}
-
 int	stack_size(t_stack *stack)
 {
 	int	len;
 
 	if (!stack)
 		return (0);
-	len = 0;
-	while (stack)
+	len = 1;
+	while (stack->next)
 	{
-		stack = stack->next;
 		len++;
+		stack = stack->next;
 	}
 	return (len);
 }
@@ -58,21 +42,34 @@ int	stack_size(t_stack *stack)
 t_stack	*ft_stack_index(t_stack *stack, int i)
 {
 	int		j;
-	t_stack	*stack_tmp;
+	t_stack	*tmp;
 
 	if (i < 0)
 		i += stack_size(stack);
 	if (i < 0 || i >= stack_size(stack) || !stack)
 		return (NULL);
 	j = -1;
-	stack_tmp = stack;
+	tmp = stack;
 	while (j++ <= i)
 	{
 		if (j == i)
 			break ;
-		stack_tmp = stack_tmp->next;
+		tmp = tmp->next;
 	}
-	return (stack_tmp);
+	return (tmp);
+}
+
+void	print_stack(t_stack	*stack)
+{
+	t_stack	*tmp;
+
+	tmp = stack;
+	while (tmp)
+	{
+		ft_printf("%i ", tmp->num);
+		tmp = tmp->next;
+	}
+	ft_putchar('\n');
 }
 
 void	print_program(t_program *program)

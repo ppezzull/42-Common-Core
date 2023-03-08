@@ -14,15 +14,15 @@
 
 void	rotate(t_stack **stack)
 {
-	t_stack	*stack_tmp;
+	t_stack	*tmp;
 	int		n;
 
 	n = (*stack)->num;
-	stack_tmp = *stack;
+	tmp = *stack;
 	*stack = (*stack)->next;
-	while (stack_tmp->next)
-		stack_tmp = stack_tmp->next;
-	stack_tmp->next = new_stack(n);
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = new_stack(n);
 }
 
 void	ra(t_program *program)
@@ -45,8 +45,7 @@ void	rb(t_program *program)
 
 void	rr(t_program *program)
 {
-	if (stack_size(program->a) > 1 && \
-		stack_size(program->b) > 1)
+	if (program->a && program->b)
 	{
 		rotate(&(program->a));
 		rotate(&(program->b));

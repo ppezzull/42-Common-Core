@@ -14,13 +14,13 @@
 
 void	pa(t_program *program)
 {
-	t_stack	*stack_tmp;
+	t_stack	*tmp;
 
 	if (program->b)
 	{
-		stack_tmp = program->a;
+		tmp = program->a;
 		program->a = new_stack(program->b->num);
-		program->a->next = stack_tmp;
+		program->a->next = tmp;
 		if (stack_size(program->b) == 1)
 			program->b = NULL;
 		else
@@ -31,13 +31,13 @@ void	pa(t_program *program)
 
 void	pb(t_program *program)
 {
-	t_stack	*stack_tmp;
+	t_stack	*tmp;
 
 	if (program->a)
 	{
-		stack_tmp = program->b;
+		tmp = program->b;
 		program->b = new_stack(program->a->num);
-		program->b->next = stack_tmp;
+		program->b->next = tmp;
 		if (stack_size(program->a) == 1)
 			program->a = NULL;
 		else

@@ -18,25 +18,24 @@ void	error(void)
 	exit(EXIT_FAILURE);
 }
 
-t_stack	*argv_into_stack(char **argv, int argc)
+void	start_program(t_program **program, char **argv, int argc)
 {
 	int		i;
-	t_stack	*stack;
-	t_stack	*stack_tmp;
+	t_stack	*tmp;
 
 	i = 0;
 	if (argc == 2)
 		argv = ft_split(argv[1], ' ');
 	else
 		i++;
-	stack = new_stack(ft_atoi(argv[i]));
-	stack_tmp = stack;
+	(*program)->a = new_stack(ft_atoi(argv[i]));
+	tmp = (*program)->a;
 	while (argv[i++ + 1])
 	{
-		stack_tmp->next = new_stack(ft_atoi(argv[i]));
-		stack_tmp = stack_tmp->next;
+		tmp->next = new_stack(ft_atoi(argv[i]));
+		tmp = tmp->next;
 	}
-	return (stack);
+	(*program)->b = NULL;
 }
 
 int	main(int argc, char **argv)
@@ -48,10 +47,9 @@ int	main(int argc, char **argv)
 	program = malloc(sizeof(t_program));
 	if (!program)
 		error();
-	program->a = argv_into_stack(argv, argc);
+	start_program(&program, argv, argc);
 	print_program(program);
 	// min_on_top(program->a);
-	// push_swap(program);
-	sa(program);
+	push_swap(program);
 	print_program(program);
 }
