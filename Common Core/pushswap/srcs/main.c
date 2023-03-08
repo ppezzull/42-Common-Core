@@ -50,6 +50,8 @@ int	main(int argc, char **argv)
 		error();
 	program->a = argv_into_stack(argv, argc);
 	print_program(program);
-	push_swap(program);
+	// min_on_top(program->a);
+	// push_swap(program);
+	sa(program);
 	print_program(program);
 }

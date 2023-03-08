@@ -39,8 +39,46 @@ void	three_numbers_sort(t_program **program)
 	}
 }
 
+void	min_on_top(t_stack *stack)
+{
+	int		proximity;
+	int		min;
+	t_stack	*stack_tmp;
+
+	stack_tmp = stack;
+	proximity = 0;
+	min = stack_tmp->num;
+	while (stack_tmp)
+	{
+		stack_tmp = stack_tmp->next;
+		if (stack_tmp->num < min)
+			min = stack_tmp->num;
+		proximity++;
+	}
+	printf("min %i prox %i\n", min, proximity);
+}
+
+void	ten_numbers_sort(t_program **program)
+{
+	int		i;
+
+	i = -1;
+	while (i++ < 7)
+	{
+		min_on_top((*program)->a);
+		pa(*program);
+	}
+	three_numbers_sort(program);
+}
+
 void	push_swap(t_program *program)
 {
+	if (stack_size(program->a) == 2)
+		if (program->a->num > program->a->next->num)
+			sa(program);
 	if (stack_size(program->a) == 3)
 		three_numbers_sort(&program);
+	if (stack_size(program->a) <= 10)
+		ten_numbers_sort(&program);
+
 }

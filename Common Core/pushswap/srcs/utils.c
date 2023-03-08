@@ -31,7 +31,10 @@ void	print_stack(t_stack	*stack)
 		while (stack)
 		{
 			ft_printf("%i ", stack->num);
-			stack = stack->next;
+			if (stack->next)
+				stack = stack->next;
+			else
+				break ;
 		}
 	}
 	ft_putchar('\n');
