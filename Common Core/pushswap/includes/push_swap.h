@@ -55,7 +55,7 @@ void		rrb(t_program *program);
 void		rrr(t_program *program);
 void		rrotate(t_stack **stack);
 void		push_swap(t_program *program);
-void		min_on_top(t_program *program);
+void		put_stack_on_top(t_program *program, int idx);
 void		ten_numbers_sort(t_program **program);
 void		three_numbers_sort(t_program **program);
 void		hundred_numbers_sort(t_program **program);

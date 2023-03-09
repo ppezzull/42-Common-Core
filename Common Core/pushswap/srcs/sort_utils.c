@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	min_idx(t_program *program)
+int	get_min_idx(t_program *program)
 {
 	int		i;
 	int		min;
@@ -33,15 +33,14 @@ int	min_idx(t_program *program)
 		tmp = tmp->next;
 		i++;
 	}
+	free(tmp);
 	return (idx);
 }
 
-void	min_on_top(t_program *program)
+void	put_stack_on_top(t_program *program, int idx)
 {
 	int	len;
-	int	idx;
 
-	idx = min_idx(program);
 	len = stack_size(program->a);
 	if (idx < len / 2)
 	{
@@ -100,5 +99,6 @@ int	*stack_into_sorted_lst(t_stack *stack)
 		i++;
 	}
 	ft_sort_int_tab(lst, len);
+	free(tmp);
 	return (lst);
 }

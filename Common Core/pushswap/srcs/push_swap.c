@@ -46,33 +46,14 @@ void	ten_numbers_sort(t_program **program)
 
 	while (stack_size((*program)->a) > 3)
 	{
-		min_on_top(*program);
+		min_on_top(*program, get_min_idx(*program));
 		pb(*program);
 	}
 	three_numbers_sort(program);
-	i = -1;
 	b_len = stack_size((*program)->b);
+	i = -1;
 	while (i++ < b_len)
 		pa(*program);
-}
-
-void	hundred_numbers_sort(t_program **program)
-{
-	int	*sorted_stack;
-	int	key_nbr;
-	int	chunks;
-	int	key_idx;
-	int	i;
-
-	key_idx = stack_size((*program)->a) / 4;
-	sorted_stack = stack_into_sorted_lst((*program)->a);
-	// for (int i = 0; sorted_stack[i]; i++)
-	//  	printf("%i ", sorted_stack[i]);
-	i = 3;
-	while (i--)
-	{
-		key_idx += key_idx;
-	}
 }
 
 void	push_swap(t_program *program)
