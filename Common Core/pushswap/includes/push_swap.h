@@ -29,6 +29,7 @@ typedef struct s_program
 	t_stack				*b;
 }						t_program;
 
+int			*stack_into_sorted_lst(t_stack *stack);
 int			stack_size(t_stack *stack);
 int			min_idx(t_program *program);
 
@@ -57,5 +58,6 @@ void		push_swap(t_program *program);
 void		min_on_top(t_program *program);
 void		ten_numbers_sort(t_program **program);
 void		three_numbers_sort(t_program **program);
+void		hundred_numbers_sort(t_program **program);
 
 #endif

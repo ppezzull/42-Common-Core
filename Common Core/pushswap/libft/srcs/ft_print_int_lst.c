@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   ft_print_int_lst.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pietro <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 19:24:31 by ppezzull          #+#    #+#             */
-/*   Updated: 2022/10/26 19:30:26 by ppezzull         ###   ########.fr       */
+/*   Created: 2023/03/08 23:01:51 by pietro            #+#    #+#             */
+/*   Updated: 2023/03/08 23:01:54 by pietro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
+#include "libft.h"
 
-char	*ft_strcat(char *dest, char *src)
+void	ft_print_int_lst(int *lst)
 {
 	int	i;
-	int	j;
 
-	i = 0;
-	j = 0;
-	while (dest[i] != '\0')
-		i++;
-	while (src[j] != '\0')
+	if (lst)
 	{
-		dest[i] = src[j];
-		i++;
-		j++;
+		i = -1;
+		while (lst[i++])
+			ft_printf("%i ", lst[i]);
 	}
-	dest[i] = '\0';
-	return (dest);
+	ft_putchar_fd('\n', 1);
 }
-

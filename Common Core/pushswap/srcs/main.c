@@ -48,8 +48,6 @@ int	main(int argc, char **argv)
 	if (!program)
 		error();
 	start_program(&program, argv, argc);
-	print_program(program);
-	// min_on_top(program->a);
 	push_swap(program);
-	print_program(program);
+	// print_program(program);
 }

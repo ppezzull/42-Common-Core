@@ -39,52 +39,6 @@ void	three_numbers_sort(t_program **program)
 	}
 }
 
-int	min_idx(t_program *program)
-{
-	int		i;
-	int		min;
-	int		idx;
-	t_stack	*tmp;
-
-	tmp = program->a;
-	i = 0;
-	idx = 0;
-	min = tmp->num;
-	while (tmp)
-	{
-		if (tmp->num < min)
-		{
-			min = tmp->num;
-			idx = i;
-		}
-		tmp = tmp->next;
-		i++;
-	}
-	return (idx);
-}
-
-void	min_on_top(t_program *program)
-{
-	int	len;
-	int	idx;
-
-	idx = min_idx(program);
-	len = stack_size(program->a);
-	if (idx < len / 2)
-	{
-		while (idx--)
-			ra(program);
-	}
-	else
-	{
-		while (idx < len)
-		{
-			rra(program);
-			idx++;
-		}
-	}
-}
-
 void	ten_numbers_sort(t_program **program)
 {
 	int		i;
@@ -100,6 +54,25 @@ void	ten_numbers_sort(t_program **program)
 	b_len = stack_size((*program)->b);
 	while (i++ < b_len)
 		pa(*program);
+}
+
+void	hundred_numbers_sort(t_program **program)
+{
+	int	*sorted_stack;
+	int	key_nbr;
+	int	chunks;
+	int	key_idx;
+	int	i;
+
+	key_idx = stack_size((*program)->a) / 4;
+	sorted_stack = stack_into_sorted_lst((*program)->a);
+	// for (int i = 0; sorted_stack[i]; i++)
+	//  	printf("%i ", sorted_stack[i]);
+	i = 3;
+	while (i--)
+	{
+		key_idx += key_idx;
+	}
 }
 
 void	push_swap(t_program *program)
