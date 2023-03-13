@@ -69,6 +69,6 @@ void	push_swap(t_program *program)
 		ten_numbers_sort(&program);
 	else if (stack_size(program->a) <= 100)
 		hundred_numbers_sort(&program);
-	else
+	else if (stack_size(program->a) > 100)
 		over_hundred_numbers_sort(&program);
 }

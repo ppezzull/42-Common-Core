@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	push_quarter_into_b(t_program **program, int *sorted_stack, int key_idx)
+void	push_quarter_into_b(t_program **program, int *sorted, int key_idx)
 {
 	int	i;
 	int	n;
@@ -21,7 +21,7 @@ void	push_quarter_into_b(t_program **program, int *sorted_stack, int key_idx)
 	while (i < stack_size((*program)->a))
 	{
 		n = ft_stack_index((*program)->a, i)->num;
-		if (n <= sorted_stack[key_idx - 1])
+		if (n <= sorted[key_idx - 1])
 		{
 			put_stack_on_top_of_a(*program, i);
 			pb(*program);
@@ -52,15 +52,15 @@ void	sort_last_a_quarter(t_program **program)
 
 void	hundred_numbers_sort(t_program **program)
 {
-	int		*sorted_stack;
+	int		*sorted;
 	int		key_idx;
 	int		i;
 
 	key_idx = (stack_size((*program)->a) / 4);
-	sorted_stack = stack_into_sorted_lst((*program)->a);
+	sorted = stack_into_sorted_lst((*program)->a);
 	i = 0;
 	while (i++ < 3)
-		push_quarter_into_b(program, sorted_stack, key_idx * i);
+		push_quarter_into_b(program, sorted, key_idx * i);
 	sort_last_a_quarter(program);
 	while ((*program)->b)
 	{

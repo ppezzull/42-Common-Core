@@ -49,6 +49,5 @@ int	main(int argc, char **argv)
 		error();
 	start_program(&program, argv, argc);
 	push_swap(program);
-	// printf("%i\n", get_max_idx(program->a));
-	print_program(program);
+	free(program);
 }

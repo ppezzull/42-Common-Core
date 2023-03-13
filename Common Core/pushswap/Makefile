@@ -18,7 +18,8 @@ INC = -Iincludes/ -I$(LIB_DIR)/includes
 PUSH_SRC_NAME = main.c swap.c push_swap.c \
 				push.c rotate.c rrotate.c \
 				hundred_numbers_sort.c \
-				utils1.c utils2.c utils3.c 
+				utils1.c utils2.c utils3.c \
+				over_hundred_numbers_sort.c
 
 PUSH_OBJ_NAME = $(PUSH_SRC_NAME:.c=.o)
 PUSH_OBJ = $(addprefix $(OBJ_DIR),$(PUSH_OBJ_NAME))

@@ -61,5 +61,8 @@ void		put_stack_on_top_of_b(t_program *program, int idx);
 void		ten_numbers_sort(t_program **program);
 void		three_numbers_sort(t_program **program);
 void		hundred_numbers_sort(t_program **program);
+void		over_hundred_numbers_sort(t_program **program);
+void		push_quarter_into_b(t_program **program, int *sorted, int key_idx);
+void		sort_last_a_quarter(t_program **program);
 
 #endif
