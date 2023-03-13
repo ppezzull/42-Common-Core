@@ -46,7 +46,7 @@ void	ten_numbers_sort(t_program **program)
 
 	while (stack_size((*program)->a) > 3)
 	{
-		min_on_top(*program, get_min_idx(*program));
+		put_stack_on_top_of_a(*program, get_min_idx((*program)->a));
 		pb(*program);
 	}
 	three_numbers_sort(program);
@@ -69,4 +69,6 @@ void	push_swap(t_program *program)
 		ten_numbers_sort(&program);
 	else if (stack_size(program->a) <= 100)
 		hundred_numbers_sort(&program);
+	else
+		over_hundred_numbers_sort(&program);
 }
