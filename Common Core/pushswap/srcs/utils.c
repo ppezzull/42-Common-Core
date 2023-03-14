@@ -107,3 +107,18 @@ int	*stack_into_sorted_lst(t_stack *stack)
 	free(tmp);
 	return (lst);
 }
+
+int	stack_size(t_stack *stack)
+{
+	int	len;
+
+	if (!stack)
+		return (0);
+	len = 1;
+	while (stack->next)
+	{
+		len++;
+		stack = stack->next;
+	}
+	return (len);
+}

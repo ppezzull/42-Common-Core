@@ -56,19 +56,62 @@ void	ten_numbers_sort(t_program **program)
 		pa(*program);
 }
 
+void	hundred_numbers_sort(t_program **program)
+{
+	int		*sorted;
+	int		key_idx;
+	int		i;
+
+	key_idx = (stack_size((*program)->a) / 4);
+	sorted = stack_into_sorted_lst((*program)->a);
+	i = 0;
+	while (i++ < 3)
+		push_quarter_into_b(program, sorted, key_idx * i);
+	sort_last_a_quarter(program);
+	while ((*program)->b)
+	{
+		put_stack_on_top_of_b(*program, get_max_idx((*program)->b));
+		pa(*program);
+	}
+	free(sorted);
+}
+
+void	over_hundred_numbers_sort(t_program **program)
+{
+	int		*sorted_stack;
+	int		key_idx;
+	int		i;
+
+	key_idx = (stack_size((*program)->a) / 8);
+	sorted_stack = stack_into_sorted_lst((*program)->a);
+	i = 0;
+	while (i++ < 7)
+		push_quarter_into_b(program, sorted_stack, key_idx * i);
+	sort_last_a_quarter(program);
+	while ((*program)->b)
+	{
+		put_stack_on_top_of_b(*program, get_max_idx((*program)->b));
+		pa(*program);
+	}
+	free(sorted_stack);
+}
+
 void	push_swap(t_program *program)
 {
-	if (stack_size(program->a) == 2)
+	if (stack_size(program->a) > 1)
 	{
-		if (program->a->num > program->a->next->num)
-			sa(program);
+		if (stack_size(program->a) == 2)
+		{
+			if (program->a->num > program->a->next->num)
+				sa(program);
+		}
+		else if (stack_size(program->a) == 3)
+			three_numbers_sort(&program);
+		else if (stack_size(program->a) <= 10)
+			ten_numbers_sort(&program);
+		else if (stack_size(program->a) <= 100)
+			hundred_numbers_sort(&program);
+		else if (stack_size(program->a) > 100)
+			over_hundred_numbers_sort(&program);
 	}
-	else if (stack_size(program->a) == 3)
-		three_numbers_sort(&program);
-	else if (stack_size(program->a) <= 10)
-		ten_numbers_sort(&program);
-	else if (stack_size(program->a) <= 100)
-		hundred_numbers_sort(&program);
-	else if (stack_size(program->a) > 100)
-		over_hundred_numbers_sort(&program);
 }

@@ -14,13 +14,22 @@
 
 void	rrotate(t_stack **stack)
 {
+	t_stack	*copy;
 	t_stack	*tmp;
+	int		i;
+	int		len;
 
-	tmp = *stack;
-	stack_del(stack)
-	*stack = new_stack(ft_stack_index(*stack, -1)->num);
-	(*stack)->next = tmp;
-	ft_stack_index(*stack, -2)->next = NULL;
+	len = stack_size(*stack);
+	copy = new_stack(ft_stack_index(*stack, -1)->num);
+	tmp = copy;
+	i = -1;
+	while (i++ < len - 2)
+	{
+		tmp->next = new_stack(ft_stack_index(*stack, i)->num);
+		tmp = tmp->next;
+	}
+	stack_del(stack);
+	*stack = copy;
 }
 
 void	rra(t_program *program)
