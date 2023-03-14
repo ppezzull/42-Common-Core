@@ -22,9 +22,13 @@ void	pa(t_program *program)
 		program->a = new_stack(program->b->num);
 		program->a->next = tmp;
 		if (stack_size(program->b) == 1)
-			program->b = NULL;
+			stack_del(&(program->b));
 		else
-			program->b = program->b->next;
+		{
+			tmp = program->b->next;
+			free(program->b);
+			program->b = tmp;
+		}
 		ft_putstr("pa\n");
 	}
 }

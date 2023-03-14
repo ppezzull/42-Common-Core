@@ -17,6 +17,7 @@ void	rrotate(t_stack **stack)
 	t_stack	*tmp;
 
 	tmp = *stack;
+	stack_del(stack)
 	*stack = new_stack(ft_stack_index(*stack, -1)->num);
 	(*stack)->next = tmp;
 	ft_stack_index(*stack, -2)->next = NULL;

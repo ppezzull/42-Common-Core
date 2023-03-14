@@ -18,8 +18,9 @@ void	rotate(t_stack **stack)
 	int		n;
 
 	n = (*stack)->num;
-	tmp = *stack;
-	*stack = (*stack)->next;
+	tmp = (*stack)->next;
+	free(*stack);
+	*stack = tmp;
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = new_stack(n);
