@@ -63,8 +63,8 @@ int	main(int argc, char **argv)
 	if (!program)
 		error();
 	start_program(&program, argv, argc);
-	// push_swap(program);
-	pb(program);
+	push_swap(program);
+	// pb(program);
 	// print_program(program);
 	stack_del(&(program->a));
 	stack_del(&(program->b));

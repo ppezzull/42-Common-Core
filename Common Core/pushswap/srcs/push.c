@@ -39,9 +39,13 @@ void	pb(t_program *program)
 		program->b = new_stack(program->a->num);
 		program->b->next = tmp;
 		if (stack_size(program->a) == 1)
-			program->a = NULL;
+			stack_del(&(program->a));
 		else
-			program->a = program->a->next;
+		{
+			tmp = program->a->next;
+			free(program->a);
+			program->a = tmp;
+		}
 		ft_putstr("pb\n");
 	}
 }
