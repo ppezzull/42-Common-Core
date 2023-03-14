@@ -18,6 +18,21 @@ void	error(void)
 	exit(EXIT_FAILURE);
 }
 
+void	stack_del(t_stack **stack)
+{
+	t_stack	*del;
+	t_stack	*tmp;
+
+	tmp = *stack;
+	while (tmp)
+	{
+		del = tmp;
+		tmp = tmp->next;
+		free(del);
+	}
+	*stack = NULL;
+}
+
 void	start_program(t_program **program, char **argv, int argc)
 {
 	int		i;
@@ -48,6 +63,12 @@ int	main(int argc, char **argv)
 	if (!program)
 		error();
 	start_program(&program, argv, argc);
-	push_swap(program);
+	// push_swap(program);
+	pb(program);
+	// print_program(program);
+	stack_del(&(program->a));
+	stack_del(&(program->b));
 	free(program);
 }
+
+// valgrind --leak-check=yes
