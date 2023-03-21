@@ -27,6 +27,7 @@ void	swap(t_stack *stack)
 void	sa(t_program *program)
 {
 	swap(program->a);
+	program->moves++;
 	ft_putstr("sa\n");
 }
 
@@ -34,6 +35,7 @@ void	sb(t_program *program)
 {
 	swap(program->b);
 	ft_putstr("sb\n");
+	program->moves++;
 }
 
 void	ss(t_program *program)
@@ -41,4 +43,5 @@ void	ss(t_program *program)
 	swap(program->a);
 	swap(program->b);
 	ft_putstr("ss\n");
+	program->moves++;
 }

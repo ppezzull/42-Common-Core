@@ -12,40 +12,34 @@
 
 #include "push_swap.h"
 
-void	push_quarter_into_b(t_program **program, int *sorted, int key_idx)
+void	push_quarter_into_b(t_program **program, int b_len, int key_nbr)
 {
-	int	i;
-	int	n;
+	t_stack	*tmp;
+	int		i;
 
+	tmp = (*program)->a;
 	i = 0;
-	while (i < stack_size((*program)->a))
+	while (stack_size((*program)->b) < b_len && tmp)
 	{
-		n = ft_stack_index((*program)->a, i)->num;
-		if (n <= sorted[key_idx - 1])
+		if (tmp->num <= key_nbr)
 		{
 			put_stack_on_top_of_a(*program, i);
 			pb(*program);
 			i = 0;
+			tmp = (*program)->a;
 		}
+		tmp = tmp->next;
 		i++;
 	}
 }
 
 void	sort_last_a_quarter(t_program **program)
 {
-	int		i;
-	int		b_len;
-
-	i = 0;
 	while (stack_size((*program)->a) > 3)
 	{
 		put_stack_on_top_of_a(*program, get_min_idx((*program)->a));
+		print_stack((*program)->a);
 		pb(*program);
-		i++;
 	}
 	three_numbers_sort(program);
-	b_len = i;
-	i = -1;
-	while (i++ < b_len - 1)
-		pa(*program);
 }

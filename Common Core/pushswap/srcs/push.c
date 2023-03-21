@@ -30,6 +30,7 @@ void	pa(t_program *program)
 			program->b = tmp;
 		}
 		ft_putstr("pa\n");
+		program->moves++;
 	}
 }
 
@@ -51,5 +52,6 @@ void	pb(t_program *program)
 			program->a = tmp;
 		}
 		ft_putstr("pb\n");
+		program->moves++;
 	}
 }

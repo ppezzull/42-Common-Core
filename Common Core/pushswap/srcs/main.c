@@ -18,6 +18,18 @@ void	error(void)
 	exit(EXIT_FAILURE);
 }
 
+void	check_input(char *str)
+{
+	int	i;
+
+	i = -1;
+	if (str[0] == '+' || str[0] == '-')
+		i++;
+	while (str[i++ + 1])
+		if (!ft_isdigit(str[i]))
+			error();
+}
+
 void	start_program(t_program **program, char **argv, int argc)
 {
 	int		i;
@@ -36,6 +48,7 @@ void	start_program(t_program **program, char **argv, int argc)
 		tmp = tmp->next;
 	}
 	(*program)->b = NULL;
+	(*program)->moves = 0;
 }
 
 int	main(int argc, char **argv)
@@ -48,8 +61,9 @@ int	main(int argc, char **argv)
 	if (!program)
 		error();
 	start_program(&program, argv, argc);
-	print_program(program);
 	push_swap(program);
+	printf("moves = %i\n", program->moves);
+	print_program(program);
 	stack_del(&(program->a));
 	stack_del(&(program->b));
 	free(program);

@@ -32,6 +32,7 @@ void	ra(t_program *program)
 	{
 		rotate(&(program->a));
 		ft_putstr("ra\n");
+		program->moves++;
 	}
 }
 
@@ -41,6 +42,7 @@ void	rb(t_program *program)
 	{
 		rotate(&(program->b));
 		ft_putstr("rb\n");
+		program->moves++;
 	}
 }
 
@@ -51,5 +53,6 @@ void	rr(t_program *program)
 		rotate(&(program->a));
 		rotate(&(program->b));
 		ft_putstr("rr\n");
+		program->moves++;
 	}
 }

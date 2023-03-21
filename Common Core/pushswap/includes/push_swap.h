@@ -27,6 +27,7 @@ typedef struct s_program
 {
 	t_stack				*a;
 	t_stack				*b;
+	int					moves;
 }						t_program;
 
 int			*stack_into_sorted_lst(t_stack *stack);
@@ -62,7 +63,7 @@ void		ten_numbers_sort(t_program **program);
 void		three_numbers_sort(t_program **program);
 void		hundred_numbers_sort(t_program **program);
 void		over_hundred_numbers_sort(t_program **program);
-void		push_quarter_into_b(t_program **program, int *sorted, int key_idx);
+void		push_quarter_into_b(t_program **program, int b_len, int key_nbr);
 void		sort_last_a_quarter(t_program **program);
 void		stack_del(t_stack **stack);
 
