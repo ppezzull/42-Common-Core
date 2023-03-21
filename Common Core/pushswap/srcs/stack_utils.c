@@ -63,24 +63,20 @@ void	put_stack_on_top_of_a(t_program *program, int idx)
 {
 	int		len;
 
+	len = stack_size(program->a);
 	if (idx == 1)
 		sa(program);
+	else if (idx <= len / 2)
+	{
+		while (idx--)
+			ra(program);
+	}
 	else
 	{
-		len = stack_size(program->a);
-		if (idx <= len / 2)
+		while (idx < len)
 		{
-			while (idx-- > 1)
-				ra(program);
-			sa(program);
-		}
-		else
-		{
-			while (idx < len)
-			{
-				rra(program);
-				idx++;
-			}
+			rra(program);
+			idx++;
 		}
 	}
 }
@@ -89,23 +85,20 @@ void	put_stack_on_top_of_b(t_program *program, int idx)
 {
 	int		len;
 
+	len = stack_size(program->b);
 	if (idx == 1)
 		sb(program);
+	else if (idx <= len / 2)
+	{
+		while (idx--)
+			rb(program);
+	}
 	else
 	{
-		len = stack_size(program->b);
-		if (idx <= len / 2)
+		while (idx < len)
 		{
-			while (idx--)
-				rb(program);
-		}
-		else
-		{
-			while (idx < len)
-			{
-				rrb(program);
-				idx++;
-			}
+			rrb(program);
+			idx++;
 		}
 	}
 }

@@ -38,7 +38,6 @@ void	sort_last_a_quarter(t_program **program)
 	while (stack_size((*program)->a) > 3)
 	{
 		put_stack_on_top_of_a(*program, get_min_idx((*program)->a));
-		print_stack((*program)->a);
 		pb(*program);
 	}
 	three_numbers_sort(program);
