@@ -56,26 +56,6 @@ void	ten_numbers_sort(t_program **program)
 		pa(*program);
 }
 
-void	hundred_numbers_sort(t_program **program, int chunks)
-{
-	int		*sorted;
-	int		key_idx;
-	int		i;
-
-	key_idx = (stack_size((*program)->a) / chunks);
-	sorted = stack_into_sorted_lst((*program)->a);
-	i = 0;
-	while (i++ < chunks - 1)
-		push_quarter_into_b(program, key_idx * i, sorted[key_idx * i - 1]);
-	sort_last_a_quarter(program);
-	while ((*program)->b)
-	{
-		put_stack_on_top_of_b(*program, get_max_idx((*program)->b));
-		pa(*program);
-	}
-	free(sorted);
-}
-
 void	push_swap(t_program *program)
 {
 	if (stack_size(program->a) > 1)
@@ -90,6 +70,6 @@ void	push_swap(t_program *program)
 		else if (stack_size(program->a) <= 10)
 			ten_numbers_sort(&program);
 		else if (stack_size(program->a) >= 10)
-			hundred_numbers_sort(&program, 4);
+			radix_sort(&program);
 	}
 }

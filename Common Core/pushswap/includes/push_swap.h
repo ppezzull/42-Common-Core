@@ -35,6 +35,8 @@ int			stack_size(t_stack *stack);
 int			get_min_idx(t_stack *stack);
 int			get_max_idx(t_stack *stack);
 
+char		*int_to_bin(int n);
+
 t_stack		*new_stack(int nb);
 t_stack		*ft_stack_index(t_stack *stack, int i);
 
@@ -42,6 +44,8 @@ void		start_program(t_program **program, char **argv, int argc);
 void		error(void);
 void		print_stack(t_stack	*stack);
 void		print_program(t_program *program);
+void		print_bin_stack(t_stack	*stack);
+void		print_bin_program(t_program *program);
 void		sa(t_program *program);
 void		sb(t_program *program);
 void		ss(t_program *program);
@@ -61,9 +65,7 @@ void		put_stack_on_top_of_a(t_program *program, int idx);
 void		put_stack_on_top_of_b(t_program *program, int idx);
 void		ten_numbers_sort(t_program **program);
 void		three_numbers_sort(t_program **program);
-void		hundred_numbers_sort(t_program **program, int chunks);
-void		push_quarter_into_b(t_program **program, int b_len, int key_nbr);
-void		sort_last_a_quarter(t_program **program);
 void		stack_del(t_stack **stack);
+void		radix_sort(t_program **program);
 
 #endif

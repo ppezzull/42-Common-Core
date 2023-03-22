@@ -32,3 +32,26 @@ void	print_program(t_program *program)
 	ft_putstr("b ");
 	print_stack(program->b);
 }
+
+void	print_bin_stack(t_stack *stack)
+{
+	t_stack	*tmp;
+	char	*bin;
+
+	tmp = stack;
+	while (tmp)
+	{
+		bin = int_to_bin(tmp->num);
+		printf("%s \n", bin);
+		free(bin);
+		tmp = tmp->next;
+	}
+}
+
+void	print_bin_program(t_program *program)
+{
+	ft_putstr("a\n");
+	print_bin_stack(program->a);
+	ft_putstr("\nb\n");
+	print_bin_stack(program->b);
+}
