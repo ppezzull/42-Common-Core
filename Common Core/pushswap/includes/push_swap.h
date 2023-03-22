@@ -20,7 +20,6 @@
 typedef struct s_stack
 {
 	int					num;
-	char				*bin;
 	struct s_stack		*next;
 }						t_stack;
 
@@ -35,10 +34,13 @@ int			*stack_into_sorted_lst(t_stack *stack);
 int			stack_size(t_stack *stack);
 int			get_min_idx(t_stack *stack);
 int			get_max_idx(t_stack *stack);
+int			is_sorted(t_program *program);
+int			is_repeated(t_program *program);
 
 t_stack		*new_stack(int nb);
 t_stack		*ft_stack_index(t_stack *stack, int i);
 
+void		check_argv(char **argv);
 void		start_program(t_program **program, char **argv, int argc);
 void		error(void);
 void		print_stack(t_stack	*stack);
@@ -66,7 +68,5 @@ void		hundred_numbers_sort(t_program **program, int chunks);
 void		push_quarter_into_b(t_program **program, int b_len, int key_nbr);
 void		sort_last_a_quarter(t_program **program);
 void		stack_del(t_stack **stack);
-void		radix_sort(t_program **program);
-
 
 #endif

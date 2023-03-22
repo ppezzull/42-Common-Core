@@ -28,8 +28,11 @@ void	push_quarter_into_b(t_program **program, int b_len, int key_nbr)
 			i = 0;
 			tmp = (*program)->a;
 		}
-		tmp = tmp->next;
-		i++;
+		else
+		{
+			tmp = tmp->next;
+			i++;
+		}
 	}
 }
 

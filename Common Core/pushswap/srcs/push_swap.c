@@ -41,8 +41,8 @@ void	three_numbers_sort(t_program **program)
 
 void	ten_numbers_sort(t_program **program)
 {
-	int		i;
-	int		b_len;
+	int	i;
+	int	b_len;
 
 	while (stack_size((*program)->a) > 3)
 	{
@@ -56,42 +56,45 @@ void	ten_numbers_sort(t_program **program)
 		pa(*program);
 }
 
-// void	hundred_numbers_sort(t_program **program, int chunks)
-// {
-// 	int		*sorted;
-// 	int		key_idx;
-// 	int		i;
+void	hundred_numbers_sort(t_program **program, int chunks)
+{
+	int	*sorted;
+	int	key_idx;
+	int	i;
 
-// 	key_idx = (stack_size((*program)->a) / chunks);
-// 	sorted = stack_into_sorted_lst((*program)->a);
-// 	i = 0;
-// 	while (i++ < chunks - 1)
-// 		push_quarter_into_b(program, key_idx * i, sorted[key_idx * i - 1]);
-// 	sort_last_a_quarter(program);
-// 	printf("\n\n\n");
-// 	while ((*program)->b)
-// 	{
-// 		printf("max idx = %i   b_len = %i\n", get_max_idx((*program)->b), stack_size((*program)->b));
-// 		put_stack_on_top_of_b(*program, get_max_idx((*program)->b));
-// 		pa(*program);
-// 	}
-// 	free(sorted);
-// }
+	key_idx = (stack_size((*program)->a) / chunks);
+	sorted = stack_into_sorted_lst((*program)->a);
+	i = -1;
+	while (i++ < chunks - 1)
+		push_quarter_into_b(program, key_idx * i, sorted[key_idx * i - 1]);
+	sort_last_a_quarter(program);
+	while ((*program)->b)
+	{
+		put_stack_on_top_of_b(*program, get_max_idx((*program)->b));
+		pa(*program);
+	}
+	free(sorted);
+}
 
 void	push_swap(t_program *program)
 {
-	if (stack_size(program->a) > 1)
+	int	len;
+
+	len = stack_size(program->a);
+	if (len > 1 && !is_sorted(program))
 	{
-		if (stack_size(program->a) == 2)
+		if (len == 2)
 		{
 			if (program->a->num > program->a->next->num)
 				sa(program);
 		}
-		else if (stack_size(program->a) == 3)
+		else if (len == 3)
 			three_numbers_sort(&program);
-		else if (stack_size(program->a) <= 10)
+		else if (len <= 10)
 			ten_numbers_sort(&program);
-		else if (stack_size(program->a) >= 10)
-			radix_sort(&program);
+		else if (len > 10 && len <= 100)
+			hundred_numbers_sort(&program, 4);
+		else if (len > 100)
+			hundred_numbers_sort(&program, 10);
 	}
 }

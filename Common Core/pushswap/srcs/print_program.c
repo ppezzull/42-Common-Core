@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	print_stack(t_stack	*stack)
+void	print_stack(t_stack *stack)
 {
 	t_stack	*tmp;
 

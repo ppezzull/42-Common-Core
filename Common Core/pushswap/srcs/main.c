@@ -12,24 +12,6 @@
 
 #include "push_swap.h"
 
-void	error(void)
-{
-	ft_putstr("Error\n");
-	exit(EXIT_FAILURE);
-}
-
-void	check_input(char *str)
-{
-	int	i;
-
-	i = -1;
-	if (str[0] == '+' || str[0] == '-')
-		i++;
-	while (str[i++ + 1])
-		if (!ft_isdigit(str[i]))
-			error();
-}
-
 void	start_program(t_program **program, char **argv, int argc)
 {
 	int		i;
@@ -40,6 +22,7 @@ void	start_program(t_program **program, char **argv, int argc)
 		argv = ft_split(argv[1], ' ');
 	else
 		i++;
+	check_argv(argv);
 	(*program)->a = new_stack(ft_atoi(argv[i]));
 	tmp = (*program)->a;
 	while (argv[i++ + 1])
@@ -47,6 +30,8 @@ void	start_program(t_program **program, char **argv, int argc)
 		tmp->next = new_stack(ft_atoi(argv[i]));
 		tmp = tmp->next;
 	}
+	if (is_repeated(*program))
+		error();
 	(*program)->b = NULL;
 	(*program)->moves = 0;
 }
@@ -61,10 +46,10 @@ int	main(int argc, char **argv)
 	if (!program)
 		error();
 	start_program(&program, argv, argc);
-	// push_swap(program);
-	radix_sort(&program);
-	printf("moves = %i\n", program->moves);
-	// print_program(program);
+	if (!is_sorted(program))
+		push_swap(program);
+	// printf("moves = %i\n", program->moves);
+	print_program(program);
 	stack_del(&(program->a));
 	stack_del(&(program->b));
 	free(program);

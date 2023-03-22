@@ -54,8 +54,7 @@ void	rrb(t_program *program)
 
 void	rrr(t_program *program)
 {
-	if (stack_size(program->a) > 1 && \
-		stack_size(program->b) > 1)
+	if (stack_size(program->a) > 1 && stack_size(program->b) > 1)
 	{
 		rrotate(&(program->a));
 		rrotate(&(program->b));

@@ -61,7 +61,7 @@ t_stack	*ft_stack_index(t_stack *stack, int i)
 
 void	put_stack_on_top_of_a(t_program *program, int idx)
 {
-	int		len;
+	int	len;
 
 	len = stack_size(program->a);
 	if (idx == 1)
@@ -83,7 +83,7 @@ void	put_stack_on_top_of_a(t_program *program, int idx)
 
 void	put_stack_on_top_of_b(t_program *program, int idx)
 {
-	int		len;
+	int	len;
 
 	len = stack_size(program->b);
 	if (idx == 1)
