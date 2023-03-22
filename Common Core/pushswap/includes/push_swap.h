@@ -20,7 +20,6 @@
 typedef struct s_stack
 {
 	int					num;
-	char				*bin;
 	struct s_stack		*next;
 }						t_stack;
 
@@ -66,7 +65,5 @@ void		hundred_numbers_sort(t_program **program, int chunks);
 void		push_quarter_into_b(t_program **program, int b_len, int key_nbr);
 void		sort_last_a_quarter(t_program **program);
 void		stack_del(t_stack **stack);
-void		radix_sort(t_program **program);
-
 
 #endif
