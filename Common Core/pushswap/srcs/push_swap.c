@@ -58,6 +58,7 @@ void	ten_numbers_sort(t_program **program)
 
 void	hundred_numbers_sort(t_program **program, int chunks)
 {
+<<<<<<< HEAD
 	int	*sorted;
 	int	key_idx;
 	int	i;
@@ -65,6 +66,15 @@ void	hundred_numbers_sort(t_program **program, int chunks)
 	key_idx = (stack_size((*program)->a) / chunks);
 	sorted = stack_into_sorted_lst((*program)->a);
 	i = -1;
+=======
+	int		*sorted;
+	int		key_idx;
+	int		i;
+
+	key_idx = (stack_size((*program)->a) / chunks);
+	sorted = stack_into_sorted_lst((*program)->a);
+	i = 0;
+>>>>>>> ed72dc34cf57a8874587c6168b7d8089b565238a
 	while (i++ < chunks - 1)
 		push_quarter_into_b(program, key_idx * i, sorted[key_idx * i - 1]);
 	sort_last_a_quarter(program);
@@ -92,9 +102,14 @@ void	push_swap(t_program *program)
 			three_numbers_sort(&program);
 		else if (len <= 10)
 			ten_numbers_sort(&program);
+<<<<<<< HEAD
 		else if (len > 10 && len <= 100)
 			hundred_numbers_sort(&program, 4);
 		else if (len > 100)
 			hundred_numbers_sort(&program, 11);
+=======
+		else if (stack_size(program->a) >= 10)
+			hundred_numbers_sort(&program, 4);
+>>>>>>> ed72dc34cf57a8874587c6168b7d8089b565238a
 	}
 }

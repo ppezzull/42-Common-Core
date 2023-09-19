@@ -46,8 +46,13 @@ int	main(int argc, char **argv)
 	if (!program)
 		error();
 	start_program(&program, argv, argc);
+<<<<<<< HEAD
 	if (!is_sorted(program))
 		push_swap(program);
+=======
+	push_swap(program);
+	printf("moves = %i\n", program->moves);
+>>>>>>> ed72dc34cf57a8874587c6168b7d8089b565238a
 	print_program(program);
 	stack_del(&(program->a));
 	stack_del(&(program->b));

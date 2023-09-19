@@ -16,7 +16,11 @@ FLAGS = -Wall -Wextra -Werror
 INC = -Iincludes/ -I$(LIB_DIR)/includes
 
 PUSH_SRC_NAME = main.c swap.c push_swap.c print_program.c \
+<<<<<<< HEAD
 				push.c rotate.c rrotate.c utils.c utils2.c \
+=======
+				push.c rotate.c rrotate.c utils.c \
+>>>>>>> ed72dc34cf57a8874587c6168b7d8089b565238a
 				sort_utils.c stack_utils.c \
 
 PUSH_OBJ_NAME = $(PUSH_SRC_NAME:.c=.o)
