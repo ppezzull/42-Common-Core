@@ -48,11 +48,8 @@ int	main(int argc, char **argv)
 	start_program(&program, argv, argc);
 	if (!is_sorted(program))
 		push_swap(program);
-	// printf("moves = %i\n", program->moves);
 	print_program(program);
 	stack_del(&(program->a));
 	stack_del(&(program->b));
 	free(program);
 }
-
-// valgrind --leak-check=yes

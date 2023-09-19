@@ -95,6 +95,6 @@ void	push_swap(t_program *program)
 		else if (len > 10 && len <= 100)
 			hundred_numbers_sort(&program, 4);
 		else if (len > 100)
-			hundred_numbers_sort(&program, 10);
+			hundred_numbers_sort(&program, 11);
 	}
 }
