@@ -15,13 +15,13 @@
 void    set_default(t_point *point)
 {
 	point->z_scale = 10;
-	point->scale = 15;
+	point->scale = 30;
 	point->is_isometric = 1;
 	point->angle = 0.6523599;
 	point->win_x = 1600;
 	point->win_y = 900;
 	point->shift_x = point->win_x / 2.75;
-	point->shift_y = point->win_y / 6;
+	point->shift_y = point->win_y / 2;
 	point->mlx_ptr = mlx_init();
 	point->win_ptr = mlx_new_window(point->mlx_ptr, point->win_x, point->win_y, "FDF");
 }
