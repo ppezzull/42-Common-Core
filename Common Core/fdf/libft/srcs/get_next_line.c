@@ -19,7 +19,10 @@ char	*get_line(int fd, char *string)
 
 	buffer = (char *) malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
+	{
+		free(string);
 		return (NULL);
+	}
 	bytes = 1;
 	while (bytes > 0 && ft_strchr(string, '\n') == 0)
 	{
@@ -27,6 +30,7 @@ char	*get_line(int fd, char *string)
 		if ((int)bytes == -1)
 		{
 			free(buffer);
+			free(string);
 			return (string);
 		}
 		buffer[bytes] = '\0';
@@ -46,7 +50,7 @@ char	*trim_line(char *str)
 		return (NULL);
 	while (str[len] && str[len] != '\n')
 		len++;
-	line = (char *) malloc((len + 1) * sizeof(char));
+	line = (char *) malloc((len + 2) * sizeof(char));
 	if (!line)
 		return (NULL);
 	len = 0;
@@ -86,6 +90,7 @@ char	*cut_endl(char *string)
 	while (string[len])
 		tmp[j++] = string[len++];
 	tmp[j] = '\0';
+	free(string);
 	return (tmp);
 }
 

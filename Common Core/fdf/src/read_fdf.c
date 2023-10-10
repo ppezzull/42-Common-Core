@@ -16,13 +16,19 @@ int read_height(char *file_name)
 {
     int height;
     int fd;
+    char *line;
 
     fd = open(file_name, O_RDONLY, 0);
     if (fd < 0)
         error("This file doesn't exist");
     height = 0;
-    while (get_next_line(fd))
+    line = get_next_line(fd);
+    while (line)
+    {
         height++;
+        free(line);
+        line = get_next_line(fd);
+    }
     close(fd);
     if (height == 0)
         error("Empty fdf file :-(");

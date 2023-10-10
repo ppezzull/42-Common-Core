@@ -42,26 +42,6 @@ int	n_of_words(char *s, char c)
 	return (words);
 }
 
-char	*get_word(char *str, int start, int end)
-{
-	int		len;
-	int		i;
-	char	*word;
-
-	len = end - start;
-	word = malloc(sizeof(char) * (len + 1));
-	if (!word)
-		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		word[i] = str[start + i];
-		i++;
-	}
-	word[i] = '\0';
-	return (word);
-}
-
 char	**ft_split(char const *s, char c)
 {
 	char	**split;
@@ -73,7 +53,7 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	n_words = n_of_words((char *)s, c);
-	split = malloc(sizeof(char *) * (n_words + 1));
+	split = (char **)malloc(sizeof(char *) * (n_words + 1));
 	if (!split)
 		return (NULL);
 	i = 0;
@@ -87,6 +67,6 @@ char	**ft_split(char const *s, char c)
 		split[i] = ft_substr((char *)s, start, j - start);
 		i++;
 	}
-	split[i] = 0;
+	split[i] = NULL;
 	return (split);
 }

@@ -56,7 +56,7 @@ void    draw_fdf(t_point **matrix)
 
     param = matrix[0][0];
     y = -1;
-    while (matrix[y++ + 1])
+    while (matrix[++y + 1])
     {
         x = 0;
         while (!matrix[y][x++].is_last)

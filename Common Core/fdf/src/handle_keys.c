@@ -21,6 +21,7 @@ int    handle_keys(int key, t_point **matrix)
     {
         mlx_destroy_window(param->mlx_ptr, param->win_ptr);
         mlx_destroy_display(param->mlx_ptr);
+        free(param->mlx_ptr);
 		free_matrix(matrix);
 		exit(0);
     }
