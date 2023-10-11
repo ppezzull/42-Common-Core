@@ -28,6 +28,7 @@ void free_matrix(t_point **matrix)
         free(matrix[y]);
 		y++;
 	}
+	free(matrix[y]);
     free(matrix);
 }
 

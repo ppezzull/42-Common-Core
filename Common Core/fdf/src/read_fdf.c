@@ -59,6 +59,12 @@ void    allocate_line(int fd, t_point **matrix, int y)
             matrix[y][i].is_last = 0;
     }
     free(line);
+    i = 0;
+    while (nbr_lst[i])
+    {
+        free(nbr_lst[i]);
+        i++;
+    }
     free(nbr_lst);
 }
 
