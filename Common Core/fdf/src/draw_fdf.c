@@ -23,21 +23,33 @@ void	set_param(t_point *a, t_point *b, t_point *param)
 	b->y += param->shift_y;
 }
 
-void    draw_line(t_point *param, t_point a, t_point b)
+int	get_color(float a_z, float b_z)
 {
-    float	step_x;
+	int	color;
+
+	if (a_z != 0.0f || b_z != 0.0f)
+		color = 0xfc0345;
+	else
+		color = 0xBBFAFF;
+	if (a_z != b_z)
+		color = 0xfc031c;
+	return (color);
+}
+
+void	draw_line(t_point *param, t_point a, t_point b)
+{
+	float	step_x;
 	float	step_y;
 	float	max;
-    int     color;
+	int		color;
 
-    set_param(&a, &b, param);
+	set_param(&a, &b, param);
 	step_x = b.x - a.x;
 	step_y = b.y - a.y;
-	max = MAX(fmodule(step_x), fmodule(step_y));
+	max = get_max(fmodule(step_x), fmodule(step_y));
 	step_x /= max;
 	step_y /= max;
-    color = (b.z || a.z) ? 0xfc0345 : 0xBBFAFF;
-	color = (b.z != a.z) ? 0xfc031c : color;
+	color = get_color(a.z, b.z);
 	while ((int)(a.x - b.x) || (int)(a.y - b.y))
 	{
 		mlx_pixel_put(param->mlx_ptr, param->win_ptr, a.x, a.y, color);
@@ -48,23 +60,23 @@ void    draw_line(t_point *param, t_point a, t_point b)
 	}
 }
 
-void    draw_fdf(t_point **matrix)
+void	draw_fdf(t_point **matrix)
 {
-    t_point param;
-    int y;
-    int x;
+	t_point	param;
+	int		y;
+	int		x;
 
-    param = matrix[0][0];
-    y = -1;
-    while (matrix[y++ + 1])
-    {
-        x = 0;
-        while (!matrix[y][x++].is_last)
-        {
+	param = matrix[0][0];
+	y = -1;
+	while (matrix[y++ + 1])
+	{
+		x = 0;
+		while (!matrix[y][x++].is_last)
+		{
 			if (matrix[y + 1])
 				draw_line(&param, matrix[y][x], matrix[y + 1][x]);
 			if (!matrix[y][x].is_last)
 				draw_line(&param, matrix[y][x], matrix[y][x + 1]);
-        }
-    }
+		}
+	}
 }

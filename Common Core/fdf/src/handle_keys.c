@@ -12,18 +12,18 @@
 
 #include "../includes/fdf.h"
 
-int    handle_keys(int key, t_point **matrix)
+int	handle_keys(int key, t_point **matrix)
 {
-    t_point *param;
-    
-    param = &matrix[0][0];
-    if (key == KEY_ESC)
-    {
-        mlx_destroy_window(param->mlx_ptr, param->win_ptr);
-        mlx_destroy_display(param->mlx_ptr);
-        free(param->mlx_ptr);
+	t_point	*param;
+
+	param = &matrix[0][0];
+	if (key == KEY_ESC)
+	{
+		mlx_destroy_window(param->mlx_ptr, param->win_ptr);
+		mlx_destroy_display(param->mlx_ptr);
+		free(param->mlx_ptr);
 		free_matrix(matrix);
 		exit(0);
-    }
-    return (0);
+	}
+	return (0);
 }

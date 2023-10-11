@@ -12,7 +12,13 @@
 
 #include "../includes/fdf.h"
 
-void    set_default(t_point *point)
+void	error(char *message)
+{
+	ft_printf("%s\n", message);
+	exit(EXIT_FAILURE);
+}
+
+void	set_default(t_point *point)
 {
 	point->z_scale = 10;
 	point->scale = 30;
@@ -23,21 +29,22 @@ void    set_default(t_point *point)
 	point->shift_x = point->win_x / 2.75;
 	point->shift_y = point->win_y / 2;
 	point->mlx_ptr = mlx_init();
-	point->win_ptr = mlx_new_window(point->mlx_ptr, point->win_x, point->win_y, "FDF");
+	point->win_ptr = mlx_new_window(point->mlx_ptr, point->win_x, point->win_y,
+			"FDF");
 }
 
-int main(int argc, char **argv) 
+int	main(int argc, char **argv)
 {
-    t_point **matrix;
-    t_point *param;
+	t_point	**matrix;
+	t_point	*param;
 
-    if (argc != 2)
-        error("Put the fdf file bro");
-    matrix = read_fdf(argv[1]);
-    param = &matrix[0][0];
-    set_default(param);
-    draw_fdf(matrix);
-    mlx_key_hook(param->win_ptr, handle_keys, matrix);
-    mlx_loop(param->mlx_ptr);
-    free_matrix(matrix);
+	if (argc != 2)
+		error("Put the fdf file bro");
+	matrix = read_fdf(argv[1]);
+	param = &matrix[0][0];
+	set_default(param);
+	draw_fdf(matrix);
+	mlx_key_hook(param->win_ptr, handle_keys, matrix);
+	mlx_loop(param->mlx_ptr);
+	free_matrix(matrix);
 }

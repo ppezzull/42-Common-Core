@@ -12,29 +12,37 @@
 
 #include "../includes/fdf.h"
 
-void error(char *message)
+void	free_matrix(t_point **matrix)
 {
-    ft_printf("%s\n", message);
-    exit(EXIT_FAILURE);
-}
+	int	y;
 
-void free_matrix(t_point **matrix)
-{
-    int y;
-
-    y = 0;
-    while (matrix[y])
+	y = 0;
+	while (matrix[y])
 	{
-        free(matrix[y]);
+		free(matrix[y]);
 		y++;
 	}
 	free(matrix[y]);
-    free(matrix);
+	free(matrix);
 }
 
 float	fmodule(float i)
 {
-	return (i < 0) ? -i : i;
+	if (i < 0)
+		return (-i);
+	else
+		return (i);
+}
+
+int	get_max(int a, int b)
+{
+	int	result;
+
+	if (a > b)
+		result = a;
+	else
+		result = b;
+	return (result);
 }
 
 void	zoom(t_point *a, t_point *b, t_point *param)
