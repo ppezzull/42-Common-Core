@@ -21,11 +21,13 @@ HEADLIST		:= fdf.h
 HEADERS			:= $(addprefix ${HEADDIR}, ${HEADLIST})
 
 SRCSDIR			:= ./src/
-SRCSLIST		:= 	main.c \
-					read_fdf.c \
-					handle_keys.c \
-					draw_fdf.c \
-					utils.c \
+SRCSLIST		:= 	main.c 				\
+					read_fdf.c 			\
+					handle_keys.c 		\
+					draw_fdf.c 			\
+					utils.c 			\
+					instructions.c		\
+					transform.c
 					
 SRCS			:= $(addprefix ${SRCSDIR}, ${SRCSLIST})
 

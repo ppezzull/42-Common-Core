@@ -44,19 +44,3 @@ int	get_max(int a, int b)
 		result = b;
 	return (result);
 }
-
-void	zoom(t_point *a, t_point *b, t_point *param)
-{
-	a->x *= param->scale;
-	a->y *= param->scale;
-	b->x *= param->scale;
-	b->y *= param->scale;
-	a->z *= param->z_scale;
-	b->z *= param->z_scale;
-}
-
-void	isometric(t_point *point, double angle)
-{
-	point->x = (point->x - point->y) * cos(angle);
-	point->y = (point->x + point->y) * sin(angle) - point->z;
-}

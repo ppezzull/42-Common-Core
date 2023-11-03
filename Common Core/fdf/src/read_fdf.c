@@ -37,10 +37,10 @@ int	read_height(char *file_name)
 
 void	allocate_line(int fd, t_point **matrix, int y)
 {
-	static char	*line;
-	char		**nbr_lst;
-	int			i;
-	int			n_words;
+	char	*line;
+	char	**nbr_lst;
+	int		i;
+	int		n_words;
 
 	line = get_next_line(fd);
 	nbr_lst = ft_split(line, ' ');

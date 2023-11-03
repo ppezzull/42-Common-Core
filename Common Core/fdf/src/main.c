@@ -20,13 +20,13 @@ void	error(char *message)
 
 void	set_default(t_point *point)
 {
-	point->z_scale = 10;
-	point->scale = 30;
+	point->z_scale = 6;
+	point->scale = 20;
 	point->is_isometric = 1;
-	point->angle = 0.6523599;
+	point->angle = 0.54;
 	point->win_x = 1600;
 	point->win_y = 900;
-	point->shift_x = point->win_x / 2.75;
+	point->shift_x = point->win_x / 2;
 	point->shift_y = point->win_y / 2;
 	point->mlx_ptr = mlx_init();
 	point->win_ptr = mlx_new_window(point->mlx_ptr, point->win_x, point->win_y,
@@ -46,5 +46,4 @@ int	main(int argc, char **argv)
 	draw_fdf(matrix);
 	mlx_key_hook(param->win_ptr, handle_keys, matrix);
 	mlx_loop(param->mlx_ptr);
-	free_matrix(matrix);
 }
