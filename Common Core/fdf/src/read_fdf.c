@@ -53,7 +53,7 @@ void	allocate_line(int fd, t_point **matrix, int y)
 	{
 		matrix[y][i].x = i;
 		matrix[y][i].y = y;
-		matrix[y][i].z = ft_atoi(nbr_lst[i]);
+		read_point(nbr_lst[i], &matrix[y][i]);
 		if (!nbr_lst[i + 1])
 			matrix[y][i].is_last = 1;
 		else

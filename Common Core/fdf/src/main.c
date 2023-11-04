@@ -20,7 +20,7 @@ void	error(char *message)
 
 void	set_default(t_point *point)
 {
-	point->z_scale = 6;
+	point->z_scale = 0;
 	point->scale = 20;
 	point->is_isometric = 1;
 	point->angle = 0.54;

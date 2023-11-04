@@ -22,7 +22,6 @@ void fdf_put_string(t_point *param) {
         "O       ->    top view",
         "P       ->    perspective view"
     };
-
     int line_height = 15;
     int line_number = 0;
     int num_lines = sizeof(str) / sizeof(str[0]);

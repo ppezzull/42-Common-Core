@@ -12,23 +12,12 @@
 
 #include "../includes/fdf.h"
 
-int	get_color(float a_z, float b_z)
-{
-	int	color;
-
-	if ((int)a_z == 0 && (int)b_z == 0)
-		color = DARK_PURPLE;
-	else
-		color = LIGHT_PURPLE;
-	return (color);
-}
 
 void	draw_line(t_point *param, t_point a, t_point b)
 {
 	float	step_x;
 	float	step_y;
 	float	max;
-	int		color;
 
 	transform_points(&a, &b, param);
 	step_x = b.x - a.x;
@@ -36,10 +25,9 @@ void	draw_line(t_point *param, t_point a, t_point b)
 	max = get_max(fmodule(step_x), fmodule(step_y));
 	step_x /= max;
 	step_y /= max;
-	color = get_color(a.z, b.z); 
 	while ((int)(a.x - b.x) || (int)(a.y - b.y))
 	{
-		mlx_pixel_put(param->mlx_ptr, param->win_ptr, a.x, a.y, color);
+		mlx_pixel_put(param->mlx_ptr, param->win_ptr, a.x, a.y, a.color);
 		a.x += step_x;
 		a.y += step_y;
 		if (a.x > param->win_x || a.y > param->win_y || a.y < 0 || a.x < 0)

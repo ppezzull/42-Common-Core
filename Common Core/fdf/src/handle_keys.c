@@ -37,15 +37,9 @@ void	run_translation_keys(int key, t_point *param)
 void	run_movement_key(int key, t_point *param)
 {
 	if (key == KEY_PLUS)
-	{
-		param->z_scale += param->z_scale * (((param->scale + 2) / param->scale) - 1);
 		param->scale += 2;
-	}
 	if (key == KEY_MINUS)
-	{
-		param->z_scale += param->z_scale * (((param->scale - 2) / param->scale) - 1);
 		param->scale -= 2;
-	}
 	if (key == KEY_O)
 		param->is_isometric = 0;
 	if (key == KEY_W)

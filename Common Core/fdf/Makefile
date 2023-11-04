@@ -27,7 +27,8 @@ SRCSLIST		:= 	main.c 				\
 					draw_fdf.c 			\
 					utils.c 			\
 					instructions.c		\
-					transform.c
+					transform.c			\
+					read_point.c
 					
 SRCS			:= $(addprefix ${SRCSDIR}, ${SRCSLIST})
 

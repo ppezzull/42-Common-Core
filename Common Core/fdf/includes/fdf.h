@@ -66,8 +66,8 @@ float		fmodule(float i);
 int			read_height(char *file_name);
 int			get_max(int a, int b);
 int			handle_keys(int key, t_point **matrix);
-int			get_color(float a_z, float b_z);
 
+void		read_point(char *point, t_point *a);
 void		error(char *message);
 void		draw_fdf(t_point **matrix);
 void		free_matrix(t_point **matrix);
