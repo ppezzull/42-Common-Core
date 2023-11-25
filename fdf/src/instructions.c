@@ -21,13 +21,11 @@ void	fdf_put_string(t_point *param)
 	mlx_string_put(param->mlx_ptr, param->win_ptr, 10, 60, DARK_PURPLE,
 		"WASD      ->    move the projection around");
 	mlx_string_put(param->mlx_ptr, param->win_ptr, 10, 80, DARK_PURPLE,
-		"N / M     ->    change Z scale");
-	mlx_string_put(param->mlx_ptr, param->win_ptr, 10, 100, DARK_PURPLE,
 		"I         ->    isometric projection");
-	mlx_string_put(param->mlx_ptr, param->win_ptr, 10, 120, DARK_PURPLE,
+	mlx_string_put(param->mlx_ptr, param->win_ptr, 10, 100, DARK_PURPLE,
 		"O         ->    top view");
-	mlx_string_put(param->mlx_ptr, param->win_ptr, 10, 140, DARK_PURPLE,
+	mlx_string_put(param->mlx_ptr, param->win_ptr, 10, 120, DARK_PURPLE,
 		"P         ->    perspective view");
-	mlx_string_put(param->mlx_ptr, param->win_ptr, 10, 160, DARK_PURPLE,
+	mlx_string_put(param->mlx_ptr, param->win_ptr, 10, 140, DARK_PURPLE,
 		"UP / DOWN ->    scale the projection");
 }

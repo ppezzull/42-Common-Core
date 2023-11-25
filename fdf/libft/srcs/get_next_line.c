@@ -31,7 +31,7 @@ char	*get_line(int fd, char *string)
 		{
 			free(buffer);
 			free(string);
-			return (string);
+			return (NULL);
 		}
 		buffer[bytes] = '\0';
 		string = ft_strjoin(string, buffer);

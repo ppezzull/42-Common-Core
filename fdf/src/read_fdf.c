@@ -67,6 +67,7 @@ void	allocate_line(int fd, t_point **matrix, int y)
 t_point	**read_fdf(char *file_name)
 {
 	t_point	**matrix;
+	char	*last_line;
 	int		height;
 	int		fd;
 	int		i;
@@ -78,6 +79,8 @@ t_point	**read_fdf(char *file_name)
 	while (i++ < height)
 		allocate_line(fd, matrix, i);
 	matrix[i] = NULL;
+	last_line = get_next_line(fd);
+	free(last_line);
 	close(fd);
 	return (matrix);
 }
