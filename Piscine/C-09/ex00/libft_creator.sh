@@ -1,1 +1,0 @@
-ar -t libft.a
