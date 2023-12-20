@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/31 18:38:22 by ppezzull          #+#    #+#             */
-/*   Updated: 2023/02/03 14:51:42 by ppezzull         ###   ########.fr       */
+/*   Created: 2022/10/31 11:25:51 by ppezzull          #+#    #+#             */
+/*   Updated: 2022/10/31 11:31:30 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/philo.h"
 
-int	ft_putchar(int c)
+int	ft_atoi(char *str)
 {
-	write(1, &c, 1);
-	return (1);
-}
-
-int	ft_putstr(char *str)
-{
+	int	m;
 	int	i;
+	int	num;
 
-	if (str == NULL)
-		return (ft_putstr("(null)"));
 	i = 0;
-	while (str[i])
+	m = 1;
+	num = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == '-')
 	{
-		ft_putchar(str[i]);
+		m = -m;
 		i++;
 	}
-	return (i);
-}
-
-int	ft_putnbr(int n)
-{
-	ft_putnbr_script(n);
-	return (ft_nbr_len(n));
+	else if (str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		num = num * 10 + str[i] - '0';
+		i++;
+	}
+	return (m * num);
 }

@@ -14,5 +14,8 @@
 
 int main(int argc, char **argv)
 {
-  printf("Hi this is philo\n")
+  t_simulation  *sim;
+
+  check_input(argc, argv);
+  init_simulation(sim, argc, argv);
 }
