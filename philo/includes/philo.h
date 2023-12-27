@@ -24,17 +24,18 @@
 
 typedef struct s_philosopher
 {
-  int ciao;
+  t_simulation	*sim;
+
 } t_philosopher;
 
 typedef struct s_simulation
 {
-  int					    philo_nbr;
-	int					    time_die;
-	int					    time_eat;
-	int					    time_sleep;
-	int					    time_think;
-  t_philosopher   **philos;
+  	int				philo_nbr;
+	int				time_die;
+	int				time_eat;
+	int				time_sleep;
+	int				eat_goal;
+	t_philosopher   *philos;
 } t_simulation;
 
 
@@ -43,7 +44,7 @@ int   ft_atoi(char *str);
 
 void  check_input(int argc, char **argv);
 void  print_instructions(void);
-void  init_simulation(t_simulation *sim, int argc, char **argv);
 
+void init_simulation(t_simulation *sim, int argc, char **argv);
 
 #endif
