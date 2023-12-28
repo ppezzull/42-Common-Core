@@ -14,7 +14,7 @@ NAME = philo
 
 CC = gcc
 
-CFLAGS = -Wall  -Iincludes
+CFLAGS = -Wall -pthread -Iincludes 
 
 SRCS = $(wildcard src/*.c)
 OBJS = $(patsubst src/%.c,obj/%.o,$(SRCS))
@@ -29,8 +29,11 @@ obj/%.o: src/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -rf obj $(NAME)
+	rm -rf obj
 
-re: clean all
+fclean: clean
+	rm -f $(NAME)
 
-.PHONY: all clean re
+re: fclean all
+
+.PHONY: all clean fclean re

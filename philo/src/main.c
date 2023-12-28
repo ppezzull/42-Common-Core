@@ -18,5 +18,5 @@ int main(int argc, char **argv)
 
   check_input(argc, argv);
   init_simulation(&sim, argc, argv);
-  //free(sim);
+  start_simulation(&sim);
 }
