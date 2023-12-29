@@ -40,26 +40,26 @@ int	ft_atoi(char *str)
 
 void send_message(t_philosopher *philo, char *message)
 {
-  int time;
+  long long time;
 
   time = get_current_time() - philo->sim->start_time;
-  printf("%i %i %s\n", time, philo->id, message);
+  printf("%lld %i %s\n", time, philo->id, message);
 }
 
-int	get_current_time(void)
+long long	get_current_time(void)
 {
 	struct timeval	time;
 
 	gettimeofday(&time, NULL);
-	return (int)(time.tv_sec * 1000 + time.tv_usec / 1000);
+	return (long long)((time.tv_sec * 1000LL) + (time.tv_usec / 1000LL));
 }
 
 int	ft_usleep(int milliseconds)
 {
-	int	start;
+	long long	start;
 
 	start = get_current_time();
-	while ((get_current_time() - start) < milliseconds)
-		usleep(500);
+	while ((get_current_time() - start) < (long long)milliseconds)
+		usleep(10);
 	return (0);
 }
