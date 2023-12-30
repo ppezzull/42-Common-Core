@@ -34,7 +34,6 @@ int main(int argc, char **argv)
 
   check_input(argc, argv);
   init_simulation(&sim, argc, argv);
-  printf("len %i\n", sim.philo_len);
   start_simulation(&sim);
   free_simulation(&sim);
 }
