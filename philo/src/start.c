@@ -1,8 +1,8 @@
 #include "../includes/philo.h"
 
-void	eat(t_philosopher	*philo)
+void	eat(t_philosopher *philo)
 {
-	t_philosopher *philo_friend;
+	t_philosopher	*philo_friend;
 
 	philo_friend = get_philo_friend(philo);
 	pthread_mutex_lock(&philo->fork);
@@ -17,19 +17,30 @@ void	eat(t_philosopher	*philo)
 	pthread_mutex_unlock(&philo_friend->fork);
 }
 
-void *supervisor(void *argv)
+int	has_eaten_enough(t_philosopher *philo)
+{
+	return (philo->sim->eat_goal == -1 || philo->n_eat < philo->sim->eat_goal);
+}
+
+void	*supervisor(void *argv)
 {
 	t_philosopher	*philo;
 
-	philo = (t_philosopher *) argv;
+	philo = (t_philosopher *)argv;
 	pthread_mutex_lock(&philo->time_mutex);
-	while (philo->time_left - get_current_time() > 0)
+	while (philo->time_left - get_current_time() > 0
+		&& has_eaten_enough(philo) == 1)
 		;
-	pthread_mutex_unlock(&philo->time_mutex);
-	pthread_mutex_lock(&philo->sim->lock);
-	send_message(philo, DEAD);
-	philo->sim->kill_switch = 1;
-	pthread_mutex_unlock(&philo->sim->lock);
+	if (has_eaten_enough(philo) == 0)
+		philo->time_left = -1;
+	else
+	{
+		pthread_mutex_unlock(&philo->time_mutex);
+		pthread_mutex_lock(&philo->sim->lock);
+		send_message(philo, DEAD);
+		philo->sim->kill_switch = 1;
+		pthread_mutex_unlock(&philo->sim->lock);
+	}
 	return (0);
 }
 
@@ -37,7 +48,7 @@ void	*eating_sesh(void *argv)
 {
 	t_philosopher	*philo;
 
-	philo = (t_philosopher *) argv;
+	philo = (t_philosopher *)argv;
 	pthread_mutex_lock(&philo->time_mutex);
 	philo->time_left = philo->sim->time_die + get_current_time();
 	pthread_mutex_unlock(&philo->time_mutex);
@@ -45,18 +56,24 @@ void	*eating_sesh(void *argv)
 		ft_usleep(10);
 	pthread_create(&philo->supervisor, NULL, &supervisor, (void *)philo);
 	pthread_detach(philo->supervisor);
-	while  (philo->time_left - get_current_time() > 0 && 
-			philo->sim->kill_switch != 1)
+	while (philo->time_left - get_current_time() > 0
+		&& philo->sim->kill_switch != 1)
 	{
-		eat(philo);
-		send_message(philo, SLEEP);
-		ft_usleep(philo->sim->time_sleep);
-		send_message(philo, THINK);
-		// printf("time_left of %i -> %lld\n", philo->id, philo->time_left - get_current_time());
+		if (philo->sim->philo_len == 1)
+		{
+			send_message(philo, FORK);
+			ft_usleep(philo->sim->time_die);
+		}
+		else
+		{
+			eat(philo);
+			send_message(philo, SLEEP);
+			ft_usleep(philo->sim->time_sleep);
+			send_message(philo, THINK);
+		}
 	}
 	return (0);
 }
-
 
 void	start_simulation(t_simulation *sim)
 {

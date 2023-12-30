@@ -83,6 +83,7 @@ void			init_simulation(t_simulation *sim, int argc,
 void			start_simulation(t_simulation *sim);
 void			send_message(t_philosopher *philo, char *message);
 void  			kill_philos(t_simulation	*sim);
+void			free_simulation(t_simulation  *sim);
 
 
 #endif

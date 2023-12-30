@@ -21,8 +21,11 @@ void free_simulation(t_simulation  *sim)
   while (i < sim->philo_len)
   {
     pthread_mutex_destroy(&sim->philos[i].fork);
+    pthread_mutex_destroy(&sim->philos[i].time_mutex);
     i++;
   }
+  free(sim->philos);
+
 }
 
 int main(int argc, char **argv)
@@ -31,11 +34,7 @@ int main(int argc, char **argv)
 
   check_input(argc, argv);
   init_simulation(&sim, argc, argv);
+  printf("len %i\n", sim.philo_len);
   start_simulation(&sim);
-  // free_simulation(&sim);
-
-  // printf("%lld\n", sim.start_time);
-  // printf("%lld\n", get_current_time());
-  // ft_usleep(1000);
-  // printf("%lld\n", get_current_time());
+  free_simulation(&sim);
 }
