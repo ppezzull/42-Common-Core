@@ -12,17 +12,17 @@
 
 #include "../includes/philo.h"
 
-void  end_simulation(t_simulation	*sim)
+
+void free_simulation(t_simulation  *sim)
 {
   int i;
 
   i = 0;
-  while(i < sim->philo_len)
+  while (i < sim->philo_len)
   {
     pthread_mutex_destroy(&sim->philos[i].fork);
     i++;
   }
-  free(sim->philos);
 }
 
 int main(int argc, char **argv)
@@ -32,7 +32,7 @@ int main(int argc, char **argv)
   check_input(argc, argv);
   init_simulation(&sim, argc, argv);
   start_simulation(&sim);
-  end_simulation(&sim);
+  // free_simulation(&sim);
 
   // printf("%lld\n", sim.start_time);
   // printf("%lld\n", get_current_time());

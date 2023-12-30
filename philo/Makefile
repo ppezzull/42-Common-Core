@@ -12,10 +12,10 @@
 
 NAME = philo
 
-CC = gcc
+CC = gcc -g
 
-CFLAGS = -Wall -pthread -Iincludes 
-
+ 
+CFLAGS = -Wall -pthread -Iincludes
 SRCS = $(wildcard src/*.c)
 OBJS = $(patsubst src/%.c,obj/%.o,$(SRCS))
 

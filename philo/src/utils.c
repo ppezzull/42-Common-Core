@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mcapalbo <mcapalbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 11:25:51 by ppezzull          #+#    #+#             */
-/*   Updated: 2022/10/31 11:31:30 by ppezzull         ###   ########.fr       */
+/*   Updated: 2023/12/29 22:47:44 by mcapalbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void send_message(t_philosopher *philo, char *message)
   long long time;
 
   time = get_current_time() - philo->sim->start_time;
-  printf("%lld %i %s\n", time, philo->id, message);
+  if (philo->sim->kill_switch == 0)
+  	printf("%lld %i %s\n", time, philo->id + 1, message);
 }
 
 long long	get_current_time(void)
@@ -51,15 +52,22 @@ long long	get_current_time(void)
 	struct timeval	time;
 
 	gettimeofday(&time, NULL);
-	return (long long)((time.tv_sec * 1000LL) + (time.tv_usec / 1000LL));
+	return (long long)(time.tv_sec * 1000) + (time.tv_usec / 1000);
 }
 
-int	ft_usleep(int milliseconds)
+void	ft_usleep(int milliseconds)
 {
 	long long	start;
 
 	start = get_current_time();
 	while ((get_current_time() - start) < (long long)milliseconds)
-		usleep(10);
-	return (0);
+		usleep(milliseconds / 10);
+}
+
+t_philosopher *get_philo_friend(t_philosopher *philo)
+{
+	if (philo->id == philo->sim->philo_len - 1)
+		return (&philo->sim->philos[0]);
+	else
+		return (&philo->sim->philos[philo->id + 1]);
 }
