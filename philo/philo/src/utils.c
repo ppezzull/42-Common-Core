@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcapalbo <mcapalbo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/31 11:25:51 by ppezzull          #+#    #+#             */
-/*   Updated: 2023/12/29 22:47:44 by mcapalbo         ###   ########.fr       */
+/*   Created: 2023/12/30 12:37:46 by ppezzull          #+#    #+#             */
+/*   Updated: 2023/12/30 12:37:50 by ppezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ int	ft_atoi(char *str)
 	return (m * num);
 }
 
-void send_message(t_philosopher *philo, char *message)
+void	send_message(t_philosopher *philo, char *message)
 {
-  long long time;
+	long long	time;
 
-  time = get_current_time() - philo->sim->start_time;
-  if (philo->sim->kill_switch == 0)
-  	printf("%lld %i %s\n", time, philo->id + 1, message);
+	time = get_current_time() - philo->sim->start_time;
+	if (philo->sim->kill_switch == 0)
+		printf("%lld %i %s\n", time, philo->id + 1, message);
 }
 
 long long	get_current_time(void)
@@ -52,7 +52,7 @@ long long	get_current_time(void)
 	struct timeval	time;
 
 	gettimeofday(&time, NULL);
-	return (long long)(time.tv_sec * 1000) + (time.tv_usec / 1000);
+	return ((long long)(time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
 
 void	ft_usleep(int milliseconds)
@@ -64,7 +64,7 @@ void	ft_usleep(int milliseconds)
 		usleep(milliseconds / 10);
 }
 
-t_philosopher *get_philo_friend(t_philosopher *philo)
+t_philosopher	*get_philo_friend(t_philosopher *philo)
 {
 	if (philo->id == philo->sim->philo_len - 1)
 		return (&philo->sim->philos[0]);

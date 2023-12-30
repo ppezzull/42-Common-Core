@@ -12,28 +12,45 @@
 
 #include "../includes/philo.h"
 
-
-void free_simulation(t_simulation  *sim)
+void	start_simulation(t_simulation *sim)
 {
-  int i;
+	int	i;
 
-  i = 0;
-  while (i < sim->philo_len)
-  {
-    pthread_mutex_destroy(&sim->philos[i].fork);
-    pthread_mutex_destroy(&sim->philos[i].time_mutex);
-    i++;
-  }
-  free(sim->philos);
-
+	i = 0;
+	while (i < sim->philo_len)
+	{
+		pthread_create(&sim->philos[i].thread, NULL, &insightful_dinner,
+			(void *)&sim->philos[i]);
+		i++;
+	}
+	i = 0;
+	while (i < sim->philo_len)
+	{
+		pthread_join(sim->philos[i].thread, NULL);
+		i++;
+	}
 }
 
-int main(int argc, char **argv)
+void	free_simulation(t_simulation *sim)
 {
-  t_simulation  sim;
+	int	i;
 
-  check_input(argc, argv);
-  init_simulation(&sim, argc, argv);
-  start_simulation(&sim);
-  free_simulation(&sim);
+	i = 0;
+	while (i < sim->philo_len)
+	{
+		pthread_mutex_destroy(&sim->philos[i].fork);
+		pthread_mutex_destroy(&sim->philos[i].time_mutex);
+		i++;
+	}
+	free(sim->philos);
+}
+
+int	main(int argc, char **argv)
+{
+	t_simulation	sim;
+
+	check_input(argc, argv);
+	init_simulation(&sim, argc, argv);
+	start_simulation(&sim);
+	free_simulation(&sim);
 }
