@@ -61,7 +61,7 @@ void	ft_usleep(int milliseconds)
 
 	start = get_current_time();
 	while ((get_current_time() - start) < (long long)milliseconds)
-		usleep(milliseconds / 10);
+		usleep(5);
 }
 
 t_philosopher	*get_philo_friend(t_philosopher *philo)

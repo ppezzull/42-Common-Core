@@ -10,47 +10,49 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "../includes/philo_bonus.h"
 
-void	start_simulation(t_simulation *sim)
+void	end_simulation(t_simulation *sim)
 {
 	int	i;
 
 	i = 0;
 	while (i < sim->philo_len)
 	{
-		pthread_create(&sim->philos[i].thread, NULL, &insightful_dinner,
-			(void *)&sim->philos[i]);
-		i++;
-	}
-	i = 0;
-	while (i < sim->philo_len)
-	{
-		pthread_join(sim->philos[i].thread, NULL);
+		kill(sim->philos_pid[i], SIGKILL);
 		i++;
 	}
 }
 
-void	free_simulation(t_simulation *sim)
+void	start_simulation(t_simulation *sim)
 {
+	int	status;
 	int	i;
 
 	i = 0;
+	sim->start_time = get_current_time();
 	while (i < sim->philo_len)
 	{
-		pthread_mutex_destroy(&sim->philos[i].fork);
-		pthread_mutex_destroy(&sim->philos[i].time_mutex);
+		insightful_dinner(sim, i);
 		i++;
 	}
-	free(sim->philos);
+	i = 0;
+	while (i < sim->philo_len)
+	{
+		waitpid(-1, &status, 0);
+		if (WSTOPSIG(status) == 3)
+			end_simulation(sim);
+		i++;
+	}
+	sem_close(sim->semaphore);
 }
 
 int	main(int argc, char **argv)
 {
 	t_simulation	sim;
 
+	sem_unlink("/semfork");
 	check_input(argc, argv);
 	init_simulation(&sim, argc, argv);
 	start_simulation(&sim);
-	free_simulation(&sim);
 }

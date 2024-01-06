@@ -14,7 +14,7 @@
 
 int	has_eaten_enough(t_philosopher *philo)
 {
-	return (philo->sim->eat_goal == -1 || philo->n_eat < philo->sim->eat_goal);
+	return (philo->sim->eat_goal > 0 && philo->n_eat >= philo->sim->eat_goal);
 }
 
 void	*supervisor(void *argv)
@@ -22,15 +22,13 @@ void	*supervisor(void *argv)
 	t_philosopher	*philo;
 
 	philo = (t_philosopher *)argv;
-	pthread_mutex_lock(&philo->time_mutex);
-	while (philo->time_left - get_current_time() > 0
-		&& has_eaten_enough(philo) == 1)
+	while (philo->time_left > get_current_time()
+		&& has_eaten_enough(philo) == 0)
 		;
-	if (has_eaten_enough(philo) == 0)
+	if (has_eaten_enough(philo) == 1)
 		philo->time_left = -1;
 	else
 	{
-		pthread_mutex_unlock(&philo->time_mutex);
 		pthread_mutex_lock(&philo->sim->lock);
 		send_message(philo, DEAD);
 		philo->sim->kill_switch = 1;

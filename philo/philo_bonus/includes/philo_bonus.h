@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#ifndef PHILO_BONUS_H
+# define PHILO_BONUS_H
 
 # define INT_MAX 2147483647
 
@@ -38,21 +38,22 @@
 
 # include <pthread.h>
 # include <stdio.h>
+# include <unistd.h>
 # include <stdlib.h>
 # include <sys/time.h>
-# include <unistd.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <semaphore.h>
+# include <signal.h>
+# include <fcntl.h>
 
 typedef struct s_philosopher
 {
 	struct s_simulation	*sim;
-	int					id;
 	long long			time_left;
+	int					id;
 	int					n_eat;
-	int					is_fork_taken;
-	pthread_mutex_t		fork;
-	pthread_mutex_t		time_mutex;
 	pthread_t			supervisor;
-	pthread_t			thread;
 }						t_philosopher;
 
 typedef struct s_simulation
@@ -62,16 +63,17 @@ typedef struct s_simulation
 	int					time_eat;
 	int					time_sleep;
 	int					eat_goal;
-	int					kill_switch;
+	int					philos_pid[200];
+	sem_t				*semaphore;
 	long long			start_time;
-	pthread_mutex_t		lock;
-	t_philosopher		*philos;
+	t_philosopher		philo;
 }						t_simulation;
 
 t_philosopher			*get_philo_friend(t_philosopher *philo);
 
 int						is_numeric(char *str);
 int						ft_atoi(char *str);
+int						has_eaten_enough(t_philosopher *philo);
 
 long long				get_current_time(void);
 
@@ -83,8 +85,8 @@ void					init_simulation(t_simulation *sim, int argc,
 void					start_simulation(t_simulation *sim);
 void					send_message(t_philosopher *philo, char *message);
 void					kill_philos(t_simulation *sim);
-void					free_simulation(t_simulation *sim);
-void					*insightful_dinner(void *argv);
+void					end_simulation(t_simulation *sim);
+void					insightful_dinner(t_simulation	*sim, int i);
 void					*supervisor(void *argv);
 
 #endif

@@ -10,26 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
-
-t_philosopher	*init_philos(t_simulation *sim)
-{
-	t_philosopher	*philos;
-	int				i;
-
-	philos = (t_philosopher *)malloc(sim->philo_len * sizeof(t_philosopher));
-	i = 0;
-	while (i < sim->philo_len)
-	{
-		philos[i].sim = sim;
-		philos[i].id = i;
-		philos[i].n_eat = 0;
-		pthread_mutex_init(&philos[i].fork, NULL);
-		pthread_mutex_init(&philos[i].time_mutex, NULL);
-		i++;
-	}
-	return (philos);
-}
+#include "../includes/philo_bonus.h"
 
 void	init_simulation(t_simulation *sim, int argc, char **argv)
 {
@@ -37,10 +18,9 @@ void	init_simulation(t_simulation *sim, int argc, char **argv)
 	sim->time_die = ft_atoi(argv[2]);
 	sim->time_eat = ft_atoi(argv[3]);
 	sim->time_sleep = ft_atoi(argv[4]);
-	sim->philos = init_philos(sim);
-	sim->kill_switch = 0;
-	sim->start_time = get_current_time();
-	pthread_mutex_init(&sim->lock, NULL);
+	sim->semaphore = sem_open("/semfork", O_CREAT, 0660, sim->philo_len);
+	sim->philo.sim = sim;
+	sim->philo.n_eat = 0;
 	if (argc == 6)
 		sim->eat_goal = ft_atoi(argv[5]);
 	else
