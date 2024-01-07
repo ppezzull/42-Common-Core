@@ -12,6 +12,14 @@
 
 #include "../includes/philo.h"
 
+void	send_dead_message(t_simulation *sim)
+{
+	if (sim->death_time >= 0)
+	{
+		printf("%lld %i %s\n", sim->death_time, sim->philo_dead, DEAD);
+	}
+}
+
 void	start_simulation(t_simulation *sim)
 {
 	int	i;
@@ -52,5 +60,6 @@ int	main(int argc, char **argv)
 	check_input(argc, argv);
 	init_simulation(&sim, argc, argv);
 	start_simulation(&sim);
+	send_dead_message(&sim);
 	end_simulation(&sim);
 }

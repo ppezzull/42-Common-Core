@@ -61,6 +61,8 @@ typedef struct s_simulation
 	int					time_sleep;
 	int					eat_goal;
 	int					kill_switch;
+	int					philo_dead;
+	long long			death_time;
 	long long			start_time;
 	pthread_mutex_t		lock;
 	t_philosopher		*philos;

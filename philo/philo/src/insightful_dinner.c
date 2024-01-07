@@ -52,11 +52,11 @@ void	*insightful_dinner(void *argv)
 	philo = (t_philosopher *)argv;
 	philo->time_left = (long long)philo->sim->time_die + get_current_time();
 	if (philo->id % 2 != 0)
-		ft_usleep(philo->sim->time_eat - 10);
+		ft_usleep(philo->sim->time_eat - 1);
 	pthread_create(&philo->supervisor, NULL, &supervisor, (void *)philo);
 	pthread_detach(philo->supervisor);
 	while (philo->time_left > get_current_time()
-		&& philo->sim->kill_switch != 1)
+		&& philo->sim->kill_switch == 0)
 		insightful_eating(philo);
 	return (0);
 }

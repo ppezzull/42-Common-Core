@@ -38,6 +38,7 @@ void	init_simulation(t_simulation *sim, int argc, char **argv)
 	sim->time_sleep = ft_atoi(argv[4]);
 	sim->philos = init_philos(sim);
 	sim->kill_switch = 0;
+	sim->death_time = -1;
 	pthread_mutex_init(&sim->lock, NULL);
 	if (argc == 6)
 		sim->eat_goal = ft_atoi(argv[5]);
