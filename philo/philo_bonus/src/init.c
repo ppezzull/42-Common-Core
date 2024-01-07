@@ -18,6 +18,7 @@ void	init_simulation(t_simulation *sim, int argc, char **argv)
 	sim->time_die = ft_atoi(argv[2]);
 	sim->time_eat = ft_atoi(argv[3]);
 	sim->time_sleep = ft_atoi(argv[4]);
+	sim->death_time = -1;
 	sim->semaphore = sem_open("/semfork", O_CREAT, 0660, sim->philo_len);
 	sim->philo.sim = sim;
 	sim->philo.n_eat = 0;

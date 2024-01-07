@@ -12,6 +12,11 @@
 
 #include "../includes/philo_bonus.h"
 
+void	send_dead_message(t_simulation *sim)
+{
+		printf("%lld %i %s\n", sim->death_time, sim->philo_dead + 1, DEAD);
+}
+
 void	end_simulation(t_simulation *sim)
 {
 	int	i;
@@ -22,6 +27,7 @@ void	end_simulation(t_simulation *sim)
 		kill(sim->philos_pid[i], SIGKILL);
 		i++;
 	}
+	// send_dead_message(sim);
 }
 
 void	start_simulation(t_simulation *sim)

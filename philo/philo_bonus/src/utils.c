@@ -43,7 +43,8 @@ void	send_message(t_philosopher *philo, char *message)
 	long long	time;
 
 	time = get_current_time() - philo->sim->start_time;
-	printf("%lld %i %s\n", time, philo->id + 1, message);
+	if (philo->time_left > get_current_time())
+		printf("%lld %i %s\n", time, philo->id + 1, message);
 }
 
 long long	get_current_time(void)
@@ -60,7 +61,7 @@ void	ft_usleep(int milliseconds)
 
 	start = get_current_time();
 	while ((get_current_time() - start) < (long long)milliseconds)
-		usleep(5);
+		usleep(1);
 }
 
 int	has_eaten_enough(t_philosopher *philo)

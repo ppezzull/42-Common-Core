@@ -34,11 +34,14 @@ void	*supervisor(void *argv)
 	philo->time_left = get_current_time() + (long long)philo->sim->time_die;
 	while (philo->time_left > get_current_time()
 		&& has_eaten_enough(philo) == 0)
-		ft_usleep(1);
+		usleep(10);
 	if (has_eaten_enough(philo) == 1)
 		philo->time_left = -1;
 	else
 	{
+		// philo->sim->philo_dead = philo->id;
+		// philo->sim->death_time = get_current_time() - philo->sim->start_time;
+		// printf("%lld\n", philo->sim->death_time);
 		send_message(philo, DEAD);
 		exit(3);
 	}
@@ -55,10 +58,9 @@ void	insightful_dinner(t_simulation *sim, int i)
 		sim->philo.id = i;
 		sim->philo.time_left = get_current_time() + (long long)sim->time_die;
 		if (sim->philo.id % 2 != 0)
-			ft_usleep(sim->time_eat - 10);
+			ft_usleep((int )(sim->time_eat - 10LL));
 		pthread_create(&sim->philo.supervisor, NULL, &supervisor,
 			(void *)&sim->philo);
-		pthread_detach(sim->philo.supervisor);
 		while (sim->philo.time_left > get_current_time())
 		{
 			eat(&sim->philo);
@@ -66,6 +68,7 @@ void	insightful_dinner(t_simulation *sim, int i)
 			ft_usleep(sim->time_sleep);
 			send_message(&sim->philo, THINK);
 		}
+		pthread_join(sim->philo.supervisor, NULL);
 		sem_close(sim->semaphore);
 		exit(0);
 	}

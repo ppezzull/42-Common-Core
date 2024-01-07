@@ -63,8 +63,10 @@ typedef struct s_simulation
 	int					time_eat;
 	int					time_sleep;
 	int					eat_goal;
+	int					philo_dead;
 	int					philos_pid[200];
 	sem_t				*semaphore;
+	long long			death_time;
 	long long			start_time;
 	t_philosopher		philo;
 }						t_simulation;
