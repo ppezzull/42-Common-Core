@@ -14,6 +14,7 @@
 
 void	send_dead_message(t_simulation *sim)
 {
+	if (sim->death_time > 0)
 		printf("%lld %i %s\n", sim->death_time, sim->philo_dead + 1, DEAD);
 }
 
@@ -27,7 +28,6 @@ void	end_simulation(t_simulation *sim)
 		kill(sim->philos_pid[i], SIGKILL);
 		i++;
 	}
-	// send_dead_message(sim);
 }
 
 void	start_simulation(t_simulation *sim)
@@ -47,7 +47,11 @@ void	start_simulation(t_simulation *sim)
 	{
 		waitpid(-1, &status, 0);
 		if (WSTOPSIG(status) == 3)
+		{
+			sim->philo_dead = i;
+			sim->death_time = get_current_time() - sim->start_time;
 			end_simulation(sim);
+		}
 		i++;
 	}
 	sem_close(sim->semaphore);
@@ -61,4 +65,5 @@ int	main(int argc, char **argv)
 	check_input(argc, argv);
 	init_simulation(&sim, argc, argv);
 	start_simulation(&sim);
+	send_dead_message(&sim);
 }

@@ -53,6 +53,7 @@ typedef struct s_philosopher
 	long long			time_left;
 	int					id;
 	int					n_eat;
+	int					is_eating;
 	pthread_t			supervisor;
 }						t_philosopher;
 

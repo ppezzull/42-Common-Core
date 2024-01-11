@@ -21,6 +21,7 @@ void	init_simulation(t_simulation *sim, int argc, char **argv)
 	sim->death_time = -1;
 	sim->semaphore = sem_open("/semfork", O_CREAT, 0660, sim->philo_len);
 	sim->philo.sim = sim;
+	sim->philo.is_eating = 0;
 	sim->philo.n_eat = 0;
 	if (argc == 6)
 		sim->eat_goal = ft_atoi(argv[5]);

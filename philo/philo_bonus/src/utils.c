@@ -61,7 +61,7 @@ void	ft_usleep(int milliseconds)
 
 	start = get_current_time();
 	while ((get_current_time() - start) < (long long)milliseconds)
-		usleep(1);
+		usleep(milliseconds / 10);
 }
 
 int	has_eaten_enough(t_philosopher *philo)
