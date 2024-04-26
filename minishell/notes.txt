@@ -1,0 +1,35 @@
+Minishell notes
+
+Formed by
+-main:
+	.start with readline
+	-signals:
+		-ctrl-C displays a new prompt on a new line.
+		-ctrl-D exits the shell.
+		-ctrl-\ does nothing.
+-parser:
+ 	-lexer-> prende l'input e lo pulisce da spazi e tab /n
+	-tokenizer-> spezza input in token con split
+	-expander -> $ checks in env 
+-executor:
+	-built-in:
+		-echo with option -n
+		-cd with only a relative or absolute path
+		-pwd with no options
+		-export with no options
+		-unset with no options
+		-env with no options or arguments
+		-exit with no options
+	-execve: launch commands for example cat and ls
+	-pipe:
+		-cat takes input from pipe and echo
+	-redirection 
+		-can be both ways
+		-if right argument misses (echo pippo > or echo <) throws error
+		-first priority over built-ins
+		-use > to create new file from stdout example (ls > file1)
+		-use >> to append to a file from stdout example (ls >> file1)
+		
+Tests:
+	> file1 echo > file2 pippo -> should create file1 and file2 with pippo inside
+	echo pippo > file1 | cat -> doesnt print anything because the output of echo goes into file1
