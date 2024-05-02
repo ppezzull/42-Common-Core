@@ -27,7 +27,21 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 
-void	handle_ctrl_c(int sig);
+typedef struct s_minishell
+{
+	t_env_node			*head;
+	char *cwd; // Current working directory
+
+}						t_minishell;
+
+typedef struct s_env_node
+{
+	char				*key;
+	char				*value;
+	struct s_env_node	*next;
+}						t_env_node;
+
+void					handle_ctrl_c(int sig);
 void	handle_ctrl_d(int sig);         // Update function signature
 void	handle_ctrl_backslash(int sig); // Update function signature
 

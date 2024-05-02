@@ -11,28 +11,39 @@
 # **************************************************************************** #
 
 MINISHELL_NAME = minishell
-#-Wextra
-FLAGS = -Wall  -Werror
+
+FLAGS = -Wall -Wextra -Werror
 INC = -Iincludes/ -I$(LIB_DIR)/includes
 LIBS = -lreadline
 
 SRC_DIR = srcs/
-LIB_DIR = libft/
-OBJ_DIR = objs/
+EXECUTOR_DIR = $(SRC_DIR)executor/
+PARSER_DIR = $(SRC_DIR)parser/
+SIGNAL_DIR = $(SRC_DIR)signal/
 
-# Define the source files explicitly
+# Define the source files using wildcard
 MINISHELL_SRC := $(wildcard $(SRC_DIR)*.c)
-MINISHELL_OBJ := $(MINISHELL_SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
+EXECUTOR_SRC := $(wildcard $(EXECUTOR_DIR)*.c)
+PARSER_SRC := $(wildcard $(PARSER_DIR)*.c)
+SIGNAL_SRC := $(wildcard $(SIGNAL_DIR)*.c)
+
+# Define object files
+MINISHELL_OBJ := $(MINISHELL_SRC:.c=.o)
+EXECUTOR_OBJ := $(EXECUTOR_SRC:.c=.o)
+PARSER_OBJ := $(PARSER_SRC:.c=.o)
+SIGNAL_OBJ := $(SIGNAL_SRC:.c=.o)
+
+OBJ_DIR = objs/
 
 all: $(MINISHELL_NAME)
 
-$(MINISHELL_NAME): $(MINISHELL_OBJ)
+$(MINISHELL_NAME): $(MINISHELL_OBJ) $(EXECUTOR_OBJ) $(PARSER_OBJ) $(SIGNAL_OBJ)
 	@make -C $(LIB_DIR) --silent
-	@gcc -o $(MINISHELL_NAME) $(MINISHELL_OBJ) -L $(LIB_DIR) -lft $(LIBS)
+	@gcc -o $@ $^ -L $(LIB_DIR) -lft $(LIBS)
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+%.o: %.c
 	@mkdir -p $(OBJ_DIR)
-	@gcc $(FLAGS) $(INC) -o $@ -c $<
+	@gcc $(FLAGS) $(INC) -o $(OBJ_DIR)$@ -c $<
 
 format:
 	@find includes srcs -name '*.c' -o -name '*.h' | xargs c_formatter_42
