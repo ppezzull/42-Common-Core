@@ -16,27 +16,20 @@ int	main(void)
 {
 	char	*input;
 
-	// Install signal handlers
-	signal(SIGINT, handle_ctrl_c);          // Ctrl-C
-	signal(SIGQUIT, handle_ctrl_backslash); // Ctrl-
+	signal(SIGINT, handle_ctrl_c);
+	signal(SIGQUIT, handle_ctrl_backslash);
 	while (1)
 	{
-		// Read input using readline
-		input = readline(VIOLET "> " RESET_COLOR);
+		input = readline(VIOLET "> ");
 		if (input == NULL)
-		{                           // Ctrl-D (EOF) pressed
-			handle_ctrl_d(SIGQUIT); // Update function call
-			break ;                  // Exit the loop
+		{
+			handle_ctrl_d(SIGQUIT);
+			break ;
 		}
-		// Add input to history
 		if (input && *input)
 		{
 			add_history(input);
 		}
-		// Tokenize input (Parser)
-		// Execute commands (Executor)
-		// Handle built-in commands and external commands
-		// Free input memory
 		free(input);
 	}
 	return (0);

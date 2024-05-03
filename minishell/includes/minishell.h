@@ -15,7 +15,6 @@
 
 # define MAX_INPUT_LENGTH 1024
 # define VIOLET "\033[35m"
-# define RESET_COLOR "\033[0m"
 
 # include "../libft/includes/ft_printf.h"
 # include "../libft/includes/libft.h"
@@ -27,13 +26,6 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 
-typedef struct s_minishell
-{
-	t_env_node			*head;
-	char *cwd; // Current working directory
-
-}						t_minishell;
-
 typedef struct s_env_node
 {
 	char				*key;
@@ -41,8 +33,16 @@ typedef struct s_env_node
 	struct s_env_node	*next;
 }						t_env_node;
 
+typedef struct s_minishell
+{
+	t_env_node			*head;
+	char				*cwd;
+
+}						t_minishell;
+
+
 void					handle_ctrl_c(int sig);
-void	handle_ctrl_d(int sig);         // Update function signature
-void	handle_ctrl_backslash(int sig); // Update function signature
+void					handle_ctrl_d(int sig);
+void					handle_ctrl_backslash(int sig);
 
 #endif
