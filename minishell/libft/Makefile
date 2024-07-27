@@ -3,45 +3,90 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pietro <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: rilliano <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/02/21 16:43:20 by pietro            #+#    #+#              #
-#    Updated: 2023/02/21 16:43:26 by pietro           ###   ########.fr        #
+#    Created: 2023/01/28 15:44:22 by rilliano          #+#    #+#              #
+#    Updated: 2023/11/11 20:02:45 by rilliano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+S = src/
+O = obj/
+I = ./
+
+SRC = \
+	$Sft_isalpha.c \
+	$Sft_isdigit.c \
+	$Sft_isalnum.c \
+	$Sft_isascii.c \
+	$Sft_isprint.c \
+	$Sft_strlen.c \
+	$Sft_memset.c \
+	$Sft_bzero.c \
+	$Sft_memcpy.c \
+	$Sft_memmove.c \
+	$Sft_strlcpy.c \
+	$Sft_strlcat.c \
+	$Sft_toupper.c \
+	$Sft_tolower.c \
+	$Sft_strchr.c \
+	$Sft_strrchr.c \
+	$Sft_strncmp.c \
+	$Sft_memchr.c \
+	$Sft_memcmp.c \
+	$Sft_strnstr.c \
+	$Sft_atoi.c \
+	$Sft_calloc.c \
+	$Sft_strdup.c \
+	$Sft_substr.c \
+	$Sft_strjoin.c \
+	$Sft_strtrim.c \
+	$Sft_split.c \
+	$Sft_itoa.c \
+	$Sft_strmapi.c \
+	$Sft_striteri.c \
+	$Sft_putchar_fd.c \
+	$Sft_putstr_fd.c \
+	$Sft_putendl_fd.c \
+	$Sft_putnbr_fd.c \
+	$Sft_lstnew.c \
+	$Sft_lstadd_front.c \
+	$Sft_lstsize.c \
+	$Sft_lstlast.c \
+	$Sft_lstadd_back.c \
+	$Sft_lstdelone.c \
+	$Sft_lstclear.c \
+	$Sft_lstiter.c \
+	$Sft_lstmap.c \
+	$Sget_next_line.c \
+	$Sget_next_line_utils.c
+
+OBJ = $(SRC:$S%.c=$O%.o)
+
 NAME = libft.a
 
-SRCS = ft_isdigit.c ft_memset.c ft_strjoin.c ft_strtrim.c ft_isprint.c \
-ft_putchar_fd.c ft_strlcat.c ft_substr.c ft_atoi.c ft_itoa.c ft_putendl_fd.c \
-ft_strlcpy.c ft_tolower.c ft_bzero.c ft_putnbr_fd.c ft_strlen.c ft_pow.c \
-ft_toupper.c ft_calloc.c ft_memchr.c ft_putstr_fd.c ft_strmapi.c ft_isalnum.c \
-ft_memcmp.c ft_split.c ft_strncmp.c ft_isalpha.c ft_memcpy.c ft_strchr.c\
-ft_strnstr.c ft_isascii.c ft_memmove.c ft_strdup.c ft_strrchr.c ft_striteri.c \
-ft_lstadd_back.c ft_lstadd_front.c ft_lstdelone.c ft_lstclear.c ft_isnumeric.c\
-ft_lstiter.c ft_lstlast.c ft_lstnew.c ft_lstsize.c ft_lstmap.c ft_isspace.c \
-ft_printf.c ft_useful_scripts.c ft_print_utils.c ft_hex.c ft_putptr.c ft_print_int_lst.c\
-
-CC			= 	gcc
-RM			= 	rm -f
-FLAGS 		= 	-Wall -Wextra -Werror -I ./includes
-
-OBJ_NAME 	= 	$(SRCS:.c=.o)
-OBJ 		= 	$(addprefix $(OBJ_DIR),$(OBJ_NAME))
-SRC_DIR 	= 	srcs/
-OBJ_DIR 	= 	objs/
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+AR = ar rcs
+RM = rm -f
+RMDIR = rmdir
 
 all: $(NAME)
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	mkdir -p $(OBJ_DIR)
-	$(CC) $(FLAGS) -o $@ -c $< $(INC)
+$O:
+	mkdir -p $@
+
+$(OBJ): | $O
+
+$O%.o: $S%.c
+	$(CC) $(CFLAGS) -I$I -c $^ -o $@
 
 $(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
+	$(AR) $@ $^
 
 clean:
 	$(RM) $(OBJ)
+	$(RMDIR) $O
 
 fclean: clean
 	$(RM) $(NAME)
@@ -49,3 +94,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+

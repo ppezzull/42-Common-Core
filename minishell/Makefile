@@ -1,61 +1,74 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: ensteum <marvin@42.fr>                     +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/04/26 15:17:59 by ensteum           #+#    #+#              #
-#    Updated: 2024/04/26 15:18:02 by ensteum          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+S = src/
+O = obj/
+I = ./
+LIBFT_PATH = ./libft
+LIBFT = $(LIBFT_PATH)/libft.a
+LIB = -L$(LIBFT_PATH) -lft -lreadline -lncurses
+INC = -I$(LIBFT_PATH) -I$I
 
-MINISHELL_NAME = minishell
+SRC = \
+	$Sminishell.c \
+	$Sdata_utils.c \
+	$Sdata_format.c \
+	$Stoken_format.c \
+	$Senv_data.c \
+	$Senv_utils.c \
+	$Senv_format.c \
+	$Scmds.c \
+	$Sft_echo.c \
+	$Sft_export.c \
+	$Sexec.c \
+	$Spipe_utils.c \
+	$Sredir_utils.c \
+	$Sft_error.c \
+	$Sutils.c \
+	$Sutils2.c \
+	$Sredir.c \
+	$Sreplace_env.c \
+	$Scheck_bin.c \
+	$Spipe.c \
+	$Sft_cd.c \
 
-FLAGS = -Wall -Wextra -Werror
-INC = -Iincludes/ -I$(LIB_DIR)/includes
-LIBS = -lreadline
+OBJ = $(SRC:$S%.c=$O%.o)
 
-SRC_DIR = srcs/
-EXECUTOR_DIR = $(SRC_DIR)executor/
-PARSER_DIR = $(SRC_DIR)parser/
-SIGNAL_DIR = $(SRC_DIR)signal/
+NAME = minishell
 
-# Define the source files using wildcard
-MINISHELL_SRC := $(wildcard $(SRC_DIR)*.c)
-EXECUTOR_SRC := $(wildcard $(EXECUTOR_DIR)*.c)
-PARSER_SRC := $(wildcard $(PARSER_DIR)*.c)
-SIGNAL_SRC := $(wildcard $(SIGNAL_DIR)*.c)
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+AR = ar rcs
+RM = rm -rf
+RMDIR = rmdir
 
-# Define object files
-MINISHELL_OBJ := $(MINISHELL_SRC:.c=.o)
-EXECUTOR_OBJ := $(EXECUTOR_SRC:.c=.o)
-PARSER_OBJ := $(PARSER_SRC:.c=.o)
-SIGNAL_OBJ := $(SIGNAL_SRC:.c=.o)
+all: $(NAME)
 
-OBJ_DIR = objs/
+$(LIBFT):
+	make -C $(LIBFT_PATH) all
 
-all: $(MINISHELL_NAME)
+$O:
+	mkdir -p $@
 
-$(MINISHELL_NAME): $(MINISHELL_OBJ) $(EXECUTOR_OBJ) $(PARSER_OBJ) $(SIGNAL_OBJ)
-	@make -C $(LIB_DIR) --silent
-	@gcc -o $@ $^ -L $(LIB_DIR) -lft $(LIBS)
+$(OBJ): | $O
 
-%.o: %.c
-	@mkdir -p $(OBJ_DIR)
-	@gcc $(FLAGS) $(INC) -o $(OBJ_DIR)$@ -c $<
+$O%.o: $S%.c
+	$(CC) $(CFLAGS) $(INC) -c $^ -o $@
 
-format:
-	@find includes srcs -name '*.c' -o -name '*.h' | xargs c_formatter_42
+$(NAME): $(LIBFT) $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $@ $(LIB)
 
 clean:
-	@rm -rf $(OBJ_DIR)
-	@make -C $(LIB_DIR) clean --silent
+	make -C $(LIBFT_PATH) clean
+	$(RM) $(OBJ)
+	$(RMDIR) $O
 
 fclean: clean
-	@rm -f $(MINISHELL_NAME)
-	@make -C $(LIB_DIR) fclean --silent
+	$(RM) $(LIBFT)
+	$(RM) $(NAME)
 
 re: fclean all
 
-.PHONY: all format clean fclean re
+format:
+	@for file in $(SRC) minishell.h; do \
+		c_formatter_42 $$file; \
+	done
+
+.PHONY: all clean fclean re

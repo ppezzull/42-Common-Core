@@ -1,3 +1,4 @@
-*.o
 minishell
-objs
+*.o
+libft/libft.a
+.vscode
