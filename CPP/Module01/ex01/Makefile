@@ -12,7 +12,7 @@
 
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -Wall -Wextra -std=c++11
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 # Source files and object files
 SRC = main.cpp zombieHorde.cpp Zombie.cpp  
@@ -38,6 +38,8 @@ clean:
 
 fclean: clean
 	rm -f $(EXEC)
+
+re: fclean all
 
 # Phony targets
 .PHONY: all clean

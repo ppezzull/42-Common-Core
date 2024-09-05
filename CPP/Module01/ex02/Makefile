@@ -12,7 +12,7 @@
 
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -Wall -Wextra -std=c++11
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 # Executable name
 EXEC = brain
@@ -26,6 +26,7 @@ all: $(EXEC)
 $(EXEC): $(SRC)
 	$(CXX) $(CXXFLAGS) -o $(EXEC) $(SRC)
 
-# Clean rule
-clean:
+fclean: clean
 	rm -f $(EXEC)
+
+re: fclean all

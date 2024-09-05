@@ -3,7 +3,7 @@ NAME = replace
 SRCS = main.cpp Replace.cpp
 OBJS = $(SRCS:.cpp=.o)
 CXX = g++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++11
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 
