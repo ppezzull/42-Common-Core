@@ -10,27 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "PhoneBook.hpp"
 
-int main(void) 
+int main(void)
 {
-    PhoneBook   phoneBook;
-    std::string command;        
+    PhoneBook phoneBook;
+    std::string command;
 
-    std::cout << "Ppezzu PhoneBook program\n";
-    while(true)
+    while (true)
     {
+        clearerr(stdin);
+        std::cin.clear();
         std::cout << "ADD a contact, SEARCH one or EXIT the program\n";
         std::cin >> command;
         if (command == "ADD")
             phoneBook.add();
         else if (command == "SEARCH")
             phoneBook.search();
-        else if (command == "exit")
+        else if (command == "EXIT")
             break;
         else
             std::cout << "Put a valid command OG\n";
+        command = "";
     }
 
     return (0);

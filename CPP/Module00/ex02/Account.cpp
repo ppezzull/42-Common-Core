@@ -15,13 +15,11 @@
 #include <ctime>
 #include "Account.hpp"
 
-// Static member variables
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
 int Account::_totalNbDeposits = 0;
 int Account::_totalNbWithdrawals = 0;
 
-// Constructor
 Account::Account(int initial_deposit)
     : _accountIndex(_nbAccounts), _amount(initial_deposit), _nbDeposits(0), _nbWithdrawals(0)
 {
@@ -31,14 +29,12 @@ Account::Account(int initial_deposit)
     std::cout << "index:" << _accountIndex << ";amount:" << _amount << ";created" << std::endl;
 }
 
-// Destructor
 Account::~Account(void)
 {
     _displayTimestamp();
     std::cout << "index:" << _accountIndex << ";amount:" << _amount << ";closed" << std::endl;
 }
 
-// Static methods
 int Account::getNbAccounts(void)
 {
     return _nbAccounts;
@@ -65,7 +61,6 @@ void Account::displayAccountsInfos(void)
     std::cout << "accounts:" << getNbAccounts() << ";total:" << getTotalAmount() << ";deposits:" << getNbDeposits() << ";withdrawals:" << getNbWithdrawals() << std::endl;
 }
 
-// Member methods
 void Account::makeDeposit(int deposit)
 {
     _displayTimestamp();
@@ -103,7 +98,6 @@ void Account::displayStatus(void) const
     std::cout << "index:" << _accountIndex << ";amount:" << _amount << ";deposits:" << _nbDeposits << ";withdrawals:" << _nbWithdrawals << std::endl;
 }
 
-// Private methods
 void Account::_displayTimestamp(void)
 {
     std::time_t now = std::time(0);

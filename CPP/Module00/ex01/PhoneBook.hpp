@@ -14,6 +14,9 @@
 #define PHONEBOOK_HPP
 
 #include <string>
+#include <iostream>
+#include <cstdio>
+#include <iomanip>
 
 class Contact {
 private:
@@ -43,7 +46,7 @@ class PhoneBook {
 private:
     static const int maxContacts = 8;
     Contact contacts[maxContacts];
-    int index;
+    int len;
 
 public:
     PhoneBook();

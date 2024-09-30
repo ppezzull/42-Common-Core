@@ -10,9 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <iomanip>
-#include <string>
 #include "PhoneBook.hpp"
 
 // Contact class implementation
@@ -20,8 +17,9 @@ Contact::Contact() : firstName(""), lastName(""), nickname(""), phoneNumber(""),
 
 Contact::~Contact() {}
 
-void Contact::setDetails(const std::string& fName, const std::string& lName, const std::string& nickName,
-                         const std::string& phone, const std::string& secret) {
+void Contact::setDetails(const std::string &fName, const std::string &lName, const std::string &nickName,
+                         const std::string &phone, const std::string &secret)
+{
     firstName = fName;
     lastName = lName;
     nickname = nickName;
@@ -35,7 +33,8 @@ std::string Contact::getNickname() const { return nickname; }
 std::string Contact::getPhoneNumber() const { return phoneNumber; }
 std::string Contact::getDarkestSecret() const { return darkestSecret; }
 
-void Contact::display() const {
+void Contact::display() const
+{
     std::cout << "First Name: " << firstName << std::endl;
     std::cout << "Last Name: " << lastName << std::endl;
     std::cout << "Nickname: " << nickname << std::endl;
@@ -44,42 +43,73 @@ void Contact::display() const {
 }
 
 // PhoneBook class implementation
-PhoneBook::PhoneBook() : index(0) {}
+PhoneBook::PhoneBook() : len(0) {}
 
 PhoneBook::~PhoneBook() {}
 
-void PhoneBook::add() {
-    std::string firstName, lastName, nickname, phoneNumber, darkestSecret;
+void getInput(const std::string& prompt, std::string& input) {
+            clearerr(stdin);
+		std::cin.clear();
+    std::cout << prompt;
+    std::getline(std::cin, input); // Use getline to allow spaces
 
-    std::cout << "Enter first name: ";
-    std::cin.ignore();
-    std::getline(std::cin, firstName);
-    std::cout << "Enter last name: ";
-    std::getline(std::cin, lastName);
-    std::cout << "Enter nickname: ";
-    std::getline(std::cin, nickname);
-    std::cout << "Enter phone number: ";
-    std::getline(std::cin, phoneNumber);
-    std::cout << "Enter darkest secret: ";
-    std::getline(std::cin, darkestSecret);
-
-    if (firstName.empty() || lastName.empty() || nickname.empty() || phoneNumber.empty() || darkestSecret.empty()) {
-        std::cout << "All fields must be filled in.\n";
-        return;
+    // Check if the input is empty
+    if (input.empty()) {
+        std::cout << "Input cannot be empty. Please try again.\n";
+        getInput(prompt, input); // Recursive call
     }
-
-    contacts[index].setDetails(firstName, lastName, nickname, phoneNumber, darkestSecret);
-    index = (index + 1) % maxContacts;
 }
 
-void PhoneBook::search() const {
+bool isNumeric(const std::string& str) {
+    for (size_t i = 0; i < str.length(); i++) {
+        if (!std::isdigit(str[i])) {
+            return false; // Return false if any character is not a digit
+        }
+    }
+    return true; // All characters are digits
+}
+
+void PhoneBook::add()
+{
+    std::string firstName, lastName, nickname, phoneNumber, darkestSecret;
+    std::cin.ignore();
+    getInput("Enter first name: ", firstName);
+    getInput("Enter last name: ", lastName);
+    getInput("Enter nickname: ", nickname);
+
+    while (true) {
+        getInput("Enter phone number: ", phoneNumber);
+        if (isNumeric(phoneNumber)) {
+            break; // Exit loop if phone number is valid
+        } else {
+            std::cout << "Phone number must contain only digits. Please try again.\n";
+        }
+    }
+
+    getInput("Enter darkest secret: ", darkestSecret);
+    clearerr(stdin);
+    std::cin.clear();
+
+    contacts[len].setDetails(firstName, lastName, nickname, phoneNumber, darkestSecret);
+    len = (len + 1) % maxContacts;
+}
+
+void PhoneBook::search() const
+{
+    if (contacts[0].getFirstName().empty())
+    {
+        std::cout << "No contacts to search\n";
+        return;
+    }
     std::cout << std::setw(10) << "Index" << '|'
               << std::setw(10) << "First Name" << '|'
               << std::setw(10) << "Last Name" << '|'
               << std::setw(10) << "Nickname" << std::endl;
 
-    for (int i = 0; i < maxContacts; ++i) {
-        if (!contacts[i].getFirstName().empty()) {
+    for (int i = 0; i < maxContacts; ++i)
+    {
+        if (!contacts[i].getFirstName().empty())
+        {
             std::cout << std::setw(10) << i << '|'
                       << std::setw(10) << truncate(contacts[i].getFirstName()) << '|'
                       << std::setw(10) << truncate(contacts[i].getLastName()) << '|'
@@ -91,15 +121,20 @@ void PhoneBook::search() const {
     std::cout << "Enter the index of the contact to view: ";
     std::cin >> index;
 
-    if (index < 0 || index >= maxContacts || contacts[index].getFirstName().empty()) {
+    if (index < 0 || index >= maxContacts || contacts[index].getFirstName().empty())
+    {
         std::cout << "Invalid index.\n";
-    } else {
+    }
+    else
+    {
         contacts[index].display();
     }
 }
 
-std::string PhoneBook::truncate(const std::string &str) const {
-    if (str.length() > 10) {
+std::string PhoneBook::truncate(const std::string &str) const
+{
+    if (str.length() > 10)
+    {
         return str.substr(0, 9) + '.';
     }
     return str;
