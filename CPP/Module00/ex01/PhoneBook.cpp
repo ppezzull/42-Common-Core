@@ -12,7 +12,6 @@
 
 #include "PhoneBook.hpp"
 
-// Contact class implementation
 Contact::Contact() : firstName(""), lastName(""), nickname(""), phoneNumber(""), darkestSecret("") {}
 
 Contact::~Contact() {}
@@ -42,46 +41,61 @@ void Contact::display() const
     std::cout << "Darkest Secret: " << darkestSecret << std::endl;
 }
 
-// PhoneBook class implementation
 PhoneBook::PhoneBook() : len(0) {}
 
 PhoneBook::~PhoneBook() {}
 
-void getInput(const std::string& prompt, std::string& input) {
-            clearerr(stdin);
-		std::cin.clear();
-    std::cout << prompt;
-    std::getline(std::cin, input); // Use getline to allow spaces
+bool isWhitespace(const std::string &str) {
+    for (size_t i = 0; i < str.length(); i++) {
+        if (!std::isspace(str[i])) {
+            return false; // Found a non-whitespace character
+        }
+    }
+    return true; // All characters are whitespace
+}
 
-    // Check if the input is empty
-    if (input.empty()) {
+void getInput(const std::string &prompt, std::string &input)
+{
+    clearerr(stdin);
+    std::cin.clear();
+    std::cout << prompt;
+    std::getline(std::cin, input);
+
+    if (input.empty() || isWhitespace(input))
+    {
         std::cout << "Input cannot be empty. Please try again.\n";
-        getInput(prompt, input); // Recursive call
+        getInput(prompt, input);
     }
 }
 
-bool isNumeric(const std::string& str) {
-    for (size_t i = 0; i < str.length(); i++) {
-        if (!std::isdigit(str[i])) {
-            return false; // Return false if any character is not a digit
+bool isNumeric(const std::string &str)
+{
+    for (size_t i = 0; i < str.length(); i++)
+    {
+        if (!std::isdigit(str[i]))
+        {
+            return false;
         }
     }
-    return true; // All characters are digits
+    return true;
 }
 
 void PhoneBook::add()
 {
     std::string firstName, lastName, nickname, phoneNumber, darkestSecret;
-    std::cin.ignore();
     getInput("Enter first name: ", firstName);
     getInput("Enter last name: ", lastName);
     getInput("Enter nickname: ", nickname);
 
-    while (true) {
+    while (true)
+    {
         getInput("Enter phone number: ", phoneNumber);
-        if (isNumeric(phoneNumber)) {
-            break; // Exit loop if phone number is valid
-        } else {
+        if (isNumeric(phoneNumber))
+        {
+            break;
+        }
+        else
+        {
             std::cout << "Phone number must contain only digits. Please try again.\n";
         }
     }
@@ -96,11 +110,13 @@ void PhoneBook::add()
 
 void PhoneBook::search() const
 {
+
     if (contacts[0].getFirstName().empty())
     {
         std::cout << "No contacts to search\n";
         return;
     }
+
     std::cout << std::setw(10) << "Index" << '|'
               << std::setw(10) << "First Name" << '|'
               << std::setw(10) << "Last Name" << '|'
@@ -117,18 +133,25 @@ void PhoneBook::search() const
         }
     }
 
-    int index;
+    std::string index;
     std::cout << "Enter the index of the contact to view: ";
-    std::cin >> index;
+    std::getline(std::cin, index);
 
-    if (index < 0 || index >= maxContacts || contacts[index].getFirstName().empty())
+    if (!isNumeric(index))
+    {
+        std::cout << "Invalid index. Please enter a numeric value.\n";
+        return;
+    }
+
+    int index_int = std::atoi(index.c_str());
+
+    if (index_int < 0 || index_int >= maxContacts || contacts[index_int].getFirstName().empty())
     {
         std::cout << "Invalid index.\n";
+        return;
     }
-    else
-    {
-        contacts[index].display();
-    }
+
+    contacts[index_int].display();
 }
 
 std::string PhoneBook::truncate(const std::string &str) const

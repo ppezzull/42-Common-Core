@@ -17,6 +17,7 @@
 #include <iostream>
 #include <cstdio>
 #include <iomanip>
+#include <cstdlib>
 
 class Contact {
 private:

@@ -22,7 +22,7 @@ int main(void)
         clearerr(stdin);
         std::cin.clear();
         std::cout << "ADD a contact, SEARCH one or EXIT the program\n";
-        std::cin >> command;
+        std::getline(std::cin, command);
         if (command == "ADD")
             phoneBook.add();
         else if (command == "SEARCH")
