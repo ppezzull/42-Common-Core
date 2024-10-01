@@ -19,11 +19,14 @@ int main(void)
 
     while (true)
     {
-        clearerr(stdin);
-        std::cin.clear();
         std::cout << "ADD a contact, SEARCH one or EXIT the program\n";
         std::getline(std::cin, command);
-        if (command == "ADD")
+        if (std::cin.eof())
+        {
+            std::cout << "\n";
+            exit(EXIT_FAILURE);
+        }
+        else if (command == "ADD")
             phoneBook.add();
         else if (command == "SEARCH")
             phoneBook.search();

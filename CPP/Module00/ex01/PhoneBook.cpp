@@ -56,12 +56,14 @@ bool isWhitespace(const std::string &str) {
 
 void getInput(const std::string &prompt, std::string &input)
 {
-    clearerr(stdin);
-    std::cin.clear();
     std::cout << prompt;
     std::getline(std::cin, input);
-
-    if (input.empty() || isWhitespace(input))
+    if (std::cin.eof())
+    {
+        std::cout << "\n";
+        exit(EXIT_FAILURE);
+    }
+    else if (input.empty() || isWhitespace(input))
     {
         std::cout << "Input cannot be empty. Please try again.\n";
         getInput(prompt, input);
@@ -137,15 +139,26 @@ void PhoneBook::search() const
     std::cout << "Enter the index of the contact to view: ";
     std::getline(std::cin, index);
 
+    if (std::cin.eof())
+    {
+        std::cout << "\n";
+        exit(EXIT_FAILURE);
+    }
     if (!isNumeric(index))
     {
         std::cout << "Invalid index. Please enter a numeric value.\n";
         return;
     }
 
+    if (index.empty())
+    {
+        std::cout << "Invalid index.\n";
+        return;
+    }
+
     int index_int = std::atoi(index.c_str());
 
-    if (index_int < 0 || index_int >= maxContacts || contacts[index_int].getFirstName().empty())
+    if (index_int < 0 || index_int >= maxContacts)
     {
         std::cout << "Invalid index.\n";
         return;
