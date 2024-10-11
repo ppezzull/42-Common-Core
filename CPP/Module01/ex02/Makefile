@@ -6,7 +6,7 @@
 #    By: ppezzull <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/06 04:39:21 by ppezzull          #+#    #+#              #
-#    Updated: 2024/08/06 04:39:24 by ppezzull         ###   ########.fr        #
+#    Updated: 2024/10/11 16:54:47 by ppezzull         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ all: $(EXEC)
 $(EXEC): $(SRC)
 	$(CXX) $(CXXFLAGS) -o $(EXEC) $(SRC)
 
-fclean: clean
+clean:
 	rm -f $(EXEC)
 
 re: fclean all
