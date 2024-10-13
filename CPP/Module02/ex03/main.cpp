@@ -1,19 +1,22 @@
-#include <iostream>
 #include "Point.hpp"
 #include "bsp.hpp"
 
-int main() {
-    Point a(0, 0);
-    Point b(10, 0);
-    Point c(0, 10);
+int main(int argc, char** argv) {
+    if (argc != 9) {
+        std::cerr << "Usage: " << argv[0] << " x1 y1 x2 y2 x3 y3 px py" << std::endl;
+        return 1;
+    }
 
-    Point inside(2, 2); // A point inside the triangle
-    Point outside(10, 10); // A point outside the triangle
-    Point onEdge(0, 5); // A point on the edge of the triangle
+    Point a(std::atof(argv[1]), std::atof(argv[2]));
+    Point b(std::atof(argv[3]), std::atof(argv[4]));
+    Point c(std::atof(argv[5]), std::atof(argv[6]));
+    Point p(std::atof(argv[7]), std::atof(argv[8]));
 
-    std::cout << "Point inside the triangle: " << bsp(a, b, c, inside) << std::endl;
-    std::cout << "Point outside the triangle: " << bsp(a, b, c, outside) << std::endl;
-    std::cout << "Point on the edge of the triangle: " << bsp(a, b, c, onEdge) << std::endl;
+    if (bsp(a, b, c, p)) {
+        std::cout << "The point is in the triangle." << std::endl;
+    } else {
+        std::cout << "The point is not in the triangle." << std::endl;
+    }
 
     return 0;
 }
