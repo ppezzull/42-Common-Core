@@ -1,5 +1,4 @@
 #include "FragTrap.hpp"
-#include <iostream>
 
 FragTrap::FragTrap(const std::string& name) : ClapTrap(name) {
     hitPoints = 100;
@@ -23,5 +22,5 @@ void FragTrap::attack(const std::string& target) {
 }
 
 void FragTrap::highFivesGuys(void) {
-    std::cout << "FragTrap " << name << " requests a high five!" << std::endl;
+    std::cout << "FragTrap " << name << " requests a high five! 👏" << std::endl;
 }
