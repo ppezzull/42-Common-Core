@@ -1,30 +1,34 @@
 #include "Cat.hpp"
 #include <iostream>
 
-Cat::Cat() {
-    brain = new Brain();
-    std::cout << "Cat constructed." << std::endl;
+// Constructor
+Cat::Cat() : AAnimal() {
+    this->brain = new Brain();
+    std::cout << "Cat created!" << std::endl;
 }
 
-Cat::Cat(const Cat& other) : AAnimal() {
-    brain = new Brain(*other.brain);
-    std::cout << "Cat copied." << std::endl;
+// Copy Constructor
+Cat::Cat(const Cat& other) : AAnimal(other) {
+    this->brain = new Brain(*other.brain);
 }
 
-Cat::~Cat() {
-    delete brain;
-    std::cout << "Cat destructed." << std::endl;
-}
-
+// Assignment Operator
 Cat& Cat::operator=(const Cat& other) {
-    std::cout << "Cat assignment." << std::endl;
     if (this != &other) {
-        delete brain;  // Avoid memory leak
-        brain = new Brain(*other.brain);
+        AAnimal::operator=(other); // Call the base class assignment operator
+        delete this->brain;
+        this->brain = new Brain(*other.brain);
     }
     return *this;
 }
 
+// Destructor
+Cat::~Cat() {
+    delete this->brain;
+    std::cout << "Cat destroyed!" << std::endl;
+}
+
+// Make Sound
 void Cat::makeSound() const {
     std::cout << "Meow!" << std::endl;
 }

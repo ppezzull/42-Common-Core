@@ -3,7 +3,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCS = AAnimal.cpp Brain.cpp Cat.cpp Dog.cpp main.cpp 
 OBJS = $(SRCS:.cpp=.o)
-NAME = animal_polymorphism
+NAME = AAnimal_polymorphism
 
 all: $(NAME)
 

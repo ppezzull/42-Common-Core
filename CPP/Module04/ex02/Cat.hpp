@@ -3,16 +3,16 @@
 
 #include "AAnimal.hpp"
 #include "Brain.hpp"
+#include <iostream>
 
 class Cat : public AAnimal {
-private:
-    Brain* brain;
 public:
     Cat();
     Cat(const Cat& other);
-    ~Cat();
     Cat& operator=(const Cat& other);
-    void makeSound() const;
+    virtual ~Cat();
+    virtual void makeSound() const;
+    virtual std::string getType() const;
 };
 
 #endif

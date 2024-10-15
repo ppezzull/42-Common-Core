@@ -1,30 +1,36 @@
 #include "Dog.hpp"
-#include <iostream>
 
 Dog::Dog() {
+    type = "Dog";
     brain = new Brain();
-    std::cout << "Dog constructed." << std::endl;
-}
-
-Dog::Dog(const Dog& other) : AAnimal() {
-    brain = new Brain(*other.brain);
-    std::cout << "Dog copied." << std::endl;
+    std::cout << "Dog created!" << std::endl;
 }
 
 Dog::~Dog() {
     delete brain;
-    std::cout << "Dog destructed." << std::endl;
+    std::cout << "Dog destroyed!" << std::endl;
 }
 
-Dog& Dog::operator=(const Dog& other) {
-    std::cout << "Dog assignment." << std::endl;
+Dog::Dog(const Dog &other) : AAnimal(other) {
+    brain = new Brain(*other.brain);
+}
+
+Dog &Dog::operator=(const Dog &other) {
     if (this != &other) {
-        delete brain;  // Avoid memory leak
-        brain = new Brain(*other.brain);
+        AAnimal::operator=(other);
+        *brain = *other.brain;
     }
     return *this;
 }
 
 void Dog::makeSound() const {
     std::cout << "Woof!" << std::endl;
+}
+
+void Dog::setIdea(int index, const std::string &idea) {
+    brain->setIdea(index, idea);
+}
+
+std::string Dog::getIdea(int index) const {
+    return brain->getIdea(index);
 }
