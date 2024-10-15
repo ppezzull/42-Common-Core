@@ -10,8 +10,8 @@ protected:
 
 public:
     WrongAnimal();
-    virtual ~WrongAnimal();
-    void makeSound() const; // Non-virtual function
+    ~WrongAnimal();
+    void makeSound() const;
     std::string getType() const;
 };
 

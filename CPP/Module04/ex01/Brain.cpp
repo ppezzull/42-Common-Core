@@ -1,26 +1,14 @@
 #include "Brain.hpp"
-#include <iostream>
 
-Brain::Brain() {
-    std::cout << "Brain constructed." << std::endl;
-    for (int i = 0; i < 100; ++i) {
-        ideas[i] = "No idea";  // Initialize ideas
-    }
-}
+Brain::Brain() {}
 
 Brain::Brain(const Brain& other) {
-    std::cout << "Brain copied." << std::endl;
     for (int i = 0; i < 100; ++i) {
         ideas[i] = other.ideas[i];
     }
 }
 
-Brain::~Brain() {
-    std::cout << "Brain destructed." << std::endl;
-}
-
 Brain& Brain::operator=(const Brain& other) {
-    std::cout << "Brain assignment." << std::endl;
     if (this != &other) {
         for (int i = 0; i < 100; ++i) {
             ideas[i] = other.ideas[i];
@@ -28,6 +16,8 @@ Brain& Brain::operator=(const Brain& other) {
     }
     return *this;
 }
+
+Brain::~Brain() {}
 
 void Brain::setIdea(int index, const std::string& idea) {
     if (index >= 0 && index < 100) {

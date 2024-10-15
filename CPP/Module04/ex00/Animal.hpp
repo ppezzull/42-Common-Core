@@ -11,7 +11,7 @@ protected:
 public:
     Animal();
     virtual ~Animal();
-    virtual void makeSound() const; // Virtual function for polymorphism
+    virtual void makeSound() const;
     std::string getType() const;
 };
 
