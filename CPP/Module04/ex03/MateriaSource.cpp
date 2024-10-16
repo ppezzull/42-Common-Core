@@ -1,8 +1,11 @@
 #include "MateriaSource.hpp"
+#include <iostream>
 
 MateriaSource::MateriaSource() {
     for (int i = 0; i < 4; ++i)
         _templates[i] = NULL;
+    std::cout << "MateriaSource created" << std::endl;
+
 }
 
 MateriaSource::~MateriaSource() {
@@ -10,6 +13,7 @@ MateriaSource::~MateriaSource() {
         if (_templates[i])
             delete _templates[i];
     }
+    std::cout << "MateriaSource deleted" << std::endl;
 }
 
 void MateriaSource::learnMateria(AMateria* m) {

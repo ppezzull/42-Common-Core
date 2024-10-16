@@ -1,12 +1,16 @@
 #include "Ice.hpp"
 #include "ICharacter.hpp"
 
-Ice::Ice() : AMateria("ice") {}
+Ice::Ice() : AMateria("ice") {
+    std::cout << "Ice created!" << std::endl;
+}
 
-Ice::~Ice() {}
+Ice::~Ice() {
+    std::cout << "Ice destroyed!" << std::endl;
+}
 
 AMateria* Ice::clone() const {
-    return new Ice(*this); // Deep copy
+    return new Ice(*this);
 }
 
 void Ice::use(ICharacter& target) {
