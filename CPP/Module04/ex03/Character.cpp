@@ -17,7 +17,7 @@ Character& Character::operator=(const Character& other) {
         for (int i = 0; i < 4; ++i) {
             if (_inventory[i])
                 delete _inventory[i];
-            _inventory[i] = other._inventory[i] ? other._inventory[i]->clone() : NULL;
+            _inventory[i] = other._inventory[i]->clone();
         }
     }
     return *this;
@@ -45,8 +45,11 @@ void Character::equip(AMateria* m) {
 }
 
 void Character::unequip(int idx) {
-    if (idx >= 0 && idx < 4)
-        _inventory[idx] = NULL;
+    if (idx >= 0 && idx < 4 && _inventory[idx])
+    {
+        delete _inventory[idx];
+        _inventory[idx] = NULL; 
+    }
 }
 
 void Character::use(int idx, ICharacter& target) {
