@@ -18,7 +18,8 @@ Dog::Dog(const Dog &other) : AAnimal(other) {
 Dog &Dog::operator=(const Dog &other) {
     if (this != &other) {
         AAnimal::operator=(other);
-        *brain = *other.brain;
+        delete brain;  // Free the existing brain memory
+        brain = new Brain(*other.brain);
     }
     return *this;
 }
@@ -28,9 +29,12 @@ void Dog::makeSound() const {
 }
 
 void Dog::setIdea(int index, const std::string &idea) {
-    brain->setIdea(index, idea);
+    if (brain)
+        brain->setIdea(index, idea);
 }
 
 std::string Dog::getIdea(int index) const {
-    return brain->getIdea(index);
+    if (brain)
+        return brain->getIdea(index);
+    return "";
 }
