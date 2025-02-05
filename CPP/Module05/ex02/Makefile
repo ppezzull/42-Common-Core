@@ -4,7 +4,7 @@ CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
-OBJ = $(SRC:.cpp=.o)
+OBJ = $(SRC:.cpp=.o) 
 
 all: $(NAME)
 
@@ -15,6 +15,6 @@ clean:
 	rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) Garden_shrubbery
 
 re: fclean all
