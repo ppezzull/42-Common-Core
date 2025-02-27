@@ -17,7 +17,7 @@ int main() {
         std::cout << "Found: " << *it << std::endl;
 
         std::cout << "Looking for 99 in the container..." << std::endl;
-        it = easyfind(numbers, 99); // This will throw an exception
+        it = easyfind(numbers, 99);
         std::cout << "Found: " << *it << std::endl;
 
     } catch (const std::exception& e) {

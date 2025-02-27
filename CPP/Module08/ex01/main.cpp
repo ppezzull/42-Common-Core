@@ -10,17 +10,12 @@ int main() {
         sp.addNumber(9);
         sp.addNumber(11);
 
-
-        // int arr[] = {1, 2, 3, 4, 5};
-        // std::vector<int> additionalNumbers(arr, arr + sizeof(arr) / sizeof(int));
-        // sp.addRange(additionalNumbers.begin(), additionalNumbers.end());
-
         std::cout << "Shortest Span: " << sp.shortestSpan() << std::endl;
         std::cout << "Longest Span: " << sp.longestSpan() << std::endl;
 
-        Span largeSpan(10000);
+        Span largeSpan(15000);
         std::vector<int> range;
-        for (int i = 0; i < 10000; ++i) {
+        for (int i = 0; i < 15000; ++i) {
             range.push_back(i);
         }
 
