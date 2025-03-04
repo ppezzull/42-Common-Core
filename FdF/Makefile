@@ -12,7 +12,7 @@
 
 NAME			:= fdf
 CC				:= cc
-RM		    	:= rm -f
+RM		    	:= rm -rf
 FLAGS			:= -Wall -Wextra -Werror
 DEBUG			:= -g
 
@@ -60,6 +60,9 @@ ${LIBFT}:
 
 ${MLX}:
 				@echo ""
+				# Ensure MinilibX is extracted before building
+				@echo "Extracting MinilibX..."; 
+				tar xf minilibx-linux.tgz -C .; 
 				@echo "${CYAN}Compiling ${MLX} ...${RESET}"
 				make -C ${MLXDIR}
 
@@ -88,6 +91,7 @@ clean:
 
 fclean:			clean
 				@echo ""
+				$(RM) $(MLXDIR)
 				@echo "${CYAN}Deleting $(NAME) Executable ...${RESET}"
 				${RM} ${NAME}
 				make -C ${LIBFTDIR} fclean
