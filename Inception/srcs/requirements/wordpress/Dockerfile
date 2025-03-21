@@ -36,7 +36,7 @@ RUN curl -O https://wordpress.org/latest.tar.gz && \
     chown -R www-data:www-data . && \
     chmod -R 755 .
 
-# Create required socket directories
+# Create required directories
 RUN mkdir -p /var/run/mysqld \
     && chown -R www-data:www-data /var/run/mysqld \
     && chmod 777 /var/run/mysqld \
@@ -44,11 +44,8 @@ RUN mkdir -p /var/run/mysqld \
     && chown -R www-data:www-data /run/php \
     && chmod 777 /run/php
 
-# Enable environment variables in PHP-FPM
-RUN sed -i 's/;clear_env = no/clear_env = no/' /etc/php/7.4/fpm/pool.d/www.conf
-
-# Configure PHP-FPM to use Unix socket
-RUN sed -i 's|listen = /run/php/php7.4-fpm.sock|listen = 9000|' /etc/php/7.4/fpm/pool.d/www.conf
+# Copy PHP-FPM configuration
+COPY conf/www.conf /etc/php/7.4/fpm/pool.d/
 
 # Set up WordPress initialization script
 COPY tools/script.sh /usr/local/bin/
