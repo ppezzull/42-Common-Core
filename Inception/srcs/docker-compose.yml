@@ -1,53 +1,67 @@
+# Docker Compose version specification
 version: '3'
 
+# Definition of services (containers) in the application
 services:
+  # NGINX web server configuration
   nginx:
     build:
-      context: ./requirements/nginx
-      dockerfile: Dockerfile
+      context: ./requirements/nginx    # Build context directory
+      dockerfile: Dockerfile          # Dockerfile location
     ports:
-      - "443:443"
+      - "443:443"                    # Map host port 443 to container port 443 (HTTPS)
     volumes:
-      - ./requirements/nginx/conf:/etc/nginx/conf.d
-      - ./requirements/wordpress:/var/www/html
+      - wordpress_data:/var/www/html  # Mount WordPress files
+      - ./requirements/nginx/conf:/etc/nginx/conf.d      # Mount NGINX configuration
     depends_on:
-      - wordpress
+      - wordpress                    # Ensure WordPress container starts first
     networks:
-      - inception
+      - inception                    # Connect to inception network
+    restart: always
 
+  # WordPress application configuration
   wordpress:
     build:
       context: ./requirements/wordpress
       dockerfile: Dockerfile
     volumes:
-      - ./requirements/wordpress:/var/www/html
+      - wordpress_data:/var/www/html  # Mount WordPress files
     environment:
+      # WordPress database connection settings
       WORDPRESS_DB_HOST: mariadb
       WORDPRESS_DB_USER: ${MYSQL_USER}
       WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
       WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
+      DOMAIN_NAME: ${DOMAIN_NAME}
     depends_on:
-      - mariadb
+      - mariadb                      # Ensure MariaDB container starts first
     networks:
       - inception
+    restart: always
 
+  # MariaDB database configuration
   mariadb:
     build:
       context: ./requirements/mariadb
       dockerfile: Dockerfile
     volumes:
-      - mariadb_data:/var/lib/mysql
+      - mariadb_data:/var/lib/mysql  # Persistent database storage
     environment:
+      # Database environment variables from .env file
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     networks:
       - inception
+    restart: always
 
+# Named volumes for persistent data
 volumes:
-  mariadb_data:
+  mariadb_data:                      # Volume for MariaDB data persistence
+  wordpress_data:                    # Volume for WordPress files
 
+# Network configuration
 networks:
   inception:
-    driver: bridge
+    driver: bridge                   # Use bridge network driver for container communication

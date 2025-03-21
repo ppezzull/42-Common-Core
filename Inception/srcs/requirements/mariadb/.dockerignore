@@ -1,5 +1,12 @@
+# Git version control files and directories
 .git
 .gitignore
+
+# macOS system files
 **/.DS_Store
+
+# Documentation files
 README.md
+
+# Docker-specific files
 .dockerignore

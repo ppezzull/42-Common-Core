@@ -1,10 +1,13 @@
 #!/bin/bash
 
-# Wait for WordPress to be ready
-until curl -s http://wordpress:9000 > /dev/null; do
+# Wait for WordPress container to be ready
+echo "Waiting for WordPress container..."
+until nc -z wordpress 9000; do
     echo "Waiting for WordPress to be ready..."
-    sleep 5
+    sleep 2
 done
+
+echo "WordPress is ready! Starting NGINX..."
 
 # Start Nginx
 exec "$@"
