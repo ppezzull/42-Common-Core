@@ -37,14 +37,14 @@ define('DB_COLLATE', '');
 
 \$table_prefix = 'wp_';
 
-define('AUTH_KEY',         'put your unique phrase here');
-define('SECURE_AUTH_KEY',  'put your unique phrase here');
-define('LOGGED_IN_KEY',    'put your unique phrase here');
-define('NONCE_KEY',        'put your unique phrase here');
-define('AUTH_SALT',        'put your unique phrase here');
-define('SECURE_AUTH_SALT', 'put your unique phrase here');
-define('LOGGED_IN_SALT',   'put your unique phrase here');
-define('NONCE_SALT',       'put your unique phrase here');
+define('AUTH_KEY',         'srt/ne.6jmHDf`3x`QI{6,]%AfvD^NWbjQiP.:SH|9T<h.KqPxZ#i+a||`nqg%uJ');
+define('SECURE_AUTH_KEY',  '9L2sl0(R+l-T3z=RcWPe_$4-UyGWll$kE-;PA(~`NW<i)k}F.WfAg-d6U2!G&mAr');
+define('LOGGED_IN_KEY',    'r7gGEyL6m]armVG+E.gi9$?j!^WsFa}] YrEHNEZrl-P#jIo$~jk[!+5W[?k?AJQ');
+define('NONCE_KEY',        'Cij7kv`:;N$J5frdsXq<)+Zm=|mVCkwu*rv)ocGU!)Q|,j0&Xqnq4hxowZ=B%/~V');
+define('AUTH_SALT',        '2&uV&JM)h:)8vcJFvzT7]DWL<F|a$W$SxjE>rMnY_ZA1|(i_$XtG;gpkME)]x]xi');
+define('SECURE_AUTH_SALT', '{ro[tzYGJUXHy2-=Jrl}Uj,;m)(=t/rW[];eg%|6|A(}5g,)2G~TuZebNb+oB:*.');
+define('LOGGED_IN_SALT',   'q-< E;6-zPWJ/:iSw|[%iMk5y3+gYCumzmmce1Yveb1V*h=Gt*Q7ixmQm5pe2G24');
+define('NONCE_SALT',       '}ie}Rz 1`bg<~$l6}G/}ELPwdTx]xI-sKFX~-FO/-Y2<YM3eOuS ^*WB<Uora;r<');
 
 define('WP_DEBUG', false);
 
