@@ -78,22 +78,3 @@ EOF
     
     echo "WordPress installation completed!"
 fi
-
-echo "Starting PHP-FPM..."
-# Ensure PHP-FPM starts properly
-mkdir -p /run/php
-chown www-data:www-data /run/php
-
-# Start PHP-FPM and wait for it to be ready
-php-fpm7.4 -F -R &
-PHP_FPM_PID=$!
-
-# Wait for PHP-FPM to be ready
-echo "Waiting for PHP-FPM to be ready..."
-while ! nc -z localhost 9000; do
-    echo "PHP-FPM not ready yet..."
-    sleep 1
-done
-
-echo "PHP-FPM is ready!"
-wait $PHP_FPM_PID

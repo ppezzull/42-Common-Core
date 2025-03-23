@@ -9,5 +9,3 @@ done
 
 echo "WordPress is ready! Starting NGINX..."
 
-# Start Nginx
-exec "$@"

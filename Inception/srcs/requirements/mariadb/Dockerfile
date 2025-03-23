@@ -25,4 +25,4 @@ EXPOSE 3306
 
 # Run the initialization script and start MariaDB server
 ENTRYPOINT ["/usr/local/bin/script.sh"]
-CMD ["mysqld"]
+CMD ["mysqld --user=mysql"]

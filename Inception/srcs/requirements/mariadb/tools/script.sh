@@ -50,5 +50,5 @@ if ! kill -s TERM "$pid" || ! wait "$pid"; then
 fi
 
 # Start MySQL normally
-echo "Starting MySQL..."
-exec mysqld --user=mysql
+# echo "Starting MySQL..."
+# exec mysqld --user=mysql
