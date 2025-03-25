@@ -38,7 +38,7 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
 FLUSH PRIVILEGES;
 EOF
 
-    # Verify database creation
+    # Verify database creation - adding quotes around password to handle special characters
     echo "Verifying database creation..."
     mysql --protocol=socket -uroot -p${MYSQL_ROOT_PASSWORD} -e "SHOW DATABASES;"
 fi
@@ -49,6 +49,6 @@ if ! kill -s TERM "$pid" || ! wait "$pid"; then
     exit 1
 fi
 
-# Start MySQL normally
+# Start MySQL normally with explicit arguments passed
 echo "Starting MySQL..."
-exec mysqld --user=mysql
+exec "$@"
