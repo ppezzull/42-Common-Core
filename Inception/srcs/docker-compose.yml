@@ -1,6 +1,3 @@
-# Docker Compose version specification
-version: '3'
-
 # Definition of services (containers) in the application
 services:
   # NGINX web server configuration

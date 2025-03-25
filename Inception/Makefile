@@ -39,12 +39,12 @@ setup:
 # - MariaDB image with custom configuration
 build:
 	@printf "$(GREEN)Building and starting containers...$(RESET)\n"
-	@docker-compose -f $(COMPOSE_FILE) up --build -d
+	@docker compose -f $(COMPOSE_FILE) up --build -d
 
 # Stops all containers
 stop:
 	@printf "$(RED)Stopping containers...$(RESET)\n"
-	@docker-compose -f $(COMPOSE_FILE) stop
+	@docker compose -f $(COMPOSE_FILE) stop
 
 # Starts all containers in detached mode (-d flag)
 # This will:
@@ -53,18 +53,18 @@ stop:
 # - Start MariaDB on port 3306 (internal network only)
 start:
 	@printf "$(GREEN)Starting containers...$(RESET)\n"
-	@docker-compose -f $(COMPOSE_FILE) start
+	@docker compose -f $(COMPOSE_FILE) start
 
 # Restart containers
 restart:
 	@printf "$(GREEN)Restarting containers...$(RESET)\n"
-	@docker-compose -f $(COMPOSE_FILE) restart
+	@docker compose -f $(COMPOSE_FILE) restart
 
 # Stops and removes all containers
 # Containers will be stopped gracefully
 clean:
 	@printf "$(RED)Cleaning up containers and volumes...$(RESET)\n"
-	@docker-compose -f $(COMPOSE_FILE) down -v
+	@docker compose -f $(COMPOSE_FILE) down -v
 	@sudo rm -rf $(DATA_PATH)
 
 # Complete cleanup of all Docker resources
