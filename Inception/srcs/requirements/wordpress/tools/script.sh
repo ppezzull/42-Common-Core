@@ -78,3 +78,11 @@ EOF
     
     echo "WordPress installation completed!"
 fi
+
+echo "Starting PHP-FPM..."
+# Ensure PHP-FPM directory exists
+mkdir -p /run/php
+chown www-data:www-data /run/php
+
+# Execute the command passed to the script (PHP-FPM)
+exec "$@"
