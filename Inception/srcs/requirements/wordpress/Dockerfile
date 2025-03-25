@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     mariadb-client \
     netcat \
+    sendmail \
     && rm -rf /var/lib/apt/lists/*
 
 # Create and set proper permissions for web root
