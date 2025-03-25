@@ -5,6 +5,7 @@ services:
     build:
       context: ./requirements/nginx    # Build context directory
       dockerfile: Dockerfile          # Dockerfile location
+    container_name: nginx  # Set the container name
     ports:
       - "443:443"                    # Map host port 443 to container port 443 (HTTPS)
     volumes:
@@ -21,6 +22,7 @@ services:
     build:
       context: ./requirements/wordpress
       dockerfile: Dockerfile
+    container_name: wordpress  # Set the container name
     volumes:
       - wordpress_data:/var/www/html  # Mount WordPress files
     environment:
@@ -30,6 +32,14 @@ services:
       WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
       WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
       DOMAIN_NAME: ${DOMAIN_NAME}
+      # WordPress admin settings
+      WP_ADMIN_USER: ${WP_ADMIN_USER}
+      WP_ADMIN_PASSWORD: ${WP_ADMIN_PASSWORD}
+      WP_ADMIN_EMAIL: ${WP_ADMIN_EMAIL}
+      # WordPress regular user settings
+      WP_USER: ${WP_USER}
+      WP_USER_PASSWORD: ${WP_USER_PASSWORD}
+      WP_USER_EMAIL: ${WP_USER_EMAIL}
     depends_on:
       - mariadb                      # Ensure MariaDB container starts first
     networks:
@@ -41,6 +51,7 @@ services:
     build:
       context: ./requirements/mariadb
       dockerfile: Dockerfile
+    container_name: mariadb  # Set the container name
     volumes:
       - mariadb_data:/var/lib/mysql  # Persistent database storage
     environment:
